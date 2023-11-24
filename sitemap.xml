@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/01-introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/02-opening-and-checking-an-image.html</loc>
+  </url>
+  <url>
+    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/03-applying-filters.html</loc>
+  </url>
+  <url>
+    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/04-thresholding-and-segmentation.html</loc>
+  </url>
+  <url>
+    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/05-measurements.html</loc>
+  </url>
+  <url>
+    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/06-napari.html</loc>
+  </url>
+  <url>
+    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/07-napari-filters.html</loc>
+  </url>
+  <url>
     <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/404.html</loc>
   </url>
   <url>
@@ -17,6 +38,27 @@
   </url>
   <url>
     <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/index.html</loc>
+  </url>
+  <url>
+    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/01-introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/02-opening-and-checking-an-image.html</loc>
+  </url>
+  <url>
+    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/03-applying-filters.html</loc>
+  </url>
+  <url>
+    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/04-thresholding-and-segmentation.html</loc>
+  </url>
+  <url>
+    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/05-measurements.html</loc>
+  </url>
+  <url>
+    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/06-napari.html</loc>
+  </url>
+  <url>
+    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/07-napari-filters.html</loc>
   </url>
   <url>
     <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/404.html</loc>
