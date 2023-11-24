@@ -59,7 +59,13 @@ contact: 'team@carpentries.org'
 
 # Order of episodes in your lesson
 episodes: 
-- introduction.Rmd
+- 01-introduction.Rmd
+- 02-opening-and-checking-an-image.md
+- 03-applying-filters.md
+- 04-thresholding-and-segmentation.md
+- 05-measurements.md
+- 06-napari.md
+- 07-napari-filters.md
 
 # Information for Learners
 learners: 
