@@ -29,11 +29,14 @@ The kernel in this case can be considered a 2-dimensional sliding window.
 A gaussian filter is similar to a mean filter, except that pixels further from the
 kernel centre will have less effect on the result.
 
-::::::::::::::::::::::::::::::::::::: challenge 
+There are many smoothing filters beyond these, they all perform differently and have
+their own advantages depending on the situation and the image in question.
 
-## Exercise 6: Applying filters
+::::::::::::::::::::::::::::::::::::: challenge 
+## Exercise 7: Applying filters
 
 Load [some_test_image.png] and build a figure displaying it in the following forms:
+
 - original image
 - 5x5 square mean filter applied
 - 15x15 square mean filter
@@ -44,34 +47,39 @@ How do the different methods compare?
 
 :::::::::::::::::::::::: solution
 ```python
-import matplotlib.pyplot
+import matplotlib.pyplot as plt
 import skimage
 import numpy
 
 img = skimage.io.imread('data/maize-seedlings.tif')[:, :, 0]  # test image
 
-matplotlib.pyplot.subplot(2, 3, 1)
-matplotlib.pyplot.imshow(img, cmap='gray')
+plt.subplot(2, 3, 1)
+plt.imshow(img, cmap='gray')
 
-matplotlib.pyplot.subplot(2, 3, 2)
+plt.subplot(2, 3, 2)
 mean3x3 = skimage.filters.rank.mean(img, skimage.morphology.square(5))
-matplotlib.pyplot.imshow(mean3x3, cmap='gray')
+plt.imshow(mean3x3, cmap='gray')
 
-matplotlib.pyplot.subplot(2, 3, 3)
+plt.subplot(2, 3, 3)
 mean15x15 = skimage.filters.rank.mean(img, skimage.morphology.square(15))
-matplotlib.pyplot.imshow(mean15x15, cmap='gray')
+plt.imshow(mean15x15, cmap='gray')
 
-matplotlib.pyplot.subplot(2, 3, 4)
+plt.subplot(2, 3, 4)
 gauss3 = skimage.filters.gaussian(img, 3)
-matplotlib.pyplot.imshow(gauss3, cmap='gray')
+plt.imshow(gauss3, cmap='gray')
 
-matplotlib.pyplot.subplot(2, 3, 5)
+plt.subplot(2, 3, 5)
 gauss5 = skimage.filters.gaussian(img, 5)
-matplotlib.pyplot.imshow(gauss5, cmap='gray')
+plt.imshow(gauss5, cmap='gray')
 ```
 :::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
 
-## Exercise 7: Rolling ball background intensity
+A rolling ball algorithm is often used in cases where the background is not entirely distinct
+from the foreground and need to be subtracted.
+
+::::::::::::::::::::::::::::::::::::: challenge
+## Exercise 8: Rolling ball background intensity
 
 Load [some_test_image.png] and display:
 
@@ -86,29 +94,32 @@ How long does it take to compute?
 
 ```python
 import datetime
-img = imageio.v3.imread('data/maize-seedlings.tif')[:, :, 0]
+import skimage
+import matplotlib.pyplot as plt
+
+img = skimage.io.imread('data/maize-seedlings.tif')[:, :, 0]
 t0 = datetime.datetime.now()
 
-matplotlib.pyplot.subplot(1, 3, 1)
-matplotlib.pyplot.imshow(skimage.restoration.rolling_ball(img), cmap='gray')
+plt.subplot(1, 3, 1)
+plt.imshow(skimage.restoration.rolling_ball(img), cmap='gray')
 t1 = datetime.datetime.now()
 
-matplotlib.pyplot.subplot(1, 3, 2)
+plt.subplot(1, 3, 2)
 rolling_ball = skimage.restoration.rolling_ball(img, radius=50)
-matplotlib.pyplot.imshow(rolling_ball, cmap='gray')
+plt.imshow(rolling_ball, cmap='gray')
 t2 = datetime.datetime.now()
 
-matplotlib.pyplot.subplot(1, 3, 3)
-matplotlib.pyplot.imshow(img - rolling_ball, cmap='gray')
+plt.subplot(1, 3, 3)
+plt.imshow(img - rolling_ball, cmap='gray')
 
-matplotlib.pyplot.show()
+plt.show()
 print(t1 - t0)
 print(t2 - t1)
 print(t2 - t0)
 ```
 :::::::::::::::::::::::::::::::::
 
-## Exercise 8: Dogs and logs
+## Exercise 9: Dogs and logs
 
 Load [some_test_image.png] and display:
 
@@ -119,41 +130,37 @@ Load [some_test_image.png] and display:
 :::::::::::::::::::::::: solution 
 
 ```python
-import matplotlib.pyplot
-import imageio.v3
+import matplotlib.pyplot as plt
+import skimage.io
 import skimage.filters
 import numpy
 
-img = imageio.v3.imread('data/maize-seedlings.tif')[:, :, 0]  # test image
-matplotlib.pyplot.figure(figsize=(12, 6))
+img = skimage.io.imread('data/maize-seedlings.tif')[:, :, 0]  # test image
+plt.figure(figsize=(12, 6))
 sigma = 2
 
-matplotlib.pyplot.subplot(2, 3, 1)
-matplotlib.pyplot.imshow(img, cmap='gray')
+plt.subplot(2, 3, 1)
+plt.imshow(img, cmap='gray')
 
-matplotlib.pyplot.subplot(2, 3, 2)
+plt.subplot(2, 3, 2)
 gauss1 = (skimage.filters.gaussian(img, sigma) * 255).astype(numpy.uint8) 
 gauss2 = (skimage.filters.gaussian(img, sigma*1.6) * 255).astype(numpy.uint8)
 dog = (gauss1 - gauss2).astype(numpy.uint8)
-matplotlib.pyplot.imshow(dog, cmap='gray')
+plt.imshow(dog, cmap='gray')
 
-matplotlib.pyplot.subplot(2, 3, 3)
+plt.subplot(2, 3, 3)
 log = (skimage.filters.laplace(skimage.filters.gaussian(img, sigma)) * 255).astype(numpy.uint8)
-matplotlib.pyplot.imshow(log, cmap='gray')
+plt.imshow(log, cmap='gray')
 ```
 :::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Notes
+## Exercise 10: Choosing a filter
 
-o Applying filters (noise reduction)
-
-§ 5. perform gaussian and median blur (play around with sigma etc.)
-
-· Mention linear filters from PB
+Look at the images you produced in exercises 7 and 9, and select one to use in
+subsequent chapters for thresholding and segmentation!
+:::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 - There are many ways of smoothing an image
-- Different methods may perform better in different situations
-- The rolling ball algorithm allows the subtraction of a background, but is computationally slow
+- Different methods will perform better in different situations
 ::::::::::::::::::::::::::::::::::::::::::::::::

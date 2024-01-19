@@ -17,25 +17,19 @@ exercises: 5
 
 ## Opening an image
 
-First, we need to import skimage to let us read images properly. In a new notebook
-cell:
+At its core, an image is a multidimensional array of numbers, and as such can be opened
+by programs and libraries designed for working with this kind of data. For Python, one
+such library is scikit-image. This library provides a function called `imread` that we
+can use to load an image into memory. In a new notebook cell:
 
 ```python
 from skimage.io import imread
-```
-
-skimage may already be installed if you're on JupyterHub, otherwise you may need to
-install it yourself - see the introduction.
-
-Now that we have imported the `imread` function, we can use it to load an
-image file and save it to a variable:
-
-```python
 image = imread('image.tif')
 ```
 
-To view things in Python, usually we `print()` them. However in this case, the result
-of doing this may be surprising:
+To view things in Python, usually we `print()` them. However if we try to `print()` this
+image to the Jupyter console, instead of getting the image we get something that may be
+unexpected:
 
 ```output
 > print(image)
@@ -78,20 +72,13 @@ one.
 ## Proprietary formats
 
 Some image formats are associated with specific instruments equipment and
-require specialised packages to open. Installing these dependencies in JupyterHub
-will require running `pip` in a Terminal.
+require specialised packages to open. Depending on your system, these may
+already be available via `import` the same as any other Python package. If
+not, then these should be installed into whatever Python instance you are
+using.
 
-In the top right, select 'New' -> 'Terminal'. This will open a shell session in
-a new tab.
-
-::: callout
-# Where to install things
-
-Where possible, it's almost always a good idea to install packaged into a
-**virtual environment** such as those created by Conda or Python's `venv` module.
-This is not so applicable in JupyterHub, but in situations where you have
-control over which Python interpreter you use, this is highly recommended.
-:::
+If using JupyterHub or JupyterLab, go to 'New' -> 'Terminal'. This will open
+a shell session in a new browser tab, where you can run `pip install` commands.
 
 ### Carl Zeiss .czi
 
@@ -278,7 +265,7 @@ will change how many bins the data is split into. We will explore this more in t
 ::::::::::::::::::::::::::::::::::::: challenge
 ## Exercise 5: Histograms
 
-- Load up [some_single_channel_image.png] and plot its histogram
+- Load up [some_multi_channel_image.png], select one channel and plot a histogram of its values
 - Try plotting the same histogram with a greater number of bins. How does this affect your results?
 - What does your histogram look like if you don't `flatten()` the image first?
 
@@ -302,10 +289,10 @@ as a distinctive series of multi-coloured peaks.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-### Histograms on multi-channel images
+### Multiple histograms on a multi-channel image
 
-If the image contains multiple channels, it makes more sense to plot a histogram
-for each one:
+Dealing with multiple channels, it makes sense to build a single **figure** displaying the
+histograms together:
 
 ```python
 matplotlib.pyplot.figure(figsize=(12, 6))
@@ -325,12 +312,56 @@ matplotlib.pyplot.show()
 Singe images are multi-dimensional arrays of numbers, we can apply statistical functions
 to them and extract some basic metrics:
 
-```python
-print(image.mean())
-print(image.min())
-print(image.max())
-print(image.std())
-```
+
+### Pixel value statistics
+
+- [`image.mean()`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.mean.html)
+- [`image.min()`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.min.html)
+- [`image.max()`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.max.html)
+- [`image.std()`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.std.html)
+
+### Image size
+
+[`image.shape`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.shape.html)
+
+### Object size
+
+[`image.nbytes`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.nbytes.html)
+
+### Pixel size
+
+To read this, it is necessary to read the image's **metadata**. For this, we need a different
+library - imageio. There are a couple of different places we can look:
+
+    m = imageio.v3.immeta('path/to/image.png')
+    p = imageio.v3.improps('path/to/image.png')
+
+`immeta()` gives us a dict including the key 'unit', and `improps` gives an object with the
+property 'spacing'. However Peter Bankhead notes that
+[these numbers can be misleading](https://bioimagebook.github.io/chapters/1-concepts/5-pixel_size/python.html#imageio)
+and require interpretation and cross-checking.
+
+The unit may be returned as escaped Unicode:
+
+    'unit': '\\u00B5m'
+
+This can be un-escaped with:
+
+    >>> m['unit'].encode().decode('unicode-escape')
+    μm
+
+
+::::::::::::::::::::::::::::::::::::: challenge
+## Exercise 6: Basic metrics
+
+- Load up [some_multi_channel_image.png]
+
+- How much memory does it take up, in megabytes?
+
+:::::::::::::::::::::::: solution 
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 - Common image formats can usually all be loaded in the same way
 - Specialised proprietary formats may require specialised libraries
