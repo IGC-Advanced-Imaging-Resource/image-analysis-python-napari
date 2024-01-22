@@ -87,25 +87,30 @@ print(img.std())
 
 ## Exercise 17: Image segmentation in Napari
 
-Look in the 'Tools' menu and try performing the following operations
-on the 'nuclei' layer of 'Cells (3D + 2Ch)':
+Look at the 'nuclei' layer of 'Cells (3D + 2Ch)'. Explore
+the options available in 'Tools' and try segmenting and
+labelling the nuclei. A few things to think of:
 
-1. Gaussian filter
-2. Some form of thresholding on the results of step 1 - try a few and
-   see which one works best (Clue: if you're having trouble finding the
-   thresholding functions, remember that you are making a binary image
-   from the input, or **binarising** it.)
-3. 
-
+- Although we're working in a different environment from
+  Jupyter, the stages of processing will remain the same
+- Remember that Napari works with layers, so the results
+  of each tool used will depend on which layer it's used on
+- Napari names some functions differently. When it's referring
+  to thresholding, for example, it uses the term '**binarising**'
+- Napari has some tools that combine esveral steps of processing
+  into one. Try using the tools to perform each individual
+  step
 
 :::::::::::::::::::::::: solution
 
-### Gaussian filter
-
-Tools -> Filtering / noise removal -> Gaussian
-
-
 :::::::::::::::::::::::::::::::::
+
+## Exercise 18: Exporting code
+
+Open the Napari Assistant and find the 'Export Python code'
+tool. Use this to generate a Python script that will perform
+the processing that you performed in the previous exercise. Is
+the script usable immediately without modification?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

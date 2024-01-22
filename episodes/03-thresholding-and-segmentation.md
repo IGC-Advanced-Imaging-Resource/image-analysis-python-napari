@@ -36,6 +36,7 @@ whether its original value was above or below the threshold.
 - Optional challenge: contrast this with manual thresholding:
   - Plot a histogram of your image
   - Look at the histogram and use it to select a sensible threshold
+
 :::::::::::::::::::::::: solution 
 ```python
 import matplotlib.pyplot
