@@ -1,111 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/01-introduction.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/01-introduction.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/02-opening-and-checking-an-image.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/01-opening-and-checking-an-image.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/03-applying-filters.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/02-applying-filters.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/04-thresholding-and-segmentation.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/02-opening-and-checking-an-image.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/05-measurements.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/03-applying-filters.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/06-napari.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/03-thresholding-and-segmentation.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/07-napari-filters.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/04-measurements.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/404.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/04-thresholding-and-segmentation.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/CODE_OF_CONDUCT.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/05-measurements.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/LICENSE.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/05-napari.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/aio.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/06-napari.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/images.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/07-napari-filters.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/index.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/404.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/01-introduction.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/02-opening-and-checking-an-image.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/03-applying-filters.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/aio.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/04-thresholding-and-segmentation.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/images.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/05-measurements.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/index.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/06-napari.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/01-introduction.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/07-napari-filters.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/01-opening-and-checking-an-image.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/404.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/02-applying-filters.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/CODE_OF_CONDUCT.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/02-opening-and-checking-an-image.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/LICENSE.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/03-applying-filters.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/aio.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/03-thresholding-and-segmentation.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/images.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/04-measurements.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/index.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/04-thresholding-and-segmentation.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/instructor-notes.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/05-measurements.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/introduction.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/05-napari.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/key-points.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/06-napari.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/profiles.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/07-napari-filters.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor/reference.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/404.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/instructor-notes.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/introduction.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/key-points.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/aio.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/profiles.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/images.html</loc>
   </url>
   <url>
-    <loc>https://mwhamgenomics.github.io/image-analysis-python-napari/reference.html</loc>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/index.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/reference.html</loc>
   </url>
 </urlset>

@@ -11,13 +11,13 @@
 carpentry: 'incubator'
 
 # Overall title for pages.
-title: 'Lesson Title'
+title: 'Image Analysis with Python and Napari'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
 created: '2023-09-19'
 
 # Comma-separated list of keywords for the lesson
-keywords: 'software, data, lesson, The Carpentries'
+keywords: 'image, python, napari, scikit-image'
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable
@@ -27,13 +27,13 @@ life_cycle: 'pre-alpha'
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/mwhamgenomics/image-analysis-python-napari'
+source: 'https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE'
 
 # Default branch of your lesson
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'team@carpentries.org'
+contact: 
 
 # Navigation ------------------------------------------------
 #
@@ -59,7 +59,11 @@ contact: 'team@carpentries.org'
 
 # Order of episodes in your lesson
 episodes: 
-- introduction.Rmd
+- 01-opening-and-checking-an-image.md
+- 02-applying-filters.md
+- 03-thresholding-and-segmentation.md
+- 04-measurements.md
+- 05-napari.md
 
 # Information for Learners
 learners: 

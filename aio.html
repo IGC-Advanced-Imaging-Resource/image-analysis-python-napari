@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>Lesson Title: All in One View</title>
+<title>Image Analysis with Python and Napari: All in One View</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="assets/styles.css">
 <script src="assets/scripts.js" type="text/javascript"></script><!-- mathjax --><script type="text/x-mathjax-config">
@@ -65,7 +65,7 @@
       <img class="small-logo" alt="Carpentries Incubator" src="assets/images/incubator-logo-sm.svg">
 </div>
     <div class="lesson-title-md">
-      Lesson Title
+      Image Analysis with Python and Napari
     </div>
     <div class="search-icon-sm">
       <!-- TODO: do not show until we have search
@@ -76,7 +76,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 <li class="nav-item">
           <span class="lesson-title">
-            Lesson Title
+            Image Analysis with Python and Napari
           </span>
         </li>
         <li class="nav-item">
@@ -108,7 +108,7 @@
   </div>
 <!--/div.container-fluid -->
 </nav><div class="col-md-12 mobile-title">
-  Lesson Title
+  Image Analysis with Python and Napari
 </div>
 
 <aside class="col-md-12 lesson-progress"><div style="width: %" class="percentage">
@@ -181,7 +181,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="01-introduction.html">1. Introduction</a>
+        <a href="01-opening-and-checking-an-image.html">1. Opening and Checking an Image</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -193,7 +193,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="02-opening-and-checking-an-image.html">2. Opening and Checking an Image</a>
+        <a href="02-applying-filters.html">2. Applying Filters</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -205,7 +205,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03-applying-filters.html">3. Applying Filters</a>
+        <a href="03-thresholding-and-segmentation.html">3. Thresholding and Segmentation</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -217,7 +217,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="04-thresholding-and-segmentation.html">4. Thresholding and Segmentation</a>
+        <a href="04-measurements.html">4. Measurements</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -229,31 +229,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="05-measurements.html">5. Measurements</a>
-    </div>
-<!--/div.accordion-header-->
-        
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush7">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading7">
-        <a href="06-napari.html">6. Introduction to Napari</a>
-    </div>
-<!--/div.accordion-header-->
-        
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush8">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading8">
-        <a href="07-napari-filters.html">7. 07-napari-filters</a>
+        <a href="05-napari.html">5. Introduction to Napari</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -316,136 +292,11 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="aio-01-introduction"><p>Content from <a href="01-introduction.html">Introduction</a></p>
+<section id="aio-01-opening-and-checking-an-image"><p>Content from <a href="01-opening-and-checking-an-image.html">Opening and Checking an Image</a></p>
 <hr>
-<p>Last updated on 2024-01-16 |
+<p>Last updated on 2024-01-22 |
         
-        <a href="https://github.com/mwhamgenomics/image-analysis-python-napari/edit/main/episodes/01-introduction.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>How do I get started in JupyterHub?</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Set up a workspace in JupyterHub</li>
-<li>Download the test data for these exercises</li>
-<li>Open a new JupyterHub notebook</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section id="introduction"><h2 class="section-heading">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h2>
-<hr class="half-width">
-<p>For the exercises in this lesson you are free to use whatever Python
-environment you wish, however we highly recommend Jupyter as a powerful
-way of saving your progress and displaying your work. This introduction
-will cover how to set up a new workspace in a JupyterHub, which is an
-online instance of Jupyter that you log into, as opposed to a locally
-running instance of Jupyter.</p>
-</section><section id="getting-started-in-jupyterhub"><h2 class="section-heading">Getting started in JupyterHub<a class="anchor" aria-label="anchor" href="#getting-started-in-jupyterhub"></a>
-</h2>
-<hr class="half-width">
-<p>Under ‘New’ in the top right, select ‘Folder’. This will create a new
-folder called ‘Untitled’. To rename it, check the box next to it, select
-‘Rename’ in the top left and enter a suitable name. Navigate into the
-folder by selecting its name in the navigator.</p>
-<p>Now do the same steps again to create a folder called ‘test_data’ and
-navigate into it.</p>
-<p>Now that you’re in a sensible location, you can upload the test
-data.</p>
-</section><section id="uploading-test-data-via-the-web-interface"><h2 class="section-heading">Uploading test data via the web interface<a class="anchor" aria-label="anchor" href="#uploading-test-data-via-the-web-interface"></a>
-</h2>
-<hr class="half-width">
-<p>Select the ‘Upload’ button in the top right and select the files to
-upload.</p>
-</section><section id="opening-a-new-notebook-in-jupyter"><h2 class="section-heading">Opening a new notebook in Jupyter<a class="anchor" aria-label="anchor" href="#opening-a-new-notebook-in-jupyter"></a>
-</h2>
-<hr class="half-width">
-<p>Select the new folder to navigate into it and select ‘New’ -&gt;
-‘Python 3 (ipykernel)’. This will open a new notebook in a new browser
-tab.</p>
-<div id="exercise-0-optional-uploading-test-data-via-the-command-line" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="exercise-0-optional-uploading-test-data-via-the-command-line" class="callout-inner">
-<h3 class="callout-title">Exercise 0 (optional): Uploading test data via
-the command line<a class="anchor" aria-label="anchor" href="#exercise-0-optional-uploading-test-data-via-the-command-line"></a>
-</h3>
-<div class="callout-content">
-<p>If you wish to download test data into JupyterHub directly and are
-confident on the command line, then you may wish to use this method:</p>
-<ul>
-<li>In the top right, select ‘New’ -&gt; ‘Terminal’ to open a shell
-session in a new tab</li>
-<li>Create a folder for the test data if not already done</li>
-<li>Navigate into the new folder</li>
-<li>Use <code>wget</code> and the URL of the test data to download</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>$ mkdir test_data
-$ cd test_data
-$ wget &lt;test_data&gt;</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
-</h3>
-<div class="callout-content">
-<ul>
-<li>JupterHub is an online instance of Jupyter</li>
-<li>It is possible to manage files graphically or on the command
-line</li>
-</ul>
-</div>
-</div>
-</div>
-<!-- 
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use. 
- -->
-</section></section><section id="aio-02-opening-and-checking-an-image"><p>Content from <a href="02-opening-and-checking-an-image.html">Opening and Checking an Image</a></p>
-<hr>
-<p>Last updated on 2024-01-16 |
-        
-        <a href="https://github.com/mwhamgenomics/image-analysis-python-napari/edit/main/episodes/02-opening-and-checking-an-image.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/01-opening-and-checking-an-image.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -480,24 +331,21 @@ any links that you are not going to use.
 <section id="opening-an-image"><h2 class="section-heading">Opening an image<a class="anchor" aria-label="anchor" href="#opening-an-image"></a>
 </h2>
 <hr class="half-width">
-<p>First, we need to import skimage to let us read images properly. In a
-new notebook cell:</p>
+<p>At its core, an image is a multidimensional array of numbers, and as
+such can be opened by programs and libraries designed for working with
+this kind of data. For Python, one such library is scikit-image. This
+library provides a function called <code>imread</code> that we can use
+to load an image into memory. In a new notebook cell:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imread</span></code></pre>
-</div>
-<p>skimage may already be installed if you’re on JupyterHub, otherwise
-you may need to install it yourself - see the introduction.</p>
-<p>Now that we have imported the <code>imread</code> function, we can
-use it to load an image file and save it to a variable:</p>
-<div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'image.tif'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imread</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'image.tif'</span>)</span></code></pre>
 </div>
 <p>To view things in Python, usually we <code>print()</code> them.
-However in this case, the result of doing this may be surprising:</p>
+However if we try to <code>print()</code> this image to the Jupyter
+console, instead of getting the image we get something that may be
+unexpected:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -517,11 +365,11 @@ is why we get a matrix of numbers printed to the screen.</p>
 <p>If we want to see what the image looks like, we need to import the
 <code>imshow</code> function from skimage, the same as for
 <code>imread</code>. Then we can call it on the loaded image:</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imshow</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>imshow(image)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imshow</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>imshow(image)</span></code></pre>
 </div>
 <p>You should be able to see the image displayed below the current
 cell.</p>
@@ -549,62 +397,49 @@ how to read each one.</p>
 </h2>
 <hr class="half-width">
 <p>Some image formats are associated with specific instruments equipment
-and require specialised packages to open. Installing these dependencies
-in JupyterHub will require running <code>pip</code> in a Terminal.</p>
-<p>In the top right, select ‘New’ -&gt; ‘Terminal’. This will open a
-shell session in a new tab.</p>
-<div id="where-to-install-things" class="callout callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div id="where-to-install-things" class="callout-inner">
-<h3 class="callout-title">Where to install things<a class="anchor" aria-label="anchor" href="#where-to-install-things"></a>
-</h3>
-<div class="callout-content">
-<p>Where possible, it’s almost always a good idea to install packaged
-into a <strong>virtual environment</strong> such as those created by
-Conda or Python’s <code>venv</code> module. This is not so applicable in
-JupyterHub, but in situations where you have control over which Python
-interpreter you use, this is highly recommended.</p>
-</div>
-</div>
-</div>
+and require specialised packages to open. Depending on your system,
+these may already be available via <code>import</code> the same as any
+other Python package. If not, then these should be installed into
+whatever Python instance you are using.</p>
+<p>If using JupyterHub or JupyterLab, go to ‘New’ -&gt; ‘Terminal’. This
+will open a shell session in a new browser tab, where you can run
+<code>pip install</code> commands.</p>
 <div class="section level3">
 <h3 id="carl-zeiss--czi">Carl Zeiss .czi<a class="anchor" aria-label="anchor" href="#carl-zeiss--czi"></a>
 </h3>
 <p>Images in .czi format can be opened with the <code>czifile</code>
 library. In the Terminal you opened above:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install czifile</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install czifile</span></code></pre>
 </div>
 </div>
 <div class="section level3">
 <h3 id="nikon--nd2">Nikon .nd2<a class="anchor" aria-label="anchor" href="#nikon--nd2"></a>
 </h3>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install nd2</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install nd2</span></code></pre>
 </div>
 </div>
 <div class="section level3">
 <h3 id="imaris--ims">Imaris .ims<a class="anchor" aria-label="anchor" href="#imaris--ims"></a>
 </h3>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install imaris-ims-file-reader</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install imaris-ims-file-reader</span></code></pre>
 </div>
 </div>
 <div class="section level3">
 <h3 id="leica--lif">Leica .lif<a class="anchor" aria-label="anchor" href="#leica--lif"></a>
 </h3>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install readlif</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install readlif</span></code></pre>
 </div>
 </div>
 </section><section id="altering-the-lookup-table"><h2 class="section-heading">Altering the lookup table<a class="anchor" aria-label="anchor" href="#altering-the-lookup-table"></a>
@@ -616,18 +451,18 @@ and display it in different ways.</p>
 addition to the image to display. One of these is called
 <code>cmap</code>, standing for ‘colour map’, which can apply alternate
 lookup tables:</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>imshow(image, cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>imshow(image, cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
 </div>
 <p>Skimage uses lookup tables from the plotting library matplotlib. A
 list of available tables can be obtained with:</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> colormaps</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(colormaps))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> colormaps</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(colormaps))</span></code></pre>
 </div>
 <div id="exercise-2-lookup-tables" class="callout challenge">
 <div class="callout-square">
@@ -701,22 +536,22 @@ array.</p>
 can call to determine how many dimensions it has, as well as the size of
 each dimension.</p>
 <p>Load up ‘data/trial-020.jpg’ and call <code>shape</code> on it:</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'data/trial-020.jpg'</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2000</span>, <span class="dv">3008</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'data/trial-020.jpg'</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2000</span>, <span class="dv">3008</span>)</span></code></pre>
 </div>
 <p>This gives us a tuple showing that the image has two dimensions, one
 of 2000 pixels and one of 3008.</p>
 <p>Let’s try another one:</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'data/maize-seedlings.tif'</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">800</span>, <span class="dv">800</span>, <span class="dv">3</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'data/maize-seedlings.tif'</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">800</span>, <span class="dv">800</span>, <span class="dv">3</span>)</span></code></pre>
 </div>
 <p>This image has 3 dimensions. The first two we can reasonably infer to
 be width and height. Beyond this, however, it’s less obvious as to which
@@ -768,18 +603,18 @@ perform on it. Maybe a function requires that an image be oriented in a
 particular way. This is where it’s useful to be able to rearrange the
 dimensions of an image. To do this, we’re going to use numpy’s
 <code>moveaxis</code> function:</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'data/maize-seedlings.tif'</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">800</span>, <span class="dv">800</span>, <span class="dv">3</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>rearranged_image <span class="op">=</span> numpy.moveaxis(image, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rearranged_image.shape)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="dv">800</span>, <span class="dv">800</span>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>(<span class="dv">800</span>, <span class="dv">800</span>, <span class="dv">3</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'data/maize-seedlings.tif'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">800</span>, <span class="dv">800</span>, <span class="dv">3</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>rearranged_image <span class="op">=</span> numpy.moveaxis(image, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rearranged_image.shape)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="dv">800</span>, <span class="dv">800</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>(<span class="dv">800</span>, <span class="dv">800</span>, <span class="dv">3</span>)</span></code></pre>
 </div>
 <p><code>moveaxis</code> returns a rearranged copy of the image given to
 it, i.e. the original image is not altered. The arguments supplied
@@ -800,19 +635,19 @@ composite image, e.g. of cells that have been stained for different
 organelles in different colours, and it may be useful to display each
 one individually. To do this, it’s possible to use a matplotlib
 figure:</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))  <span class="co"># figure size, in inches</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>nchannels <span class="op">=</span> img.shape[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nchannels):</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)  <span class="co"># 1-indexing in subplots</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.imshow(img[:, :, i])</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> i)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.axis(<span class="va">False</span>)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))  <span class="co"># figure size, in inches</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>nchannels <span class="op">=</span> img.shape[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nchannels):</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)  <span class="co"># 1-indexing in subplots</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.imshow(img[:, :, i])</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> i)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.axis(<span class="va">False</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre>
 </div>
 </div>
 </section><section id="histograms"><h2 class="section-heading">Histograms<a class="anchor" aria-label="anchor" href="#histograms"></a>
@@ -820,11 +655,11 @@ figure:</p>
 <hr class="half-width">
 <p>One common metric to look at in an image is its histogram. This can
 be plotted by flattening the image and passing it to matplotlib:</p>
-<div class="codewrapper sourceCode" id="cb16">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.hist(image.flatten())</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.hist(image.flatten())</span></code></pre>
 </div>
 <p>We need <code>flatten()</code> to condense the pixel values from two
 dimensions into one, since <code>hist()</code> expects a one-dimensional
@@ -840,7 +675,8 @@ into. We will explore this more in the exercise below.</p>
 </h3>
 <div class="callout-content">
 <ul>
-<li>Load up [some_single_channel_image.png] and plot its histogram</li>
+<li>Load up [some_multi_channel_image.png], select one channel and plot
+a histogram of its values</li>
 <li>Try plotting the same histogram with a greater number of bins. How
 does this affect your results?</li>
 <li>What does your histogram look like if you don’t
@@ -857,17 +693,17 @@ does this affect your results?</li>
 <div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>The first histogram can be plotted as per above:</p>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.hist(image.flatten())</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.hist(image.flatten())</span></code></pre>
 </div>
 <p>Plotting with a greater <code>bins</code> value will reveal detail in
 the histogram that may be missed otherwise:</p>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.hist(image.flatten(), bins<span class="op">=</span><span class="dv">50</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.hist(image.flatten(), bins<span class="op">=</span><span class="dv">50</span>)</span></code></pre>
 </div>
 <p>If the image is not passed through <code>flatten()</code> first, the
 histogram from matplotlib will appear as a distinctive series of
@@ -877,23 +713,23 @@ multi-coloured peaks.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="histograms-on-multi-channel-images">Histograms on multi-channel images<a class="anchor" aria-label="anchor" href="#histograms-on-multi-channel-images"></a>
+<h3 id="multiple-histograms-on-a-multi-channel-image">Multiple histograms on a multi-channel image<a class="anchor" aria-label="anchor" href="#multiple-histograms-on-a-multi-channel-image"></a>
 </h3>
-<p>If the image contains multiple channels, it makes more sense to plot
-a histogram for each one:</p>
-<div class="codewrapper sourceCode" id="cb19">
+<p>Dealing with multiple channels, it makes sense to build a single
+<strong>figure</strong> displaying the histograms together:</p>
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>nchannels <span class="op">=</span> img.shape[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nchannels):</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)  <span class="co"># 1-indexing in subplots</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.hist(img[:, :, i].flatten(), bins<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> i)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.axis(<span class="va">False</span>)</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>nchannels <span class="op">=</span> img.shape[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nchannels):</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)  <span class="co"># 1-indexing in subplots</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.hist(img[:, :, i].flatten(), bins<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> i)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.axis(<span class="va">False</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre>
 </div>
 </div>
 </section><section id="other-qc"><h2 class="section-heading">Other QC<a class="anchor" aria-label="anchor" href="#other-qc"></a>
@@ -901,13 +737,82 @@ a histogram for each one:</p>
 <hr class="half-width">
 <p>Singe images are multi-dimensional arrays of numbers, we can apply
 statistical functions to them and extract some basic metrics:</p>
-<div class="codewrapper sourceCode" id="cb20">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<div class="section level3">
+<h3 id="pixel-value-statistics">Pixel value statistics<a class="anchor" aria-label="anchor" href="#pixel-value-statistics"></a>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.mean())</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.<span class="bu">min</span>())</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.<span class="bu">max</span>())</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.std())</span></code></pre>
+<ul>
+<li><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.mean.html" class="external-link"><code>image.mean()</code></a></li>
+<li><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.min.html" class="external-link"><code>image.min()</code></a></li>
+<li><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.max.html" class="external-link"><code>image.max()</code></a></li>
+<li><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.std.html" class="external-link"><code>image.std()</code></a></li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="image-size">Image size<a class="anchor" aria-label="anchor" href="#image-size"></a>
+</h3>
+<p><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.shape.html" class="external-link"><code>image.shape</code></a></p>
+</div>
+<div class="section level3">
+<h3 id="object-size">Object size<a class="anchor" aria-label="anchor" href="#object-size"></a>
+</h3>
+<p><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.nbytes.html" class="external-link"><code>image.nbytes</code></a></p>
+</div>
+<div class="section level3">
+<h3 id="pixel-size">Pixel size<a class="anchor" aria-label="anchor" href="#pixel-size"></a>
+</h3>
+<p>To read this, it is necessary to read the image’s
+<strong>metadata</strong>. For this, we need a different library -
+imageio. There are a couple of different places we can look:</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">m</span> = imageio.v3.immeta<span class="er">(</span><span class="st">'path/to/image.png'</span><span class="kw">)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">p</span> = imageio.v3.improps<span class="er">(</span><span class="st">'path/to/image.png'</span><span class="kw">)</span></span></code></pre>
+</div>
+<p><code>immeta()</code> gives us a dict including the key ‘unit’, and
+<code>improps</code> gives an object with the property ‘spacing’.
+However Peter Bankhead notes that <a href="https://bioimagebook.github.io/chapters/1-concepts/5-pixel_size/python.html#imageio" class="external-link">these
+numbers can be misleading</a> and require interpretation and
+cross-checking.</p>
+<p>The unit may be returned as escaped Unicode:</p>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="st">'unit'</span><span class="ex">:</span> <span class="st">'\\u00B5m'</span></span></code></pre>
+</div>
+<p>This can be un-escaped with:</p>
+<div class="codewrapper sourceCode" id="cb21">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> m[<span class="st">'unit'</span>].encode<span class="kw">()</span><span class="ex">.decode</span><span class="er">(</span><span class="st">'unicode-escape'</span><span class="kw">)</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">μm</span></span></code></pre>
+</div>
+<div id="exercise-6-basic-metrics" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="exercise-6-basic-metrics" class="callout-inner">
+<h3 class="callout-title">Exercise 6: Basic metrics<a class="anchor" aria-label="anchor" href="#exercise-6-basic-metrics"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li><p>Load up [some_multi_channel_image.png]</p></li>
+<li><p>How much memory does it take up, in megabytes?</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div class="accordion-body">
+
+</div>
+</div>
+</div>
 </div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
@@ -933,11 +838,12 @@ encoding of the image</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
-</section></section><section id="aio-03-applying-filters"><p>Content from <a href="03-applying-filters.html">Applying Filters</a></p>
+</div>
+</section></section><section id="aio-02-applying-filters"><p>Content from <a href="02-applying-filters.html">Applying Filters</a></p>
 <hr>
-<p>Last updated on 2024-01-16 |
+<p>Last updated on 2024-01-22 |
         
-        <a href="https://github.com/mwhamgenomics/image-analysis-python-napari/edit/main/episodes/03-applying-filters.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/02-applying-filters.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -982,18 +888,26 @@ pixels within this kernel - Assign this new value to the pixel</p>
 window.</p>
 <p>A gaussian filter is similar to a mean filter, except that pixels
 further from the kernel centre will have less effect on the result.</p>
-<div id="exercise-6-applying-filters" class="callout challenge">
+<p>There are many smoothing filters beyond these, they all perform
+differently and have their own advantages depending on the situation and
+the image in question.</p>
+<div id="exercise-7-applying-filters" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-6-applying-filters" class="callout-inner">
-<h3 class="callout-title">Exercise 6: Applying filters<a class="anchor" aria-label="anchor" href="#exercise-6-applying-filters"></a>
+<div id="exercise-7-applying-filters" class="callout-inner">
+<h3 class="callout-title">Exercise 7: Applying filters<a class="anchor" aria-label="anchor" href="#exercise-7-applying-filters"></a>
 </h3>
 <div class="callout-content">
 <p>Load [some_test_image.png] and build a figure displaying it in the
-following forms: - original image - 5x5 square mean filter applied -
-15x15 square mean filter - gaussian filter of sigma = 3 - gaussian
-filter of sigma = 5</p>
+following forms:</p>
+<ul>
+<li>original image</li>
+<li>5x5 square mean filter applied</li>
+<li>15x15 square mean filter</li>
+<li>gaussian filter of sigma = 3</li>
+<li>gaussian filter of sigma = 5</li>
+</ul>
 <p>How do the different methods compare?</p>
 </div>
 </div>
@@ -1008,42 +922,45 @@ filter of sigma = 5</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> skimage</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'data/maize-seedlings.tif'</span>)[:, :, <span class="dv">0</span>]  <span class="co"># test image</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(img, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.imshow(img, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>mean3x3 <span class="op">=</span> skimage.filters.rank.mean(img, skimage.morphology.square(<span class="dv">5</span>))</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(mean3x3, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.imshow(mean3x3, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>mean15x15 <span class="op">=</span> skimage.filters.rank.mean(img, skimage.morphology.square(<span class="dv">15</span>))</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(mean15x15, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.imshow(mean15x15, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>gauss3 <span class="op">=</span> skimage.filters.gaussian(img, <span class="dv">3</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(gauss3, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.imshow(gauss3, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>gauss5 <span class="op">=</span> skimage.filters.gaussian(img, <span class="dv">5</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(gauss5, cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.imshow(gauss5, cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="exercise-7-rolling-ball-background-intensity" class="callout challenge">
+<p>A rolling ball algorithm is often used in cases where the background
+is not entirely distinct from the foreground and need to be
+subtracted.</p>
+<div id="exercise-8-rolling-ball-background-intensity" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-7-rolling-ball-background-intensity" class="callout-inner">
-<h3 class="callout-title">Exercise 7: Rolling ball background
-intensity<a class="anchor" aria-label="anchor" href="#exercise-7-rolling-ball-background-intensity"></a>
+<div id="exercise-8-rolling-ball-background-intensity" class="callout-inner">
+<h3 class="callout-title">Exercise 8: Rolling ball background
+intensity<a class="anchor" aria-label="anchor" href="#exercise-8-rolling-ball-background-intensity"></a>
 </h3>
 <div class="callout-content">
 <p>Load [some_test_image.png] and display:</p>
@@ -1068,36 +985,39 @@ intensity<a class="anchor" aria-label="anchor" href="#exercise-7-rolling-ball-ba
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> imageio.v3.imread(<span class="st">'data/maize-seedlings.tif'</span>)[:, :, <span class="dv">0</span>]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> datetime.datetime.now()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> skimage</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(skimage.restoration.rolling_ball(img), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> datetime.datetime.now()</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>rolling_ball <span class="op">=</span> skimage.restoration.rolling_ball(img, radius<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(rolling_ball, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> datetime.datetime.now()</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(img <span class="op">-</span> rolling_ball, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'data/maize-seedlings.tif'</span>)[:, :, <span class="dv">0</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> datetime.datetime.now()</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.imshow(skimage.restoration.rolling_ball(img), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> datetime.datetime.now()</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>rolling_ball <span class="op">=</span> skimage.restoration.rolling_ball(img, radius<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.imshow(rolling_ball, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> datetime.datetime.now()</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.show()</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t1 <span class="op">-</span> t0)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t2 <span class="op">-</span> t1)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t2 <span class="op">-</span> t0)</span></code></pre>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.imshow(img <span class="op">-</span> rolling_ball, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t1 <span class="op">-</span> t0)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t2 <span class="op">-</span> t1)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t2 <span class="op">-</span> t0)</span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="exercise-8-dogs-and-logs" class="callout challenge">
+<div id="exercise-9-dogs-and-logs" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-8-dogs-and-logs" class="callout-inner">
-<h3 class="callout-title">Exercise 8: Dogs and logs<a class="anchor" aria-label="anchor" href="#exercise-8-dogs-and-logs"></a>
+<div id="exercise-9-dogs-and-logs" class="callout-inner">
+<h3 class="callout-title">Exercise 9: Dogs and logs<a class="anchor" aria-label="anchor" href="#exercise-9-dogs-and-logs"></a>
 </h3>
 <div class="callout-content">
 <p>Load [some_test_image.png] and display:</p>
@@ -1120,39 +1040,45 @@ applied</li>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> imageio.v3</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> skimage.io</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> skimage.filters</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> imageio.v3.imread(<span class="st">'data/maize-seedlings.tif'</span>)[:, :, <span class="dv">0</span>]  <span class="co"># test image</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'data/maize-seedlings.tif'</span>)[:, :, <span class="dv">0</span>]  <span class="co"># test image</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(img, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.imshow(img, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>gauss1 <span class="op">=</span> (skimage.filters.gaussian(img, sigma) <span class="op">*</span> <span class="dv">255</span>).astype(numpy.uint8) </span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>gauss2 <span class="op">=</span> (skimage.filters.gaussian(img, sigma<span class="op">*</span><span class="fl">1.6</span>) <span class="op">*</span> <span class="dv">255</span>).astype(numpy.uint8)</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>dog <span class="op">=</span> (gauss1 <span class="op">-</span> gauss2).astype(numpy.uint8)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(dog, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.imshow(dog, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>log <span class="op">=</span> (skimage.filters.laplace(skimage.filters.gaussian(img, sigma)) <span class="op">*</span> <span class="dv">255</span>).astype(numpy.uint8)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(log, cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>plt.imshow(log, cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="notes"><h2 class="section-heading">Notes<a class="anchor" aria-label="anchor" href="#notes"></a>
-</h2>
-<hr class="half-width">
-<p>o Applying filters (noise reduction)</p>
-<p>§ 5. perform gaussian and median blur (play around with sigma
-etc.)</p>
-<p>· Mention linear filters from PB</p>
+<div id="exercise-10-choosing-a-filter" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="exercise-10-choosing-a-filter" class="callout-inner">
+<h3 class="callout-title">Exercise 10: Choosing a filter<a class="anchor" aria-label="anchor" href="#exercise-10-choosing-a-filter"></a>
+</h3>
+<div class="callout-content">
+<p>Look at the images you produced in exercises 7 and 9, and select one
+to use in subsequent chapters for thresholding and segmentation!</p>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1163,9 +1089,7 @@ etc.)</p>
 <div class="callout-content">
 <ul>
 <li>There are many ways of smoothing an image</li>
-<li>Different methods may perform better in different situations</li>
-<li>The rolling ball algorithm allows the subtraction of a background,
-but is computationally slow</li>
+<li>Different methods will perform better in different situations</li>
 </ul>
 </div>
 </div>
@@ -1174,11 +1098,11 @@ but is computationally slow</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
-</section></section><section id="aio-04-thresholding-and-segmentation"><p>Content from <a href="04-thresholding-and-segmentation.html">Thresholding and Segmentation</a></p>
+</section></section><section id="aio-03-thresholding-and-segmentation"><p>Content from <a href="03-thresholding-and-segmentation.html">Thresholding and Segmentation</a></p>
 <hr>
-<p>Last updated on 2024-01-16 |
+<p>Last updated on 2024-01-22 |
         
-        <a href="https://github.com/mwhamgenomics/image-analysis-python-napari/edit/main/episodes/04-thresholding-and-segmentation.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/03-thresholding-and-segmentation.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -1211,28 +1135,44 @@ together</li>
 </div>
 </div>
 </div>
-<p>These exercises will make use of the image you decided to use in the
-previous chapter. There are multiple ways of applying global thresholds
-to an image, but they all work in the same way. They all determine a
-single cutoff value that is then used to create a binary image, where
-each pixel is either 0 or 1, depending on whether its original value was
-above or below the threshold.</p>
-<div id="exercise-9-thresholds" class="callout challenge">
+<p>These exercises will make use of the image you decided to use in
+exercise 10.</p>
+<section id="thresholding"><h2 class="section-heading">Thresholding<a class="anchor" aria-label="anchor" href="#thresholding"></a>
+</h2>
+<hr class="half-width">
+<p>There are both global and local thresholds in image analysis, but
+this course will deal only with global filters. Global filters work by
+determining a single cutoff value tha is then used to create a binary
+image, where each pixel is either 0 or 1 depending on whether its
+original value was above or below the threshold.</p>
+<div id="exercise-11-thresholds" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-9-thresholds" class="callout-inner">
-<h3 class="callout-title">Exercise 9: Thresholds<a class="anchor" aria-label="anchor" href="#exercise-9-thresholds"></a>
+<div id="exercise-11-thresholds" class="callout-inner">
+<h3 class="callout-title">Exercise 11: Thresholds<a class="anchor" aria-label="anchor" href="#exercise-11-thresholds"></a>
 </h3>
 <div class="callout-content">
-<p>Try applying the following thresholds to your image:</p>
 <ul>
-<li>Histogram (i.e. plot a histogram of your image and use it to select
-a threshold)</li>
+<li><p>Look at the <a href="https://scikit-image.org/docs/stable/api/skimage.filters.html" class="external-link">skimage
+filter docs</a></p></li>
+<li>
+<p>Find each of the following threshold algorithms:</p>
+<ul>
 <li>Otsu threshold</li>
 <li>Triangle threshold</li>
 </ul>
-<p>How do they compare?</p>
+</li>
+<li><p>Try applying each of the above filters to your image from exercse
+10</p></li>
+<li>
+<p>Optional challenge: contrast this with manual thresholding:</p>
+<ul>
+<li>Plot a histogram of your image</li>
+<li>Look at the histogram and use it to select a sensible threshold</li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1241,7 +1181,7 @@ a threshold)</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1251,40 +1191,66 @@ a threshold)</li>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'data/maize-seedlings.tif'</span>)[:, :, <span class="dv">0</span>]</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.hist(img.flatten(), bins<span class="op">=</span><span class="dv">256</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> <span class="dv">80</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(img <span class="op">&gt;</span> threshold, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_otsu(img)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(img <span class="op">&gt;</span> threshold, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_triangle(img)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(img <span class="op">&gt;</span> threshold, cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Otsu threshold</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_otsu(img)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(img <span class="op">&gt;</span> threshold, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Triangle threshold</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_triangle(img)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(img <span class="op">&gt;</span> threshold, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.hist(img.flatten(), bins<span class="op">=</span><span class="dv">256</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual threshold</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> <span class="dv">80</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(img <span class="op">&gt;</span> threshold, cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="exercise-10-erosion-and-dilation" class="callout challenge">
+</section><section id="cleaning-up"><h2 class="section-heading">Cleaning up<a class="anchor" aria-label="anchor" href="#cleaning-up"></a>
+</h2>
+<hr class="half-width">
+<p>Once we have a binary image, we may still need to clean it up
+further. There may still be extraneous pixels and other bits around the
+regions of interest, or there may be holes in a shape that you need to
+be solid.</p>
+<div id="exercise-12-erosion-dilation-opening-and-closing" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-10-erosion-and-dilation" class="callout-inner">
-<h3 class="callout-title">Exercise 10: Erosion and dilation<a class="anchor" aria-label="anchor" href="#exercise-10-erosion-and-dilation"></a>
+<div id="exercise-12-erosion-dilation-opening-and-closing" class="callout-inner">
+<h3 class="callout-title">Exercise 12: Erosion, dilation, opening and
+closing<a class="anchor" aria-label="anchor" href="#exercise-12-erosion-dilation-opening-and-closing"></a>
 </h3>
 <div class="callout-content">
-<p>Select one of your binary images from exercise 9 and display:</p>
 <ul>
-<li>the original binary image</li>
-<li>the image after an erosion with a disc kernel of radius 4</li>
-<li>the image after a dilation with a disc kernel of radius 4</li>
+<li>Look at the <a href="https://scikit-image.org/docs/stable/api/skimage.morphology.html" class="external-link">skimage
+morphology docs</a>
+</li>
+<li>Select one of your binary images from exercise 11</li>
+<li>Apply each of the following algorithms to the image:
+<ul>
+<li>Binary erosion</li>
+<li>Binary dilation</li>
+<li>Binary opening</li>
+<li>Binary closing</li>
 </ul>
-<p>What do you get if you erode the image and then dilate it again?</p>
+</li>
+</ul>
+<p>Note: each of the algorithms above will require a kernel or
+footprint. For this, use a disc-shaped kernel of radius 4:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kernel</span> = skimage.morphology.disk<span class="er">(</span><span class="ex">4</span><span class="kw">)</span></span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1293,45 +1259,114 @@ a threshold)</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>kernel <span class="op">=</span> skimage.morphology.disk(<span class="dv">4</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(binary_image)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(skimage.morphology.binary_erosion(binary_image, footprint<span class="op">=</span>kernel))</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(skimage.morphology.binary_dilation(binary_image, footprint<span class="op">=</span>kernel))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>kernel <span class="op">=</span> skimage.morphology.disk(<span class="dv">4</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Original image</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(binary_image)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Erosion</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(skimage.morphology.binary_erosion(binary_image, footprint<span class="op">=</span>kernel))</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Dilation</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(skimage.morphology.binary_dilation(binary_image, footprint<span class="op">=</span>kernel))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Opening</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(skimage.morphology.binary_opening(binary_image, ootprint<span class="op">=</span>kernel), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Closing</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(skimage.morphology.binary_closing(binary_image, ootprint<span class="op">=</span>kernel), cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="exercise-11-opening" class="callout challenge">
+</section><section id="labelling"><h2 class="section-heading">Labelling<a class="anchor" aria-label="anchor" href="#labelling"></a>
+</h2>
+<hr class="half-width">
+<p>In some situations, it may be necessary to distinguish between
+individual features, e.g. if counting cell nuclei. For this, it is
+necessary to isolate or <strong>label</strong> individual separated
+objects in the foreground:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">skimage.morphology.label</span><span class="er">(</span><span class="ex">binary_img</span><span class="kw">)</span></span></code></pre>
+</div>
+<p>This will result in an image similar to the binary image supplied,
+but instead of just 1s, each feature will have a unique number assigned
+to all of its pixels.</p>
+</section><section id="watershed-transforms"><h2 class="section-heading">Watershed transforms<a class="anchor" aria-label="anchor" href="#watershed-transforms"></a>
+</h2>
+<hr class="half-width">
+<p>Sometimes, isolating objects is more complicated, for example when
+cells are stuck together. To solve this, several transforming or
+segmentation operations exist:</p>
+<p>This transformation requires a few preparation steps. First, we need
+a <strong>distance transform</strong> of the binary image, where each
+foreground pixel’s value is its Euclidean distance to the background.
+skimage doesn’t have a function for this, but scipy does:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dt</span> = scipy.ndimage.distance_transform_edt<span class="er">(</span><span class="ex">binary_img</span><span class="kw">)</span></span></code></pre>
+</div>
+<p>Next, we need the coordinates of all <strong>local maxima</strong>,
+i.e. locations that are furthest away from the background. This requires
+a kernel/footprint, which in this example is a square kernel of 7x7:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">coords</span> = skimage.feature.peak_local_max<span class="er">(</span><span class="ex">dt,</span> footprint=np.ones<span class="er">(</span><span class="kw">(</span><span class="ex">7,7</span><span class="kw">))</span><span class="ex">,</span> labels=binary_img<span class="kw">)</span></span></code></pre>
+</div>
+<p>This gives us a list of coordinates, so we need to convert this back
+into an labelled image of maxima. This will be mostly blank with an
+individually labelled dot representing each one:</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mask</span> = np.zeros<span class="er">(</span><span class="ex">distance.shape,</span> dtype=bool<span class="kw">)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">mask</span><span class="op">[</span>tuple(coords.T)<span class="op">]</span> <span class="ex">=</span> True</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">markers</span> = skimage.morphology.label<span class="er">(</span><span class="ex">mask</span><span class="kw">)</span></span></code></pre>
+</div>
+<p>Note the <code>.T</code> to transpose the maxima coordinates.
+Finally, the transform can be done. One final note is that because the
+<a href="https://bioimagebook.github.io/chapters/2-processing/6-transforms/transforms.html#the-watershed-transform" class="external-link">way
+watershed transforms work</a>, we need to convert the distance map from
+peaks to troughs by inverting it with <code>-</code>:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">labels</span> = skimage.segmentation.watershed<span class="er">(</span><span class="ex">-distance,</span> markers, mask=binary<span class="kw">)</span></span></code></pre>
+</div>
+<div id="exercise-13-image-labelling" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-11-opening" class="callout-inner">
-<h3 class="callout-title">Exercise 11: Opening<a class="anchor" aria-label="anchor" href="#exercise-11-opening"></a>
+<div id="exercise-13-image-labelling" class="callout-inner">
+<h3 class="callout-title">Exercise 13: Image labelling<a class="anchor" aria-label="anchor" href="#exercise-13-image-labelling"></a>
 </h3>
 <div class="callout-content">
-<p>Select one of your binary images from exercise 9 and try
-displaying:</p>
 <ul>
-<li>the original image</li>
-<li>the image after an open (i.e. erode and then dilate it) with a disc
-kernel of radius 4</li>
-<li>the image after an area opening with an area threshold of 100
-pixels</li>
+<li>Load up your image from exercise 10 and label the foreground
+features</li>
+<li>Determine the number of features in the image (hint: try flattening
+the array first)</li>
+<li>Perform a watershed transform on your binary image as per above. Try
+displaying the result of each stage of the transform.</li>
+<li>What happens if you leave out the <code>.T</code> when constructing
+the mask?</li>
 </ul>
-<p>How do the results compare?</p>
 </div>
 </div>
 </div>
@@ -1340,155 +1375,67 @@ pixels</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> skimage</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'data/maize-seedlings.tif'</span>)[:, :, <span class="dv">0</span>]</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_triangle(img)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> img <span class="op">&gt;</span> threshold</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>disc <span class="op">=</span> skimage.morphology.disk(<span class="dv">4</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(img, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(skimage.morphology.opening(img, disc), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(skimage.morphology.area_opening(img, <span class="dv">100</span>), cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> skimage</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'data/colonies-01.tif'</span>)[:, :, <span class="dv">0</span>]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> <span class="dv">255</span> <span class="op">-</span> img</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_triangle(img)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> img <span class="op">&gt;</span> <span class="dv">200</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(img, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> skimage.morphology.label(img)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(labels)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">set</span>(labels.flatten()))</span></code></pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div id="exercise-12-image-labelling" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="exercise-12-image-labelling" class="callout-inner">
-<h3 class="callout-title">Exercise 12: Image labelling<a class="anchor" aria-label="anchor" href="#exercise-12-image-labelling"></a>
-</h3>
-<div class="callout-content">
-<p>Load up [some_image.png] and perform the following processing on
-it:</p>
-<ul>
-<li>gaussian filter with sigma = 2</li>
-<li>triangle threshold</li>
-<li>feature labelling with skimage</li>
-</ul>
-<p>How many colonies do you get?</p>
-</div>
-</div>
-</div>
-<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
-  <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
-</button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
-<div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> skimage</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'data/colonies-01.tif'</span>)[:, :, <span class="dv">0</span>]</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> <span class="dv">255</span> <span class="op">-</span> img</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_triangle(img)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> img <span class="op">&gt;</span> <span class="dv">200</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(img, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> skimage.morphology.label(img)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.imshow(labels)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">set</span>(labels.flatten()))</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="exercise-13-connected-components" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="exercise-13-connected-components" class="callout-inner">
-<h3 class="callout-title">Exercise 13: Connected components<a class="anchor" aria-label="anchor" href="#exercise-13-connected-components"></a>
-</h3>
-<div class="callout-content">
-<p>Load up [some_image.png] and perform a watershed transform on it:</p>
-<ul>
-<li>Otsu threshold on the original image</li>
-<li>Euclidean distance transform on the binary</li>
-<li>Local peaks on the distance map with a square 7x7 kernel</li>
-<li>Inverse of the distance transform</li>
-<li>Use the coordinates of the peaks to construct a mask (it should be
-same size as the image, with two dots on it indicating the peak
-positions)</li>
-<li>Label the mask</li>
-<li>Watershed transform on the inverted distance map, the labelled mask
-and the binary image</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
-  <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
-</button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
-<div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb5">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> skimage</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'test.tiff'</span>)[<span class="dv">500</span>:<span class="dv">700</span>, <span class="dv">900</span>:<span class="dv">1100</span>, <span class="dv">1</span>]</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_otsu(img)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>binary <span class="op">=</span> img <span class="op">&gt;</span> threshold</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.imshow(binary, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>distance <span class="op">=</span> scipy.ndimage.distance_transform_edt(binary)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.imshow(distance, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.imshow(<span class="op">-</span>distance, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> skimage.feature.peak_local_max(distance, footprint<span class="op">=</span>np.ones((<span class="dv">7</span>,<span class="dv">7</span>)), labels<span class="op">=</span>binary)</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coords)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coords.T)</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> np.zeros(distance.shape, dtype<span class="op">=</span><span class="bu">bool</span>)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>mask[<span class="bu">tuple</span>(coords.T)] <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>plt.imshow(mask, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>markers <span class="op">=</span> skimage.morphology.label(mask)</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> skimage.segmentation.watershed(<span class="op">-</span>distance, markers, mask<span class="op">=</span>binary)</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>plt.imshow(markers, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">6</span>)</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>plt.imshow(labels, cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> skimage</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'test.tiff'</span>)[<span class="dv">500</span>:<span class="dv">700</span>, <span class="dv">900</span>:<span class="dv">1100</span>, <span class="dv">1</span>]</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_otsu(img)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>binary <span class="op">=</span> img <span class="op">&gt;</span> threshold</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.imshow(binary, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>distance <span class="op">=</span> scipy.ndimage.distance_transform_edt(binary)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>plt.imshow(distance, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>plt.imshow(<span class="op">-</span>distance, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> skimage.feature.peak_local_max(distance, footprint<span class="op">=</span>np.ones((<span class="dv">7</span>,<span class="dv">7</span>)), labels<span class="op">=</span>binary)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> np.zeros(distance.shape, dtype<span class="op">=</span><span class="bu">bool</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>mask[<span class="bu">tuple</span>(coords.T)] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>plt.imshow(mask, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>markers <span class="op">=</span> skimage.morphology.label(mask)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> skimage.segmentation.watershed(<span class="op">-</span>distance, markers, mask<span class="op">=</span>binary)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>plt.imshow(markers, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">6</span>)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>plt.imshow(labels, cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1503,19 +1450,27 @@ and the binary image</li>
 </h3>
 <div class="callout-content">
 <ul>
-<li>Thresholding is a form of segmentation</li>
+<li>Thresholding, labelling and feature isolation are all forms of
+segmentation</li>
 <li>Different thresholding algorithms can perform differently in
 different situations</li>
+<li>Quantitative image analysis often requires us to individually label
+features</li>
 <li>Processing such as watershed transforms can solve cases where
 features of interest are very close or stuck together</li>
 </ul>
 </div>
 </div>
-</div></section><section id="aio-05-measurements"><p>Content from <a href="05-measurements.html">Measurements</a></p>
+</div>
+<!-- 
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use. 
+ -->
+</section></section><section id="aio-04-measurements"><p>Content from <a href="04-measurements.html">Measurements</a></p>
 <hr>
-<p>Last updated on 2024-01-16 |
+<p>Last updated on 2024-01-22 |
         
-        <a href="https://github.com/mwhamgenomics/image-analysis-python-napari/edit/main/episodes/05-measurements.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/04-measurements.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -1527,8 +1482,8 @@ features of interest are very close or stuck together</li>
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How do you write a lesson using R Markdown and
-<a href="https://carpentries.github.io/sandpaper/" class="external-link">sandpaper</a>?</li>
+<li>How can I use image segmentation to make useful measurements in my
+image?</li>
 </ul>
 </div>
 </div>
@@ -1538,22 +1493,101 @@ features of interest are very close or stuck together</li>
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Explain how to use markdown with the new lesson template</li>
-<li>Demonstrate how to include pieces of code, figures, and nested
-challenge blocks</li>
+<li>Find the mean pixel intensity in each nucleus</li>
+<li>Find each nucleus’ area</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-<section id="from-notes-but-already-done-elsewhere"><h2 class="section-heading">From notes, but already done elsewhere?<a class="anchor" aria-label="anchor" href="#from-notes-but-already-done-elsewhere"></a>
-</h2>
-<hr class="half-width">
-<p>o Measurements (quantitative image analysis, basic statistics,
-quantitative neighbourhood measurements) § 10. Measure properties
-e.g. no, size, intensity (mean/st dev) § 11. Measure distances? § 12.
-Make a graph</p>
+<p>Having isolated individual nuclei in the example image in the
+previous chapter, we can make some observations about the image
+features. The exercises here will require:</p>
+<ul>
+<li>the result of the watershed from the previous chapter</li>
+<li>the original binary image from exercise 10</li>
+</ul>
+<div class="section level3">
+<h3 id="masked-watershed">Masked watershed<a class="anchor" aria-label="anchor" href="#masked-watershed"></a>
+</h3>
+<p>The watershed transform has helped us pick apart any nuclei that are
+close together, but is not very informative about their morphology.
+Fortunately, we already have this in the form of the original binary
+image we used to create the watershed. We can use this as a
+<strong>mask</strong> on top of the watershed image to create an image
+containing information from both:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">masked_watershed</span> = watershed_transform <span class="pp">*</span> binary_img</span></code></pre>
+</div>
+<p>Here we effectively multiply the watershed by the binary image. Since
+the binary image’s values are either 0 or 1, the watershed’s pixels will
+either be untouched (multiplied by 1 if a pixel is in the foreground) or
+set to 0 (multiplied by 0 if a pixel is in the background).</p>
+</div>
+<div class="section level3">
+<h3 id="processing-one-nucleus-at-a-time">Processing one nucleus at a time<a class="anchor" aria-label="anchor" href="#processing-one-nucleus-at-a-time"></a>
+</h3>
+<p>Remember that each nucleus is labelled with a unique number, so we
+can select a single nucleus by applying masking to the masked watershed
+image a second time. We can construct a binary mask containing just the
+feature we want, but numpy has a <a href="https://numpy.org/doc/stable/reference/generated/numpy.where.html" class="external-link">useful
+function</a> for this:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nucleus_1</span> = numpy.where<span class="er">(</span><span class="ex">masked_watershed</span> == 1, 1, 0<span class="kw">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">nucleus_2</span> = numpy.where<span class="er">(</span><span class="ex">masked_watershed</span> == 2, 1, 0<span class="kw">)</span></span></code></pre>
+</div>
+<p>Here, each pixel will be set to either 1 or 0 depending on whether
+its value matches the label we’re looking for.</p>
+<div id="exercise-15-quantifying-intensities" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="exercise-15-quantifying-intensities" class="callout-inner">
+<h3 class="callout-title">Exercise 15: Quantifying intensities<a class="anchor" aria-label="anchor" href="#exercise-15-quantifying-intensities"></a>
+</h3>
+<div class="callout-content">
+<p>For each labelled nucleus:</p>
+<ul>
+<li>Construct a binary mask matching the label number</li>
+<li>Use this to isolate the individual nucleus out of the
+<strong>original image</strong>
+<ul>
+<li>Hint: try looking at the <code>numpy.where</code> docs to see the
+different ways it can be used.</li>
+</ul>
+</li>
+<li>Find the mean pixel value for the nucleus</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">max</span>(masked_watershed.flatten()) <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> numpy.where(masked_watershed <span class="op">==</span> i, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    nucleus <span class="op">=</span> numpy.where(mask <span class="op">==</span> <span class="dv">1</span>, original_img, <span class="va">None</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    pixels <span class="op">=</span> [p <span class="cf">for</span> p <span class="kw">in</span> nucleus.flatten() <span class="cf">if</span> p <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Pixel </span><span class="sc">%i</span><span class="st"> intensity: </span><span class="sc">%f</span><span class="st">'</span> <span class="op">%</span> (i, numpy.mean(pixels)))</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1563,14 +1597,10 @@ Make a graph</p>
 </h3>
 <div class="callout-content">
 <ul>
-<li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<li>Binary multiplication and <code>numpy.where</code> are powerful ways
+of combining images and masks</li>
+<li>The numbers assigned during labelling can be used to select and
+process one feature at a time</li>
 </ul>
 </div>
 </div>
@@ -1579,11 +1609,11 @@ locally</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
-</section></section><section id="aio-06-napari"><p>Content from <a href="06-napari.html">Introduction to Napari</a></p>
+</div></section><section id="aio-05-napari"><p>Content from <a href="05-napari.html">Introduction to Napari</a></p>
 <hr>
-<p>Last updated on 2024-01-16 |
+<p>Last updated on 2024-01-22 |
         
-        <a href="https://github.com/mwhamgenomics/image-analysis-python-napari/edit/main/episodes/06-napari.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/05-napari.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -1595,7 +1625,6 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How do I install Napari?</li>
 <li>How can I view images and metadata in Napari?</li>
 </ul>
 </div>
@@ -1606,7 +1635,6 @@ any links that you are not going to use.
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Install Napari with pip</li>
 <li>Open and explore some images and compare the process of doing the
 same process in Python</li>
 </ul>
@@ -1615,40 +1643,23 @@ same process in Python</li>
 </div>
 </div>
 </div>
-<section id="installing-napari"><h2 class="section-heading">Installing Napari<a class="anchor" aria-label="anchor" href="#installing-napari"></a>
+<section id="starting-napari"><h2 class="section-heading">Starting Napari<a class="anchor" aria-label="anchor" href="#starting-napari"></a>
 </h2>
 <hr class="half-width">
-<p>While Napari has developed enormously in recent years, installing it
-still requires knowledge of installing Python packages with Pip, and/or
-Conda.</p>
-<div class="section level3">
-<h3 id="installation-with-pip">Installation with Pip<a class="anchor" aria-label="anchor" href="#installation-with-pip"></a>
+<p>With Napari installed, run:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<p>Pip is Python’s package manager. To install Napari into a Python
-virtual environment:</p>
-<pre><code>$ python -m venv path/to/new/virtualenv
-$ source path/to/new/virtualenv/bin/activate
-$ pip install 'napari[all]'</code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">napari</span></span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="installation-via-mamba">Installation via Mamba<a class="anchor" aria-label="anchor" href="#installation-via-mamba"></a>
-</h3>
-<p>With Mamba installed, run:</p>
-<pre><code>$ mamba create -p path/to/new/env -c conda-forge napari pyqt</code></pre>
-</div>
-<div class="section level3">
-<h3 id="starting-napari">Starting Napari<a class="anchor" aria-label="anchor" href="#starting-napari"></a>
-</h3>
-<p>Once installed, run:</p>
-<pre><code>$ napari</code></pre>
-<p>This will start up Napari in a new window. This may take 60secs or
-more.</p>
-<div id="exercise-14-opening-an-image" class="callout challenge">
+<p>This will start up Napari in a new window. This may take about a
+minute, especially if being done for the first time.</p>
+<div id="exercise-15-opening-an-image" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-14-opening-an-image" class="callout-inner">
-<h3 class="callout-title">Exercise 14: Opening an image<a class="anchor" aria-label="anchor" href="#exercise-14-opening-an-image"></a>
+<div id="exercise-15-opening-an-image" class="callout-inner">
+<h3 class="callout-title">Exercise 15: Opening an image<a class="anchor" aria-label="anchor" href="#exercise-15-opening-an-image"></a>
 </h3>
 <div class="callout-content">
 <ul>
@@ -1685,35 +1696,10 @@ two.</p>
 </div>
 </div>
 </div>
-<div id="exercise-15-rgb-images" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="exercise-15-rgb-images" class="callout-inner">
-<h3 class="callout-title">Exercise 15: RGB images<a class="anchor" aria-label="anchor" href="#exercise-15-rgb-images"></a>
-</h3>
-<div class="callout-content">
-<p>We’ve seen already that we can view channels independently, but what
-about RGB images? Load up sample image ‘napari builtins -&gt; Coffee
-(RGB)’. Do you see any way of viewing each colour channel independently
-from right-clicking on the loaded ‘coffee’ layer?</p>
-</div>
-</div>
-</div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
-<div class="accordion-body">
-<p>Right-clicking on the layer and select ing ‘Split RGB’ will split the
-image into R, G and B channels.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+<p>Napari works on the principle of <strong>layers</strong>. When a
+multi-channel image is loaded, each colour channel becomes a separate
+layer. The result of any operations performed on a layer will be saved
+as a new layer.</p>
 </section><section id="basic-metrics"><h2 class="section-heading">Basic metrics<a class="anchor" aria-label="anchor" href="#basic-metrics"></a>
 </h2>
 <hr class="half-width">
@@ -1740,12 +1726,64 @@ called <code>viewer</code>:</p>
 </h3>
 <div class="callout-content">
 <ul>
-<li>Open sample image ‘napari builtins -&gt; Cells (3D + 2Ch)’ and look
-at <code>viewer.layers</code>. How many layers are currently
-loaded?</li>
-<li>Take a look at <code>data</code> for one of these layers. What kind
-of object is it? How can we check the image’s dimensions, data type,
-mean, max, min and standard deviation for its pixel values?</li>
+<li>With sample image ‘napari builtins -&gt; Cells (3D + 2Ch)’ loaded,
+open a terminal and look at <code>viewer.layers</code>. How many layers
+are currently loaded?</li>
+<li>Take a look at the attribute <code>data</code> on one of these
+layers. What kind of object is it? How can we check the image’s
+dimensions, data type, mean, max, min and standard deviation for its
+pixel values?</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
+<p>Taking the first layer as an example, running
+<code>type(viewer.layers[0])</code> shows that the object is a
+<code>numpy.ndarray</code>, meaning that we can extract basic
+information the same way as for Python/Jupyter:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> viewer.layers[<span class="dv">0</span>].data</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.dtype)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.shape)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.mean())</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.<span class="bu">min</span>())</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.<span class="bu">max</span>())</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.std())</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="exercise-17-image-segmentation-in-napari" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="exercise-17-image-segmentation-in-napari" class="callout-inner">
+<h3 class="callout-title">Exercise 17: Image segmentation in Napari<a class="anchor" aria-label="anchor" href="#exercise-17-image-segmentation-in-napari"></a>
+</h3>
+<div class="callout-content">
+<p>Look at the ‘nuclei’ layer of ‘Cells (3D + 2Ch)’. Explore the options
+available in ‘Tools’ and try segmenting and labelling the nuclei. A few
+things to think of:</p>
+<ul>
+<li>Although we’re working in a different environment from Jupyter, the
+stages of processing will remain the same</li>
+<li>Remember that Napari works with layers, so the results of each tool
+used will depend on which layer it’s used on</li>
+<li>Napari names some functions differently. When it’s referring to
+thresholding, for example, it uses the term
+‘<strong>binarising</strong>’</li>
+<li>Napari has some tools that combine esveral steps of processing into
+one. Try using the tools to perform each individual step</li>
 </ul>
 </div>
 </div>
@@ -1757,22 +1795,23 @@ mean, max, min and standard deviation for its pixel values?</li>
 </button>
 <div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<p>Taking the first layer as an example, running
-<code>type(viewer.layers[0])</code> shows that the object is a
-<code>numpy.ndarray</code>, meaning that we can extract basic
-information the same way as for Python/Jupyter:</p>
-<div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+
+</div>
+</div>
+</div>
+</div>
+<div id="exercise-18-exporting-code" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="exercise-18-exporting-code" class="callout-inner">
+<h3 class="callout-title">Exercise 18: Exporting code<a class="anchor" aria-label="anchor" href="#exercise-18-exporting-code"></a>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> viewer.layers[<span class="dv">0</span>].data</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.dtype)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.shape)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.mean())</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.<span class="bu">min</span>())</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.<span class="bu">max</span>())</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.std())</span></code></pre>
-</div>
-</div>
+<div class="callout-content">
+<p>Open the Napari Assistant and find the ‘Export Python code’ tool. Use
+this to generate a Python script that will perform the processing that
+you performed in the previous exercise. Is the script usable immediately
+without modification?</p>
 </div>
 </div>
 </div>
@@ -1797,153 +1836,7 @@ Napari, either graphically or in the terminal</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
-</section></section><section id="aio-07-napari-filters"><p>Content from <a href="07-napari-filters.html">07-napari-filters</a></p>
-<hr>
-<p>Last updated on 2024-01-16 |
-        
-        <a href="https://github.com/mwhamgenomics/image-analysis-python-napari/edit/main/episodes/07-napari-filters.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>How do I filter an image in Napari?</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Apply filters to images using the Tools menu</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>o Apply best filter from python day1, threshold, create label
-image</p>
-<p>· Measurements</p>
-<p>§ Make a plot of favourite measurement</p>
-<p>· Export code e.g. jupyter notebook (adapting), make figures</p>
-<div id="exercise-17-filters" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="exercise-17-filters" class="callout-inner">
-<h3 class="callout-title">Exercise 17: Filters<a class="anchor" aria-label="anchor" href="#exercise-17-filters"></a>
-</h3>
-<div class="callout-content">
-<ul>
-<li>Load sample image ‘napari builtins -&gt; Coins’</li>
-<li>With the layer selected, go to the ‘Tools’ menu and apply a Gaussian
-filter with sigma = 2
-<ul>
-<li>(Optional) Try some different filters, e.g. a mean filter with a 3x3
-square kernel</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<p>Under ‘Filtering / noise removal’ there are three options for
-Gaussian filters, based on different Python libraries. Selecting one of
-these will open a side window where sigma values for X, Y and Z axes can
-be altered (depending on the option selected, it may be called
-‘variance’).</p>
-<p>An option for mean filtering</p>
-</div>
-</div>
-</div>
-</div>
-<div id="exercise-18-rolling-ball-background-subtraction" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="exercise-18-rolling-ball-background-subtraction" class="callout-inner">
-<h3 class="callout-title">Exercise 18: Rolling ball background
-subtraction<a class="anchor" aria-label="anchor" href="#exercise-18-rolling-ball-background-subtraction"></a>
-</h3>
-<div class="callout-content">
-<p>Select the original ‘coins’ layer and perform a rolling ball
-background removal from the ‘Tools’ menu, with a ball radius of 40.</p>
-</div>
-</div>
-</div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
-<div class="accordion-body">
-<p>Rolling ball background removal is available in ‘Tools -&gt;
-Filtering / background removal’</p>
-</div>
-</div>
-</div>
-</div>
-<div id="exercise-19-dogs-and-logs" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="exercise-19-dogs-and-logs" class="callout-inner">
-<h3 class="callout-title">Exercise 19: Dogs and logs<a class="anchor" aria-label="anchor" href="#exercise-19-dogs-and-logs"></a>
-</h3>
-<div class="callout-content">
-<p>Run the following processing on the ‘coins’ layer:</p>
-<ul>
-<li>Difference of Gaussian (sigma 1 = 2, sigma 2 = 3.2)</li>
-<li>Laplacian of Gaussian (sigma = 2)</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
-</button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
-<div class="accordion-body">
-<p>Difference of Gaussian is under ‘Tools -&gt; Filtering’, and
-Laplacian of Gaussian is in ‘Filtering / edge enhancement’</p>
-</div>
-</div>
-</div>
-</div>
-<div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
-</h3>
-<div class="callout-content">
-<ul>
-<li>Various different filters and processing can be applied in the Tools
-menu</li>
-</ul>
-</div>
-</div>
-</div></section>
+</section></section>
 </div>
     </main>
 </div>
@@ -1956,12 +1849,12 @@ menu</li>
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
         
-        <a href="https://github.com/mwhamgenomics/image-analysis-python-napari/edit/main/README.md" class="external-link">Edit on GitHub</a>
+        <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/README.md" class="external-link">Edit on GitHub</a>
         
 	
-        | <a href="https://github.com/mwhamgenomics/image-analysis-python-napari/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
-        | <a href="https://github.com/mwhamgenomics/image-analysis-python-napari/" class="external-link">Source</a></p>
-				<p><a href="https://github.com/mwhamgenomics/image-analysis-python-napari/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:team@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
+        | <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
+        | <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/" class="external-link">Source</a></p>
+				<p><a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
         
@@ -1981,18 +1874,18 @@ menu</li>
     {
   "@context": "https://schema.org",
   "@type": "TrainingMaterial",
-  "@id": "https://mwhamgenomics.github.io/image-analysis-python-napari/aio.html",
+  "@id": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/aio.html",
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
-  "keywords": "software, data, lesson, The Carpentries",
+  "keywords": "image, python, napari, scikit-image",
   "name": "All in One View",
   "creativeWorkStatus": "active",
-  "url": "https://mwhamgenomics.github.io/image-analysis-python-napari/aio.html",
-  "identifier": "https://mwhamgenomics.github.io/image-analysis-python-napari/aio.html",
+  "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/aio.html",
+  "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/aio.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2024-01-16",
-  "datePublished": "2024-01-16"
+  "dateModified": "2024-01-22",
+  "datePublished": "2024-01-22"
 }
 
   </script><script>
