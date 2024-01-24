@@ -5,7 +5,7 @@ site: sandpaper::sandpaper_site
 This image analysis course consists of two main parts:
 
 1. Image analysis in Python
-2. Most of the same content from part 1, but in [Napari](https://napari.org)
+2. Image analysis in [Napari](https://napari.org)
 
 Two main sources were used for building this course:
 

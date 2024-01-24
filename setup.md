@@ -5,9 +5,9 @@ title: Setup
 Part 1 of this course requires access to some kind of Python environment, which
 may be any of:
 
-- A plain Python interpreter
+- A plain Python interpreter on the command line
 - An IDE, e.g. PyCharm, Visual Studio Code
-- A JupyterHub instance at your organisation
+- A managed JupyterHub instance at your organisation
   - For courses taught at the University of Edinburgh, staff and students have access
     to Noteable at https://noteable.edina.ac.uk/login. If you wish to use this, log
     in here and proceed to GUI setup or command line setup below.
@@ -19,13 +19,12 @@ Installation of Napari is covered below.
 
 ## Datasets
 
-Test data is available at [data zip file](https://example.com/FIXME).
+Todo: Test data is available at [data zip file](https://example.com/FIXME).
 
 
 ## Python Setup
 
 ::::::::::::::::::::::::::::::::::::::: discussion
-
 ### Details
 
 We recommend Jupyter as a powerful way of saving your progress and displaying your
@@ -80,18 +79,19 @@ Once installed, start Jupyter with:
 
        $ jupyter-lab
 
-This will start the server process and open JupyterLab in a new browser window.
+This will start the server process and open JupyterLab in a new browser window. Follow the same
+GUI or graphical folder setup as for JupyterHub.
 :::::::::::::::::::::::::
 
 :::::::::::::::: solution
 ### Local setup
 
 If you wish to use Python on its own, then that is also possible.
-You will also need skimage, imageio, numpy and matplotlib.
+You will also need the packages skimage, imageio, numpy and matplotlib.
 
 When working with a local Python instance, it's almost always a good idea to install
-packages into a **virtual environment** such as those created by Conda or Python's
-`venv` module.
+packages into a [virtual environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment)
+such as those created by Conda or Python's `venv` module.
 
        $ python -m venv ./python_environment
        $ source ./python_environment/bin/activate
@@ -123,12 +123,23 @@ $ pip install 'napari[all]'
 :::::::::::::::::::::::::
 
 :::::::::::::::: solution
-### Installation with Mamba
+### Installation with Conda
 
-Mamba is an alternate, faster environment solver for Conda. You can try
-installing with Conda, but you may find it extremely slow.
+A Conda environment containing Napari can be created with:
 
 ```
-$ mamba create -p path/to/new/env -c conda-forge napari pyqt
+$ conda create -p path/to/new/env -c conda-forge napari pyqt
 ```
+
+You may find that solving the environment is extrememly slow or fails
+altogether. Up-to-date Conda setups are able to use a much faster
+solver, [Mamba](https://mamba.readthedocs.io):
+
+```
+$ conda list -n base mamba  # make sure that conda-libmamba-solver is present in the base environment
+$ conda install -n base conda-libmamba-solver  # install the Mamba solver if needed
+$ conda config --show solver  # check the configured solver
+$ config config --set solver libmamba  # if the confgured solver is 'classic'
+```
+
 :::::::::::::::::::::::::
