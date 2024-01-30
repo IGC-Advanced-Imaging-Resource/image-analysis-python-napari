@@ -194,7 +194,9 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#starting-napari">Starting Napari</a></li>
-<li><a href="#basic-metrics">Basic metrics</a></li>
+<li><a href="#looking-around">Looking around</a></li>
+<li><a href="#loading-real-world-images">Loading real-world images</a></li>
+<li><a href="#wrapup-challenge-image-segmentation-in-napari">Wrapup challenge: image segmentation in Napari</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
         
@@ -259,7 +261,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Napari</h1>
-        <p>Last updated on 2024-01-22 |
+        <p>Last updated on 2024-01-30 |
         
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/05-napari.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -305,6 +307,20 @@ same process in Python</li>
 </div>
 <p>This will start up Napari in a new window. This may take about a
 minute, especially if being done for the first time.</p>
+</section><section id="looking-around"><h2 class="section-heading">Looking around<a class="anchor" aria-label="anchor" href="#looking-around"></a>
+</h2>
+<hr class="half-width"><p>In the ‘File’ menu, go to ‘Open Sample -&gt; ’napari builtins -&gt;
+Cells (3D+2Ch). Looking at the sidebar, Napari has opened two
+<strong>layers</strong> - ’membrane’ and ‘nuclei’. At the top of the
+sidebar there are options for displaying layers in different colours and
+opacity, and the eye symbol on the layer can be checked or unchecked to
+show/hide it.</p>
+<p>Napari uses layers to represent each stage of processing an image -
+we run tools to create new processed layers based off of a previous one.
+In this example, the image consists of two channels, each of which has
+been loaded as a layer.</p>
+<p>In the case of z-stack or time series images, there is a slider at
+the bottom that can be used to scroll through the layers.</p>
 <div id="exercise-15-opening-an-image" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -313,14 +329,10 @@ minute, especially if being done for the first time.</p>
 <h3 class="callout-title">Exercise 15: Opening an image<a class="anchor" aria-label="anchor" href="#exercise-15-opening-an-image"></a>
 </h3>
 <div class="callout-content">
-<ul><li>With Napari open, navigate to ‘File -&gt; Open Sample’ and open the
-sample image ‘napari builtins -&gt; Cells (3D + 2Ch)’</li>
-<li>How many channels are in this image? How can you view each one
-independently? How many different ways can you change how they’re
-viewed?</li>
-<li>How many dimensions are in this image? How can you change how the
-third dimension is represented?</li>
-</ul></div>
+<p>With ‘Cells (3D + 2Ch)’ open, go to ‘Tools -&gt; Filtering / Noise
+Removal’ and look at the options available. What are these options? What
+happens if you select one and try running it on a layer?</p>
+</div>
 </div>
 </div>
 <div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
@@ -328,31 +340,28 @@ third dimension is represented?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>The image has 2 channels, one called ‘nuclei’ and one called
-‘membrane’, and can be controlled from the left hand side. The eye icon
-shows/hides the channel, and the top-left has controls for changing
-opacity, alpha and lookup table.</p>
-<p>There are 3 dimensions, which can be represented either by:</p>
-<ul><li>A slider along the bottom to view each layer one at a time</li>
-<li>A 3D model view</li>
-</ul><p>The ‘Toggle ndisplay’ cube/square button switches between the
-two.</p>
+<p>The options here consist of smoothing filters, several of which will
+be familiar from previous chapters. In some cases there are multiple
+versions of a filter (e.g. there are three Gaussian filters), each of
+which uses a different Python library.</p>
+<p>Selecting one of these gives a sidebar letting us choose how to run
+it, including which layer to use, plus any extra parameters it may take,
+such as sigma values for Gaussian filters.</p>
 </div>
 </div>
 </div>
 </div>
-<p>Napari works on the principle of <strong>layers</strong>. When a
-multi-channel image is loaded, each colour channel becomes a separate
-layer. The result of any operations performed on a layer will be saved
-as a new layer.</p>
-</section><section id="basic-metrics"><h2 class="section-heading">Basic metrics<a class="anchor" aria-label="anchor" href="#basic-metrics"></a>
+</section><section id="loading-real-world-images"><h2 class="section-heading">Loading real-world images<a class="anchor" aria-label="anchor" href="#loading-real-world-images"></a>
 </h2>
-<hr class="half-width"><p>Napari doesn’t have built-in support for plotting histograms, but
-because it’s built with Python and numpy, it is possible to run commands
-to extract basic metrics.</p>
-<p>In the bottom left, use the ’&gt;_’ button to open a terminal. This
+<hr class="half-width"><p>The example images work nicely with Napari, but sometimes it may be
+necessary to coax Napari into loading an image correctly. In ‘File’,
+select ‘Open File(s)…’ and load up FluorescentCells_3channel.tif. Doing
+this, we find the results aren’t quite what we expect - the three
+channels have been loaded like a z-stack.</p>
+<p>To load this image correctly, we need to use the Python console. In
+the bottom left, use the ’&gt;_’ button to open a terminal. This
 activates a Python session where Napari is represented as an object
 called <code>viewer</code>:</p>
 <ul><li>All the loaded layers are in a list called
@@ -361,21 +370,48 @@ called <code>viewer</code>:</p>
 <li>Within a layer, the image data is an attribute called
 <code>data</code>
 </li>
-</ul><div id="exercise-16-basic-metrics" class="callout challenge">
+</ul><p>We can also create new layers with <code>viewer.add_image</code>:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imread</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> imread(<span class="st">'path/to/FluorescentCells_3channel.tif'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>img.shape</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">512</span>, <span class="dv">512</span>, <span class="dv">3</span>)</span></code></pre>
+</div>
+<p>From this, we can see the three channels as the third number of the
+image’s shape. We can now load each channel as a new layer:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>viewer.add_image(img[:, :, <span class="dv">0</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch0'</span>, colormap<span class="op">=</span><span class="st">'cyan'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>viewer.add_image(img[:, :, <span class="dv">1</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch1'</span>, colormap<span class="op">=</span><span class="st">'yellow'</span>, blending<span class="op">=</span><span class="st">'additive'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>viewer.add_image(img[:, :, <span class="dv">2</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch2'</span>, colormap<span class="op">=</span><span class="st">'magenta'</span>, blending<span class="op">=</span><span class="st">'additive'</span>)</span></code></pre>
+</div>
+<p>The <code>blending='additive'</code> option prevents layers on top
+from obscuring layers below it so that we can view multiple layers at
+once. We also need to colour the layers so we can distinguish them from
+each other.</p>
+<p><code>view.add_image</code> is also able to load all these layers in
+one is we tell it which axis represents channels:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>viewer.add_image(img, name<span class="op">=</span><span class="st">'FluorescentCells'</span>, channel_axis<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
+</div>
+<div id="exercise-16-real-world-images" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-16-basic-metrics" class="callout-inner">
-<h3 class="callout-title">Exercise 16: Basic metrics<a class="anchor" aria-label="anchor" href="#exercise-16-basic-metrics"></a>
+<div id="exercise-16-real-world-images" class="callout-inner">
+<h3 class="callout-title">Exercise 16: Real world images<a class="anchor" aria-label="anchor" href="#exercise-16-real-world-images"></a>
 </h3>
 <div class="callout-content">
-<ul><li>With sample image ‘napari builtins -&gt; Cells (3D + 2Ch)’ loaded,
-open a terminal and look at <code>viewer.layers</code>. How many layers
-are currently loaded?</li>
-<li>Take a look at the attribute <code>data</code> on one of these
-layers. What kind of object is it? How can we check the image’s
-dimensions, data type, mean, max, min and standard deviation for its
-pixel values?</li>
+<ul><li>Look at the <code>shape</code> of ‘confocal-series_zstack.tif’ and
+identify which axis looks like the channels</li>
+<li>Use <code>viewer.add_image</code> with the <code>channel_axis</code>
+argument to load the image. How has the fourth axis been
+represented?</li>
 </ul></div>
 </div>
 </div>
@@ -384,27 +420,37 @@ pixel values?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<p>Taking the first layer as an example, running
-<code>type(viewer.layers[0])</code> shows that the object is a
-<code>numpy.ndarray</code>, meaning that we can extract basic
-information the same way as for Python/Jupyter:</p>
-<div class="codewrapper sourceCode" id="cb2">
+<p>From loading the image in the Python console:</p>
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> viewer.layers[<span class="dv">0</span>].data</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.dtype)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.shape)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.mean())</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.<span class="bu">min</span>())</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.<span class="bu">max</span>())</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.std())</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'Documents/Image analysis/python course images/confocal-series_zstack.tif'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>img.shape</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">25</span>, <span class="dv">2</span>, <span class="dv">400</span>, <span class="dv">400</span>)</span></code></pre>
+</div>
+<p>The second number, i.e. <code>img.shape[1]</code> looks like the
+channel axis. We can then provide this when loading the image:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>viewer.add_image(img, name<span class="op">=</span><span class="st">'FluorescentCells'</span>, channel_axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre>
+</div>
+<p>Napari will load the image as two layers, with the Z axis represented
+via the slider at the bottom.</p>
 </div>
 </div>
 </div>
 </div>
-</div>
+</section><section id="wrapup-challenge-image-segmentation-in-napari"><h2 class="section-heading">Wrapup challenge: image segmentation in Napari<a class="anchor" aria-label="anchor" href="#wrapup-challenge-image-segmentation-in-napari"></a>
+</h2>
+<hr class="half-width"><p>These two exercises will put together everything that has been
+covered in previous chapters, and apply the data processing performed in
+Python/Jupyter to Napari. Finally, we will see how the processing that
+we have built up in Napari can be exported back to Python code that we
+can then run on many images as a script to help automate our image
+processing.</p>
 <div id="exercise-17-image-segmentation-in-napari" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -433,16 +479,16 @@ one. Try using the tools to perform each individual step</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 
 </div>
 </div>
 </div>
 </div>
-<div id="exercise-18-exporting-code" class="callout discussion">
+<div id="exercise-18-exporting-code" class="callout challenge">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-18-exporting-code" class="callout-inner">
 <h3 class="callout-title">Exercise 18: Exporting code<a class="anchor" aria-label="anchor" href="#exercise-18-exporting-code"></a>
@@ -455,6 +501,25 @@ without modification?</p>
 </div>
 </div>
 </div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div class="accordion-body">
+<p>There are several options to export in different ways, including to a
+Jupyter notebook. The simplest way is probably to copy to clipboard -
+this can be pasted into a text editor or IDE.</p>
+<p>Looking at it, though, we can see that it’s not immediately usable.
+Exported scripts do not make any reference to what image file was
+loaded, and there is no code at the end for writing the resuults to a
+file. Therefore, the script will require some tweaking to parameterise
+it and get it to produce tangible output.</p>
+</div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -463,8 +528,12 @@ without modification?</p>
 <h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
 </h3>
 <div class="callout-content">
-<ul><li>Napari works with layers</li>
-<li>For a multi-channel image, each channel is a layer</li>
+<ul><li>Napari works with layers, each of which represents an image
+channel</li>
+<li>Napari doesn’t always know how to load a multi-channel image from
+the GUI</li>
+<li>We can use the Python console to perform custom operations that
+can’t be done in the GUI</li>
 <li>Most operations we performed earlier in Python can also be done in
 Napari, either graphically or in the terminal</li>
 </ul></div>
@@ -532,7 +601,7 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/05-napari.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/05-napari.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2024-01-22",
+  "dateModified": "2024-01-30",
   "datePublished": "2024-01-30"
 }
 
