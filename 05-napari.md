@@ -22,68 +22,122 @@ With Napari installed, run:
 This will start up Napari in a new window. This may take about a minute, especially
 if being done for the first time.
 
+
+## Looking around
+
+In the 'File' menu, go to 'Open Sample -> 'napari builtins -> Cells (3D+2Ch). Looking
+at the sidebar, Napari has opened two **layers** - 'membrane' and 'nuclei'. At the top
+of the sidebar there are options for displaying layers in different colours and opacity,
+and the eye symbol on the layer can be checked or unchecked to show/hide it.
+
+Napari uses layers to represent each stage of processing an image - we run tools to
+create new processed layers based off of a previous one. In this example, the image
+consists of two channels, each of which has been loaded as a layer.
+
+In the case of z-stack or time series images, there is a slider at the bottom that can
+be used to scroll through the layers.
+
 ::::::::::::::::::::::::::::::::::::: challenge 
 ## Exercise 15: Opening an image
 
-- With Napari open, navigate to 'File -> Open Sample' and open the sample image 'napari builtins -> Cells (3D + 2Ch)'
-- How many channels are in this image? How can you view each one independently? How many different ways can you
-  change how they're viewed?
-- How many dimensions are in this image? How can you change how the third dimension is represented?
+With 'Cells (3D + 2Ch)' open, go to 'Tools -> Filtering / Noise Removal' and
+look at the options available. What are these options? What happens if you
+select one and try running it on a layer?
 
 :::::::::::::::::::::::: solution 
-The image has 2 channels, one called 'nuclei' and one called 'membrane', and can be controlled from the
-left hand side. The eye icon shows/hides the channel, and the top-left has controls for changing opacity,
-alpha and lookup table.
+The options here consist of smoothing filters, several of which will be familiar
+from previous chapters. In some cases there are multiple versions of a filter
+(e.g. there are three Gaussian filters), each of which uses a different
+Python library.
 
-There are 3 dimensions, which can be represented either by:
-
-- A slider along the bottom to view each layer one at a time
-- A 3D model view
-
-The 'Toggle ndisplay' cube/square button switches between the two.
+Selecting one of these gives a sidebar letting us choose how to run it, including
+which layer to use, plus any extra parameters it may take, such as sigma values
+for Gaussian filters.
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
-Napari works on the principle of **layers**. When a multi-channel image
-is loaded, each colour channel becomes a separate layer. The result of
-any operations performed on a layer will be saved as a new layer.
 
+## Loading real-world images
 
-## Basic metrics
+The example images work nicely with Napari, but sometimes it may be necessary to
+coax Napari into loading an image correctly. In 'File', select 'Open File(s)...'
+and load up FluorescentCells_3channel.tif. Doing this, we find the results aren't
+quite what we expect - the three channels have been loaded like a z-stack.
 
-Napari doesn't have built-in support for plotting histograms, but because it's built with
-Python and numpy, it is possible to run commands to extract basic metrics.
-
-In the bottom left, use the '>_' button to open a terminal. This activates a Python session
+To load this image correctly, we need to use the Python console. In the bottom
+left, use the '>_' button to open a terminal. This activates a Python session
 where Napari is represented as an object called `viewer`:
 
 - All the loaded layers are in a list called `viewer.layers`
 - Within a layer, the image data is an attribute called `data`
 
-::::::::::::::::::::::::::::::::::::: challenge
-## Exercise 16: Basic metrics
-
-- With sample image 'napari builtins -> Cells (3D + 2Ch)' loaded, open a terminal
-  and look at `viewer.layers`. How many layers are currently loaded?
-- Take a look at the attribute `data` on one of these layers. What kind of object is it?
-  How can we check the image's dimensions, data type, mean, max, min and
-  standard deviation for its pixel values?
-
-:::::::::::::::::::::::: solution
-Taking the first layer as an example, running `type(viewer.layers[0])` shows that
-the object is a `numpy.ndarray`, meaning that we can extract basic information
-the same way as for Python/Jupyter:
+We can also create new layers with `viewer.add_image`:
 
 ```python
-img = viewer.layers[0].data
-print(img.dtype)
-print(img.shape)
-print(img.mean())
-print(img.min())
-print(img.max())
-print(img.std())
+from skimage.io import imread
+img = imread('path/to/FluorescentCells_3channel.tif')
+img.shape
+(512, 512, 3)
 ```
+
+From this, we can see the three channels as the third number of the image's shape.
+We can now load each channel as a new layer:
+
+```python
+viewer.add_image(img[:, :, 0], name='FluorescentCells_ch0', colormap='cyan')
+viewer.add_image(img[:, :, 1], name='FluorescentCells_ch1', colormap='yellow', blending='additive')
+viewer.add_image(img[:, :, 2], name='FluorescentCells_ch2', colormap='magenta', blending='additive')
+```
+
+The `blending='additive'` option prevents layers on top from obscuring layers below it
+so that we can view multiple layers at once. We also need to colour the layers so we
+can distinguish them from each other.
+
+`view.add_image` is also able to load all these layers in one is we tell it which axis
+represents channels:
+
+```python
+viewer.add_image(img, name='FluorescentCells', channel_axis=2)
+```
+
+::::::::::::::::::::::::::::::::::::: challenge 
+## Exercise 16: Real world images
+
+- Look at the `shape` of 'confocal-series_zstack.tif' and identify which
+  axis looks like the channels
+- Use `viewer.add_image` with the `channel_axis` argument to load the image.
+  How has the fourth axis been represented?
+
+:::::::::::::::::::::::: solution 
+From loading the image in the Python console:
+
+```python
+img = skimage.io.imread('Documents/Image analysis/python course images/confocal-series_zstack.tif')
+img.shape
+(25, 2, 400, 400)
+```
+
+The second number, i.e. `img.shape[1]` looks like the channel axis. We can then
+provide this when loading the image:
+
+```python
+viewer.add_image(img, name='FluorescentCells', channel_axis=1)
+```
+
+Napari will load the image as two layers, with the Z axis represented via the slider
+at the bottom.
 :::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+## Wrapup challenge: image segmentation in Napari
+
+These two exercises will put together everything that has been covered in previous
+chapters, and apply the data processing performed in Python/Jupyter to
+Napari. Finally, we will see how the processing that we have built up in Napari
+can be exported back to Python code that we can then run on many images as a script
+to help automate our image processing.
+
+::::::::::::::::::::::::::::::::::::: challenge
 
 ## Exercise 17: Image segmentation in Napari
 
@@ -112,11 +166,26 @@ tool. Use this to generate a Python script that will perform
 the processing that you performed in the previous exercise. Is
 the script usable immediately without modification?
 
+:::::::::::::::::::::::: solution
+There are several options to export in different ways, including to
+a Jupyter notebook. The simplest way is probably to copy to clipboard -
+this can be pasted into a text editor or IDE.
+
+Looking at it, though, we can see that it's not immediately usable.
+Exported scripts do not make any reference to what image file was loaded,
+and there is no code at the end for writing the resuults to a file.
+Therefore, the script will require some tweaking to parameterise it
+and get it to produce tangible output.
+
+:::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
-- Napari works with layers
-- For a multi-channel image, each channel is a layer
+- Napari works with layers, each of which represents an image channel
+- Napari doesn't always know how to load a multi-channel image from the GUI
+- We can use the Python console to perform custom operations that can't be
+  done in the GUI
 - Most operations we performed earlier in Python can also be done in Napari,
   either graphically or in the terminal
 ::::::::::::::::::::::::::::::::::::::::::::::::

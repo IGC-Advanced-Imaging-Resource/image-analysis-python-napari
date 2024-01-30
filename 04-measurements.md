@@ -50,7 +50,7 @@ Here, each pixel will be set to either 1 or 0 depending on whether its value
 matches the label we're looking for.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
-## Exercise 15: Quantifying intensities
+## Exercise 14: Quantifying intensities
 
 For each labelled nucleus:
 
