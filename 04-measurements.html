@@ -302,7 +302,7 @@ containing information from both:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">masked_watershed</span> = watershed_transform <span class="pp">*</span> binary_img</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">masked_watershed</span> = watershed_transform <span class="pp">*</span> binary_img</span></code></pre>
 </div>
 <p>Here we effectively multiply the watershed by the binary image. Since
 the binary image’s values are either 0 or 1, the watershed’s pixels will
@@ -319,8 +319,8 @@ function</a> for this:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nucleus_1</span> = numpy.where<span class="er">(</span><span class="ex">masked_watershed</span> == 1, 1, 0<span class="kw">)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">nucleus_2</span> = numpy.where<span class="er">(</span><span class="ex">masked_watershed</span> == 2, 1, 0<span class="kw">)</span></span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">nucleus_1</span> = numpy.where<span class="er">(</span><span class="ex">masked_watershed</span> == 1, 1, 0<span class="kw">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">nucleus_2</span> = numpy.where<span class="er">(</span><span class="ex">masked_watershed</span> == 2, 1, 0<span class="kw">)</span></span></code></pre>
 </div>
 <p>Here, each pixel will be set to either 1 or 0 depending on whether
 its value matches the label we’re looking for.</p>
@@ -348,18 +348,18 @@ different ways it can be used.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">max</span>(masked_watershed.flatten()) <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> numpy.where(masked_watershed <span class="op">==</span> i, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    nucleus <span class="op">=</span> numpy.where(mask <span class="op">==</span> <span class="dv">1</span>, original_img, <span class="va">None</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    pixels <span class="op">=</span> [p <span class="cf">for</span> p <span class="kw">in</span> nucleus.flatten() <span class="cf">if</span> p <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>]</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Pixel </span><span class="sc">%i</span><span class="st"> intensity: </span><span class="sc">%f</span><span class="st">'</span> <span class="op">%</span> (i, numpy.mean(pixels)))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">max</span>(masked_watershed.flatten()) <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>    mask <span class="op">=</span> numpy.where(masked_watershed <span class="op">==</span> i, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>    nucleus <span class="op">=</span> numpy.where(mask <span class="op">==</span> <span class="dv">1</span>, original_img, <span class="va">None</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>    pixels <span class="op">=</span> [p <span class="cf">for</span> p <span class="kw">in</span> nucleus.flatten() <span class="cf">if</span> p <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>]</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Pixel </span><span class="sc">%i</span><span class="st"> intensity: </span><span class="sc">%f</span><span class="st">'</span> <span class="op">%</span> (i, numpy.mean(pixels)))</span></code></pre>
 </div>
 </div>
 </div>
@@ -447,7 +447,7 @@ any links that you are not going to use.
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/04-measurements.html",
   "dateCreated": "2023-09-19",
   "dateModified": "2024-01-30",
-  "datePublished": "2024-02-27"
+  "datePublished": "2024-03-01"
 }
 
   </script><script>

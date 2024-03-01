@@ -301,7 +301,7 @@ same process in Python</li>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">napari</span></span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">napari</span></span></code></pre>
 </div>
 <p>This will start up Napari in a new window. This may take about a
 minute, especially if being done for the first time.</p>
@@ -338,7 +338,7 @@ happens if you select one and try running it on a layer?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The options here consist of smoothing filters, several of which will
 be familiar from previous chapters. In some cases there are multiple
@@ -372,19 +372,19 @@ called <code>viewer</code>:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imread</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> imread(<span class="st">'path/to/FluorescentCells_3channel.tif'</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>img.shape</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">512</span>, <span class="dv">512</span>, <span class="dv">3</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imread</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>img <span class="op">=</span> imread(<span class="st">'path/to/FluorescentCells_3channel.tif'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>img.shape</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>(<span class="dv">512</span>, <span class="dv">512</span>, <span class="dv">3</span>)</span></code></pre>
 </div>
 <p>From this, we can see the three channels as the third number of the
 image’s shape. We can now load each channel as a new layer:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>viewer.add_image(img[:, :, <span class="dv">0</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch0'</span>, colormap<span class="op">=</span><span class="st">'cyan'</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>viewer.add_image(img[:, :, <span class="dv">1</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch1'</span>, colormap<span class="op">=</span><span class="st">'yellow'</span>, blending<span class="op">=</span><span class="st">'additive'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>viewer.add_image(img[:, :, <span class="dv">2</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch2'</span>, colormap<span class="op">=</span><span class="st">'magenta'</span>, blending<span class="op">=</span><span class="st">'additive'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>viewer.add_image(img[:, :, <span class="dv">0</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch0'</span>, colormap<span class="op">=</span><span class="st">'cyan'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>viewer.add_image(img[:, :, <span class="dv">1</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch1'</span>, colormap<span class="op">=</span><span class="st">'yellow'</span>, blending<span class="op">=</span><span class="st">'additive'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>viewer.add_image(img[:, :, <span class="dv">2</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch2'</span>, colormap<span class="op">=</span><span class="st">'magenta'</span>, blending<span class="op">=</span><span class="st">'additive'</span>)</span></code></pre>
 </div>
 <p>The <code>blending='additive'</code> option prevents layers on top
 from obscuring layers below it so that we can view multiple layers at
@@ -395,7 +395,7 @@ one is we tell it which axis represents channels:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>viewer.add_image(img, name<span class="op">=</span><span class="st">'FluorescentCells'</span>, channel_axis<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>viewer.add_image(img, name<span class="op">=</span><span class="st">'FluorescentCells'</span>, channel_axis<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
 </div>
 <div id="exercise-16-real-world-images" class="callout challenge">
 <div class="callout-square">
@@ -418,22 +418,22 @@ represented?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>From loading the image in the Python console:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'Documents/Image analysis/python course images/confocal-series_zstack.tif'</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>img.shape</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">25</span>, <span class="dv">2</span>, <span class="dv">400</span>, <span class="dv">400</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'Documents/Image analysis/python course images/confocal-series_zstack.tif'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>img.shape</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>(<span class="dv">25</span>, <span class="dv">2</span>, <span class="dv">400</span>, <span class="dv">400</span>)</span></code></pre>
 </div>
 <p>The second number, i.e. <code>img.shape[1]</code> looks like the
 channel axis. We can then provide this when loading the image:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>viewer.add_image(img, name<span class="op">=</span><span class="st">'FluorescentCells'</span>, channel_axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>viewer.add_image(img, name<span class="op">=</span><span class="st">'FluorescentCells'</span>, channel_axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre>
 </div>
 <p>Napari will load the image as two layers, with the Z axis represented
 via the slider at the bottom.</p>
@@ -477,7 +477,7 @@ one. Try using the tools to perform each individual step</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 
 </div>
@@ -504,7 +504,7 @@ without modification?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>There are several options to export in different ways, including to a
 Jupyter notebook. The simplest way is probably to copy to clipboard -
@@ -600,7 +600,7 @@ any links that you are not going to use.
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/05-napari.html",
   "dateCreated": "2023-09-19",
   "dateModified": "2024-01-30",
-  "datePublished": "2024-02-27"
+  "datePublished": "2024-03-01"
 }
 
   </script><script>

@@ -312,8 +312,8 @@ to load an image into memory. In a new notebook cell:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imread</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'data/FluorescentCells_3channel.tif'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imread</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'data/FluorescentCells_3channel.tif'</span>)</span></code></pre>
 </div>
 <p>To view things in Python, usually we <code>print()</code> them.
 However if we try to <code>print()</code> this image to the Jupyter
@@ -342,8 +342,8 @@ to <code>imread</code>:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imshow</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>imshow(image)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imshow</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>imshow(image)</span></code></pre>
 </div>
 <p>You should see the image displayed below the current cell.</p>
 <p>Since images are multi-dimensional arrays of numbers, we can apply
@@ -353,8 +353,8 @@ shape, data type and minimum/maximum values:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape, image.dtype, image.<span class="bu">min</span>(), image.<span class="bu">max</span>())</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">512</span>, <span class="dv">512</span>, <span class="dv">3</span>) uint8 <span class="dv">0</span> <span class="dv">255</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">print</span>(image.shape, image.dtype, image.<span class="bu">min</span>(), image.<span class="bu">max</span>())</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>(<span class="dv">512</span>, <span class="dv">512</span>, <span class="dv">3</span>) uint8 <span class="dv">0</span> <span class="dv">255</span></span></code></pre>
 </div>
 <p>This shows that the image has a data type of uint8, it contains
 values between 0 and 255 and that it is in three dimensions. We can
@@ -366,7 +366,7 @@ array:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>imshow(image[:, :, <span class="dv">0</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>imshow(image[:, :, <span class="dv">0</span>])</span></code></pre>
 </div>
 <p>Here, we select the entire X and Y coordinates using <code>:</code>
 with no numbers around them, and the first channel (remember that Python
@@ -394,7 +394,7 @@ do this, we need to select a subset of the X and/or Y axes.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Other channels can be loaded with <code>image[:, :, x]</code>, where
 <code>image</code> is the variable the image is saved to and
@@ -406,8 +406,8 @@ do this, we need to select a subset of the X and/or Y axes.</li>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>channel <span class="op">=</span> image[:, :, <span class="dv">1</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>imshow(channel.T)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>channel <span class="op">=</span> image[:, :, <span class="dv">1</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>imshow(channel.T)</span></code></pre>
 </div>
 <p>Remember that Numpy arrays can be sliced and indexed the same way as
 lists, strings and tuples. Up to this point we’ve been using
@@ -416,7 +416,7 @@ end bounds to select part of the X and Y axes, like:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>image[:<span class="dv">256</span>, <span class="dv">128</span>:<span class="dv">384</span>, <span class="dv">1</span>]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>image[:<span class="dv">256</span>, <span class="dv">128</span>:<span class="dv">384</span>, <span class="dv">1</span>]</span></code></pre>
 </div>
 </div>
 </div>
@@ -456,7 +456,7 @@ FluorescentCells_3channel.tif?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Running <code>image.nbytes</code> shows that it takes up 786432
 bytes, or ~786 kilobytes, or ~0.7 megabytes.</p>
@@ -473,16 +473,16 @@ figure:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))  <span class="co"># figure size, in inches</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>nchannels <span class="op">=</span> img.shape[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nchannels):</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)  <span class="co"># 1-indexing in subplots</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.imshow(img[:, :, i])</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> i)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.axis(<span class="va">False</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))  <span class="co"># figure size, in inches</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>nchannels <span class="op">=</span> img.shape[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nchannels):</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>    matplotlib.pyplot.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)  <span class="co"># 1-indexing in subplots</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>    matplotlib.pyplot.imshow(img[:, :, i])</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>    matplotlib.pyplot.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> i)</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>    matplotlib.pyplot.axis(<span class="va">False</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre>
 </div>
 </section><section id="histograms"><h2 class="section-heading">Histograms<a class="anchor" aria-label="anchor" href="#histograms"></a>
 </h2>
@@ -491,8 +491,8 @@ can be plotted by flattening the image and passing it to matplotlib:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.hist(image.flatten())</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>matplotlib.pyplot.hist(image.flatten())</span></code></pre>
 </div>
 <p>We need <code>flatten()</code> to condense the pixel values from two
 dimensions into one, since <code>hist()</code> expects a one-dimensional
@@ -519,22 +519,22 @@ FluorescentCells_3channel.tif.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Multiple histograms can be plotted with:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))  <span class="co"># figsize is width and height, in inches</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nchannels <span class="op">=</span> img.shape[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nchannels):</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)  <span class="co"># 1-indexing in subplots</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.hist(img[:, :, i].flatten(), bins<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> i)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    matplotlib.pyplot.axis(<span class="va">False</span>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))  <span class="co"># figsize is width and height, in inches</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>nchannels <span class="op">=</span> img.shape[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nchannels):</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    matplotlib.pyplot.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)  <span class="co"># 1-indexing in subplots</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>    matplotlib.pyplot.hist(img[:, :, i].flatten(), bins<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>    matplotlib.pyplot.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> i)</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>    matplotlib.pyplot.axis(<span class="va">False</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre>
 </div>
 </div>
 </div>
@@ -560,7 +560,7 @@ library. In the Terminal you opened above:</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install czifile</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">$</span> pip install czifile</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -568,7 +568,7 @@ library. In the Terminal you opened above:</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install nd2</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">$</span> pip install nd2</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -576,7 +576,7 @@ library. In the Terminal you opened above:</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install imaris-ims-file-reader</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">$</span> pip install imaris-ims-file-reader</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -584,7 +584,7 @@ library. In the Terminal you opened above:</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install readlif</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">$</span> pip install readlif</span></code></pre>
 </div>
 <div id="exercise-4-proprietary-formats" class="callout challenge">
 <div class="callout-square">
@@ -608,7 +608,7 @@ coordinates.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>The nd2 package can be installed with <code>pip install nd2</code>.
 According to its documentation and page on PyPI, it has an
@@ -617,7 +617,7 @@ skimage:</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> nd2.imread(<span class="st">'data/Ersi_organoid_WT2.nd2'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>image <span class="op">=</span> nd2.imread(<span class="st">'data/Ersi_organoid_WT2.nd2'</span>)</span></code></pre>
 </div>
 <p><code>img.shape</code> shows that there are four axes. The latter two
 numbers look like the X and Y axes. The second number looks like a
@@ -626,7 +626,7 @@ first number in a moment. For now, we can show a single frame with:</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>imshow(img[<span class="dv">0</span>, <span class="dv">0</span>, :, :])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>imshow(img[<span class="dv">0</span>, <span class="dv">0</span>, :, :])</span></code></pre>
 </div>
 </div>
 </div>
@@ -659,15 +659,15 @@ lookup tables:</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>imshow(image, cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>imshow(image, cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
 </div>
 <p>Skimage uses lookup tables from the plotting library matplotlib. A
 list of available tables can be obtained with:</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> colormaps</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(colormaps))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> colormaps</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(colormaps))</span></code></pre>
 </div>
 <div id="exercise-5-lookup-tables" class="callout challenge">
 <div class="callout-square">
@@ -688,22 +688,22 @@ side by side in a matplotlib figure, each in a different colour using
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>There will be many ways to do this (and many colour maps to choose
 from!), but here is one possible solution:</p>
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>nchannels <span class="op">=</span> img.shape[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>colours <span class="op">=</span> (<span class="st">'Blues'</span>, <span class="st">'Oranges'</span>, <span class="st">'YlOrBr'</span>)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nchannels):</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    imshow(img[:, :, i], cmap<span class="op">=</span>colours[i])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>nchannels <span class="op">=</span> img.shape[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>colours <span class="op">=</span> (<span class="st">'Blues'</span>, <span class="st">'Oranges'</span>, <span class="st">'YlOrBr'</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nchannels):</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a>    plt.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a>    imshow(img[:, :, i], cmap<span class="op">=</span>colours[i])</span></code></pre>
 </div>
 </div>
 </div>
@@ -727,7 +727,7 @@ tables. What results do you get, and why?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6">Show me the solution</h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>The image will always look the same regardless of the lookup table
 used. In this case, this is because hela-cells_rgb.tif is an RGB image,
@@ -750,15 +750,15 @@ dimensions of an image. To do this, we can use Numpy’s
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'data/maize-seedlings.tif'</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">800</span>, <span class="dv">800</span>, <span class="dv">3</span>)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>rearranged_image <span class="op">=</span> numpy.moveaxis(image, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rearranged_image.shape)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="dv">800</span>, <span class="dv">800</span>)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>(<span class="dv">800</span>, <span class="dv">800</span>, <span class="dv">3</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'data/maize-seedlings.tif'</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>(<span class="dv">800</span>, <span class="dv">800</span>, <span class="dv">3</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>rearranged_image <span class="op">=</span> numpy.moveaxis(image, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a><span class="bu">print</span>(rearranged_image.shape)</span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>(<span class="dv">3</span>, <span class="dv">800</span>, <span class="dv">800</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="bu">print</span>(image.shape)</span>
+<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a>(<span class="dv">800</span>, <span class="dv">800</span>, <span class="dv">3</span>)</span></code></pre>
 </div>
 <p>We can see that calling <code>moveaxis</code> on an array gives us a
 rearranged version of the array given to it - the channel axis that was
@@ -785,8 +785,8 @@ imageio. There are a couple of different places we can look:</p>
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">m</span> = imageio.v3.immeta<span class="er">(</span><span class="st">'path/to/image.png'</span><span class="kw">)</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">p</span> = imageio.v3.improps<span class="er">(</span><span class="st">'path/to/image.png'</span><span class="kw">)</span></span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="ex">m</span> = imageio.v3.immeta<span class="er">(</span><span class="st">'path/to/image.png'</span><span class="kw">)</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="ex">p</span> = imageio.v3.improps<span class="er">(</span><span class="st">'path/to/image.png'</span><span class="kw">)</span></span></code></pre>
 </div>
 <p><code>immeta()</code> gives us a dict including the key ‘unit’, and
 <code>improps</code> gives an object with the property ‘spacing’.
@@ -797,14 +797,14 @@ cross-checking.</p>
 <div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="st">'unit'</span><span class="ex">:</span> <span class="st">'\\u00B5m'</span></span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="st">'unit'</span><span class="ex">:</span> <span class="st">'\\u00B5m'</span></span></code></pre>
 </div>
 <p>This can be un-escaped with:</p>
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> m[<span class="st">'unit'</span>].encode<span class="kw">()</span><span class="ex">.decode</span><span class="er">(</span><span class="st">'unicode-escape'</span><span class="kw">)</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">μm</span></span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> m<span class="pp">[</span><span class="st">'unit'</span><span class="pp">]</span>.encode<span class="kw">()</span><span class="ex">.decode</span><span class="er">(</span><span class="st">'unicode-escape'</span><span class="kw">)</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="ex">μm</span></span></code></pre>
 </div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
@@ -890,7 +890,7 @@ any links that you are not going to use.
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/01-opening-and-checking-an-image.html",
   "dateCreated": "2023-09-19",
   "dateModified": "2024-01-24",
-  "datePublished": "2024-02-27"
+  "datePublished": "2024-03-01"
 }
 
   </script><script>
