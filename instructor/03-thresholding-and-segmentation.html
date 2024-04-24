@@ -267,7 +267,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Thresholding and Segmentation</h1>
-        <p>Last updated on 2024-01-30 |
+        <p>Last updated on 2024-04-24 |
         
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/03-thresholding-and-segmentation.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -348,7 +348,7 @@ filter docs</a> and find each of the following threshold algorithms:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -417,7 +417,7 @@ footprint. For this, use a disc-shaped kernel of radius 4:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -445,6 +445,13 @@ footprint. For this, use a disc-shaped kernel of radius 4:</p>
 <span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
 <span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a>plt.imshow(skimage.morphology.binary_closing(binary_image, footprint<span class="op">=</span>kernel))</span></code></pre>
 </div>
+<p>Eroding has the effect of shrinking all foreground features. Dilating
+has the opposite effect, potentially resulting in foreground features
+becoming stuck together.</p>
+<p>Opening an image is an erosion followed by a dilation. If your image
+is grainy with many small artifacts, these will be removed.</p>
+<p>Closing is the opposite - dilation followed by erosion. This will
+have the effect of filling in any holes in your foreground features.</p>
 </div>
 </div>
 </div>
@@ -483,7 +490,7 @@ a kernel/footprint, which in this example is a square kernel of 7x7:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">coords</span> = skimage.feature.peak_local_max<span class="er">(</span><span class="ex">dt,</span> footprint=numpy.ones<span class="er">(</span><span class="kw">(</span><span class="ex">7,7</span><span class="kw">))</span><span class="ex">,</span> labels=binary_img<span class="kw">)</span></span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">coords</span> = skimage.feature.peak_local_max<span class="er">(</span><span class="ex">dt,</span> labels=binary_img<span class="kw">)</span></span></code></pre>
 </div>
 <p>This gives us a list of coordinates, so we need to convert this back
 into an labelled image of maxima. This will be mostly blank with an
@@ -495,9 +502,31 @@ individually labelled dot representing each one:</p>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="va">mask</span><span class="op">[</span>tuple(coords.T)<span class="op">]</span> <span class="ex">=</span> True</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="ex">markers</span> = skimage.morphology.label<span class="er">(</span><span class="ex">mask</span><span class="kw">)</span></span></code></pre>
 </div>
-<p>Note the <code>.T</code> to transpose the maxima coordinates.
-Finally, the transform can be done. One final note is that because the
-<a href="https://bioimagebook.github.io/chapters/2-processing/6-transforms/transforms.html#the-watershed-transform" class="external-link">way
+<p>Note the <code>.T</code> to transpose the maxima coordinates.</p>
+<p>At this point depending on your image, you may get clusters of peaks
+close together rather than one clean, distinct peak per feature. This is
+especially likely if your features are not circular. Applied to the
+final watershed step below, this results in features being split when
+they shouldn’t be. This can be resolved in several ways:</p>
+<ol style="list-style-type: decimal"><li>
+<p>Blurring the distance transform:</p>
+<p>dt = scipy.ndimage.distance_transform_edt(binary_img) dt =
+skimage.filters.gaussian(dt, sigma=4)</p>
+</li>
+<li>
+<p>Applying a larger footprint to peak_local_max:</p>
+<p>coords = skimage.feature.peak_local_max(dt,
+footprint=numpy.ones((7,7)), labels=binary_img)</p>
+</li>
+<li>
+<p>Providing a <code>min_distance</code> argument to peak_local_max,
+which will prevent the function from identifying peaks too close
+together:</p>
+<p>coords = skimage.feature.peak_local_max(dt, min_distance=10,
+labels=binary_img)</p>
+</li>
+</ol><p>Finally, the transform can be done. One final note is that because of
+the <a href="https://bioimagebook.github.io/chapters/2-processing/6-transforms/transforms.html#the-watershed-transform" class="external-link">way
 watershed transforms work</a>, we need to convert the distance map from
 peaks to troughs by inverting it with <code>-</code>:</p>
 <div class="codewrapper sourceCode" id="cb9">
@@ -515,13 +544,13 @@ peaks to troughs by inverting it with <code>-</code>:</p>
 <div class="callout-content">
 <ul><li>Load up your image from exercise 10 and run
 <code>skimage.morphology.label</code> on the foreground features
-<ul><li>Determine the number of features in the image (hint: try flattening
-your labelled image)</li>
+<ul><li>How many features did skimage find? (hint: try flattening your
+labelled image)</li>
 </ul></li>
-<li>Perform a watershed transform on your binary image as per above. Try
+<li>Perform a watershed transform on your binary image as above. Try
 displaying the result of each stage of the transform.
-<ul><li>Determine the number of features now after watershed
-transformation</li>
+<ul><li>How many features are identified now after watershed
+transformation?</li>
 <li>Does the watershed process work perfectly?</li>
 </ul></li>
 </ul></div>
@@ -532,7 +561,7 @@ transformation</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Labelling applies a unique number to each feature. This means that if
 we apply thresholding and labelling to the image, we can flatten the
@@ -570,7 +599,7 @@ segment touching objects:</p>
 <span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
 <span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>plt.imshow(dt)</span>
 <span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>coords <span class="op">=</span> skimage.feature.peak_local_max(dt, footprint<span class="op">=</span>numpy.ones((<span class="dv">7</span>, <span class="dv">7</span>)), labels<span class="op">=</span>binary_img)</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>coords <span class="op">=</span> skimage.feature.peak_local_max(dt, min_distance<span class="op">=</span><span class="dv">10</span>, labels<span class="op">=</span>binary_img)</span>
 <span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>mask <span class="op">=</span> numpy.zeros(dt.shape, dtype<span class="op">=</span><span class="bu">bool</span>)</span>
 <span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>mask[<span class="bu">tuple</span>(coords.T)] <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
@@ -667,8 +696,8 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/03-thresholding-and-segmentation.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/03-thresholding-and-segmentation.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2024-01-30",
-  "datePublished": "2024-04-23"
+  "dateModified": "2024-04-24",
+  "datePublished": "2024-04-24"
 }
 
   </script><script>
