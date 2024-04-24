@@ -82,7 +82,7 @@ effect and a more blurred image.
 
 Sometimes when we're trying to isolate the foreground from the background, the two
 are not entirely distinct from each other. In cases like this, a
-[rolling ball(https://scikit-image.org/docs/stable/auto_examples/segmentation/plot_rolling_ball.html)]
+[rolling ball](https://scikit-image.org/docs/stable/auto_examples/segmentation/plot_rolling_ball.html)]
 algorithm can be applied.
 
 The way a rolling ball algorithm works is illustrated

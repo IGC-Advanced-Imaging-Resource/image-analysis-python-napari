@@ -19,8 +19,23 @@ Installation of Napari is covered below.
 
 ## Datasets
 
-Todo: Test data is available at [data zip file](https://example.com/FIXME).
+::::::::::::::::::::::::::::::::::::::: discussion
+Test data is available in the [GitHub repo](https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/tree/main/data).
+These can be downloaded by visiting each image and selecting 'Download raw file'.
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
+:::::::::::::::: solution
+### Downloading on the command line
+
+The test images can be downloaded in fewer clicks with the command line:
+
+       wget \
+       https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/FluorescentCells_3channel.tif \
+       https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/confocal-series_zstack.tif \
+       https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/hela-cells_rgb.tif \
+       https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/Ersi_organoid_WT2.nd2
+
+:::::::::::::::::::::::::
 
 ## Python Setup
 
@@ -128,7 +143,7 @@ $ pip install 'napari[all]'
 A Conda environment containing Napari can be created with:
 
 ```
-$ conda create -p path/to/new/env -c conda-forge napari pyqt
+$ conda create -p path/to/new/env -c conda-forge -c pytorch devbio-napari pyqt
 ```
 
 You may find that solving the environment is extrememly slow or fails

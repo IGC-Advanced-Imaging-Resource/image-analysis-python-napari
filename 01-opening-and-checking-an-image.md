@@ -27,6 +27,10 @@ from skimage.io import imread
 image = imread('data/FluorescentCells_3channel.tif')
 ```
 
+If you saved your images to a different location, you will need to change the file path
+provided to imread accordingly. Paths will be relative to the location of the .ipynb
+notebook file.
+
 To view things in Python, usually we `print()` them. However if we try to `print()` this
 image to the Jupyter console, instead of getting the image we get something that may be
 unexpected:
