@@ -122,6 +122,15 @@ plt.imshow(skimage.morphology.binary_opening(binary_image, footprint=kernel))
 plt.subplot(2, 3, 5)
 plt.imshow(skimage.morphology.binary_closing(binary_image, footprint=kernel))
 ```
+
+Eroding has the effect of shrinking all foreground features. Dilating has the opposite
+effect, potentially resulting in foreground features becoming stuck together.
+
+Opening an image is an erosion followed by a dilation. If your image is grainy with
+many small artifacts, these will be removed.
+
+Closing is the opposite - dilation followed by erosion. This will have the effect of
+filling in any holes in your foreground features.
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -153,18 +162,39 @@ Next, we need the coordinates of all **local maxima**, i.e. locations that are
 furthest away from the background. This requires a kernel/footprint, which in
 this example is a square kernel of 7x7:
 
-    coords = skimage.feature.peak_local_max(dt, footprint=numpy.ones((7,7)), labels=binary_img)
+    coords = skimage.feature.peak_local_max(dt, labels=binary_img)
 
 This gives us a list of coordinates, so we need to convert this back into an
 labelled image of maxima. This will be mostly blank with an individually
-labelled  dot representing each one:
+labelled dot representing each one:
 
     mask = numpy.zeros(dt.shape, dtype=bool)
     mask[tuple(coords.T)] = True
     markers = skimage.morphology.label(mask)
 
-Note the `.T` to transpose the maxima coordinates. Finally, the transform can
-be done. One final note is that because the [way watershed transforms work](https://bioimagebook.github.io/chapters/2-processing/6-transforms/transforms.html#the-watershed-transform),
+Note the `.T` to transpose the maxima coordinates.
+
+At this point depending on your image, you may get clusters of peaks close together
+rather than one clean, distinct peak per feature. This is especially likely if your
+features are not circular. Applied to the final watershed step below, this results
+in features being split when they shouldn't be. This can be resolved in several ways:
+
+1. Blurring the distance transform:
+
+    dt = scipy.ndimage.distance_transform_edt(binary_img)
+    dt = skimage.filters.gaussian(dt, sigma=4)
+
+2. Applying a larger footprint to peak_local_max:
+
+    coords = skimage.feature.peak_local_max(dt, footprint=numpy.ones((7,7)), labels=binary_img)
+
+3. Providing a `min_distance` argument to peak_local_max, which will prevent the function from identifying peaks
+too close together:
+
+    coords = skimage.feature.peak_local_max(dt, min_distance=10, labels=binary_img)
+
+Finally, the transform can be done. One final note is that because of the
+[way watershed transforms work](https://bioimagebook.github.io/chapters/2-processing/6-transforms/transforms.html#the-watershed-transform),
 we need to convert the distance map from peaks to troughs by inverting it with `-`:
 
     labels = skimage.segmentation.watershed(-dt, markers, mask=binary_img)
@@ -175,11 +205,10 @@ we need to convert the distance map from peaks to troughs by inverting it with `
 
 - Load up your image from exercise 10 and run `skimage.morphology.label`
   on the foreground features
-  - Determine the number of features in the image (hint: try flattening
-    your labelled image)
-- Perform a watershed transform on your binary image as per above. Try
+  - How many features did skimage find? (hint: try flattening your labelled image)
+- Perform a watershed transform on your binary image as above. Try
   displaying the result of each stage of the transform.
-  - Determine the number of features now after watershed transformation
+  - How many features are identified now after watershed transformation?
   - Does the watershed process work perfectly?
 
 :::::::::::::::::::::::: solution
@@ -219,7 +248,7 @@ dt = scipy.ndimage.distance_transform_edt(binary_img)
 plt.subplot(2, 2, 2)
 plt.imshow(dt)
 
-coords = skimage.feature.peak_local_max(dt, footprint=numpy.ones((7, 7)), labels=binary_img)
+coords = skimage.feature.peak_local_max(dt, min_distance=10, labels=binary_img)
 mask = numpy.zeros(dt.shape, dtype=bool)
 mask[tuple(coords.T)] = True
 plt.subplot(2, 2, 3)
@@ -236,7 +265,6 @@ print(set(labels.flatten()))
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
-
 - Thresholding, labelling and feature isolation are all forms of segmentation
 - Different thresholding algorithms can perform differently in different situations
 - Quantitative image analysis often requires us to individually label features

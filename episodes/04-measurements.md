@@ -56,8 +56,8 @@ For each labelled nucleus:
 
 - Construct a binary mask matching the label number
 - Use this to isolate the individual nucleus out of the **original image**
-  - Hint: try looking at the `numpy.where` docs to see the different ways
-    it can be used.
+  - Hint: try looking at the [`numpy.where`](https://numpy.org/doc/stable/reference/generated/numpy.where.html)
+    docs to see the different ways it can be used.
 - Find the mean pixel value for the nucleus
 
 :::::::::::::::::::::::: solution
