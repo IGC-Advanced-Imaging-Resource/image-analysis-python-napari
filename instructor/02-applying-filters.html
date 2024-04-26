@@ -266,7 +266,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Applying Filters</h1>
-        <p>Last updated on 2024-04-24 |
+        <p>Last updated on 2024-04-26 |
         
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/02-applying-filters.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -333,8 +333,10 @@ result.</p>
 <h3 class="callout-title">Exercise 7: Applying filters<a class="anchor" aria-label="anchor" href="#exercise-7-applying-filters"></a>
 </h3>
 <div class="callout-content">
-<p>Load the last channel of FluorescentCells_3channel.tif and build a
-figure displaying it in each of the following forms:</p>
+<p>Look at the documentation pages for the mean and Gaussian filters
+above. Load the last channel of FluorescentCells_3channel.tif containing
+the nuclei, and build a figure displaying it in each of the following
+forms:</p>
 <ul><li>original image</li>
 <li>5x5 square mean filter applied</li>
 <li>15x15 square mean filter</li>
@@ -349,33 +351,39 @@ figure displaying it in each of the following forms:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'data/FluorescentCells_3channel.tif'</span>)[:, :, <span class="op">-</span><span class="dv">1</span>]</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>img <span class="op">=</span> imread(<span class="st">'data/FluorescentCells_3channel.tif'</span>)[:, :, <span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>plt.imshow(img, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>mean3x3 <span class="op">=</span> skimage.filters.rank.mean(img, skimage.morphology.square(<span class="dv">5</span>))</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>plt.imshow(mean3x3, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>mean15x15 <span class="op">=</span> skimage.filters.rank.mean(img, skimage.morphology.square(<span class="dv">15</span>))</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>plt.imshow(mean15x15, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>gauss3 <span class="op">=</span> skimage.filters.Gaussian(img, <span class="dv">3</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>plt.imshow(gauss3, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">12</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>plt.imshow(img)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>plt.title(<span class="st">'Original'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>mean5x5 <span class="op">=</span> skimage.filters.rank.mean(img, skimage.morphology.square(<span class="dv">5</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>plt.plt.imshow(mean5x5)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>title(<span class="st">'5x5 mean filter'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>mean15x15 <span class="op">=</span> skimage.filters.rank.mean(img, skimage.morphology.square(<span class="dv">15</span>))</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>plt.imshow(mean15x15)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>plt.title(<span class="st">'15 x 15 mean filter'</span>)</span>
 <span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>gauss5 <span class="op">=</span> skimage.filters.Gaussian(img, <span class="dv">5</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>plt.imshow(gauss5, cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>gauss3 <span class="op">=</span> skimage.filters.gaussian(img, <span class="dv">3</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>plt.imshow(gauss3)</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>plt.title(<span class="st">'Gaussian blur, σ=3'</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>gauss5 <span class="op">=</span> skimage.filters.gaussian(img, <span class="dv">5</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>plt.imshow(gauss5)</span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>plt.title(<span class="st">'Gaussian blur, σ=5'</span>)</span></code></pre>
 </div>
-<p>Larger mean kernels and sigma values will result in a greater
+<figure><img src="../fig/2_1_filters.jpg" alt="Filters" class="figure mx-auto d-block"></figure><p>Larger mean kernels and sigma values will result in a greater
 smoothing effect and a more blurred image.</p>
 </div>
 </div>
@@ -385,9 +393,11 @@ smoothing effect and a more blurred image.</p>
 </h2>
 <hr class="half-width"><p>Sometimes when we’re trying to isolate the foreground from the
 background, the two are not entirely distinct from each other. In cases
-like this, a <a href="https://scikit-image.org/docs/stable/auto_examples/segmentation/plot_rolling_ball.html" class="external-link">rolling
-ball</a>] algorithm can be applied.</p>
-<p>The way a rolling ball algorithm works is illustrated <a href="https://www.researchgate.net/figure/Schematic-diagram-of-background-subtraction-by-the-rolling-ball-method-the-histogram_fig3_319985119" class="external-link">here</a></p>
+like this, a rolling ball algorithm can be applied. The rolling ball
+estimates the background intensity of an image by using the pixel values
+to translate the image into a height map, and then rolling a ball of a
+given radius across it. Additional information on how it works can be
+found <a href="https://www.researchgate.net/figure/Schematic-diagram-of-background-subtraction-by-the-rolling-ball-method-the-histogram_fig3_319985119" class="external-link">here</a>.</p>
 <div id="exercise-8-rolling-ball-background-intensity" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -397,8 +407,9 @@ ball</a>] algorithm can be applied.</p>
 intensity<a class="anchor" aria-label="anchor" href="#exercise-8-rolling-ball-background-intensity"></a>
 </h3>
 <div class="callout-content">
-<p>From the same nuclei channel of FluorescentCells_3channel.tif,
-display:</p>
+<p>Look at the <a href="https://scikit-image.org/docs/stable/auto_examples/segmentation/plot_rolling_ball.html" class="external-link">scikit-image
+documentation</a> on the rolling ball filter. Load the example image
+<code>skimage.data.coins</code> and display:</p>
 <ul><li>the original image</li>
 <li>image with a rolling ball of radius 100 applied</li>
 <li>image with a rolling ball of radius 50 applied</li>
@@ -412,8 +423,9 @@ display:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
+<p>Compute time can be found using Python’s datetime library:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -421,33 +433,37 @@ display:</p>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="im">import</span> skimage</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'data/FluorescentCells_3channel.tif'</span>)[:, :, <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>img <span class="op">=</span> skimage.data.coins()</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>t0 <span class="op">=</span> datetime.datetime.now()</span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>plt.imshow(img, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>plt.imshow(img)</span>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>t1 <span class="op">=</span> datetime.datetime.now()</span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>rolling_ball_100 <span class="op">=</span> skimage.restoration.rolling_ball(img, radius<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>plt.imshow(rolling_ball_100, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>t2 <span class="op">=</span> datetime.datetime.now()</span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>rolling_ball_50 <span class="op">=</span> skimage.restoration.rolling_ball(img, radius<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a>plt.imshow(rolling_ball_50, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>t3 <span class="op">=</span> datetime.datetime.now()</span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>plt.imshow(img <span class="op">-</span> rolling_ball_50, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>plt.title(<span class="st">'Original'</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>rolling_ball_100 <span class="op">=</span> skimage.restoration.rolling_ball(img, radius<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>plt.imshow(rolling_ball_100)</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>t2 <span class="op">=</span> datetime.datetime.now()</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>plt.title(<span class="st">'Rolling ball, r=100'</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>rolling_ball_50 <span class="op">=</span> skimage.restoration.rolling_ball(img, radius<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>plt.imshow(rolling_ball_50)</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>t3 <span class="op">=</span> datetime.datetime.now()</span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>plt.title(<span class="st">'Rolling ball, r=50'</span>)</span>
 <span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>plt.show()</span>
-<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Original image:'</span>, t1 <span class="op">-</span> t0)</span>
-<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Rolling ball 100: '</span>, t2 <span class="op">-</span> t1)</span>
-<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Rolling ball 50:'</span>, t3 <span class="op">-</span> t2)</span>
-<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Total:'</span>, t3 <span class="op">-</span> t0)</span></code></pre>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a>plt.imshow(img <span class="op">-</span> rolling_ball_50)</span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a>plt.title(<span class="st">'Original - rolling ball r50'</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a>plt.show()</span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Original image:'</span>, t1 <span class="op">-</span> t0)</span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Rolling ball 100: '</span>, t2 <span class="op">-</span> t1)</span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Rolling ball 50:'</span>, t3 <span class="op">-</span> t2)</span>
+<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Total:'</span>, t3 <span class="op">-</span> t0)</span></code></pre>
 </div>
-</div>
+<figure><img src="../fig/2_2_rolling_ball.jpg" alt="Rolling ball" class="figure mx-auto d-block"></figure></div>
 </div>
 </div>
 </div>
@@ -488,7 +504,7 @@ filter linked above does not perform the Gaussian filter for you.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -502,7 +518,7 @@ filter linked above does not perform the Gaussian filter for you.</li>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>imshow(skimage.filters.laplace(img[<span class="dv">15</span>, <span class="dv">2</span>, :, :]))</span></code></pre>
 </div>
-</div>
+<figure><img src="../fig/2_3_dogs_and_logs.jpg" alt="Dogs and logs" class="figure mx-auto d-block"></figure></div>
 </div>
 </div>
 </div>
@@ -594,8 +610,8 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/02-applying-filters.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/02-applying-filters.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2024-04-24",
-  "datePublished": "2024-04-24"
+  "dateModified": "2024-04-26",
+  "datePublished": "2024-04-26"
 }
 
   </script><script>
