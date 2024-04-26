@@ -38,8 +38,9 @@ the kernel will have a greater effect on the result.
 ::::::::::::::::::::::::::::::::::::: challenge 
 ## Exercise 7: Applying filters
 
-Load the last channel of FluorescentCells_3channel.tif and build a figure displaying
-it in each of the following forms:
+Look at the documentation pages for the mean and Gaussian filters above. Load the last channel
+of FluorescentCells_3channel.tif containing the nuclei, and build a figure displaying it in each
+of the following forms:
 
 - original image
 - 5x5 square mean filter applied
@@ -51,27 +52,35 @@ How do the different methods compare?
 
 :::::::::::::::::::::::: solution
 ```python
-img = skimage.io.imread('data/FluorescentCells_3channel.tif')[:, :, -1]
+img = imread('data/FluorescentCells_3channel.tif')[:, :, -1]
 
-plt.subplot(2, 3, 1)
-plt.imshow(img, cmap='gray')
+plt.figure(figsize=(10, 12))
+plt.subplot(3, 2, 1)
+plt.imshow(img)
+plt.title('Original')
 
-plt.subplot(2, 3, 2)
-mean3x3 = skimage.filters.rank.mean(img, skimage.morphology.square(5))
-plt.imshow(mean3x3, cmap='gray')
+plt.subplot(3, 2, 2)
+mean5x5 = skimage.filters.rank.mean(img, skimage.morphology.square(5))
+plt.plt.imshow(mean5x5)
+title('5x5 mean filter')
 
-plt.subplot(2, 3, 3)
+plt.subplot(3, 2, 3)
 mean15x15 = skimage.filters.rank.mean(img, skimage.morphology.square(15))
-plt.imshow(mean15x15, cmap='gray')
+plt.imshow(mean15x15)
+plt.title('15 x 15 mean filter')
 
-plt.subplot(2, 3, 4)
-gauss3 = skimage.filters.Gaussian(img, 3)
-plt.imshow(gauss3, cmap='gray')
+plt.subplot(3, 2, 4)
+gauss3 = skimage.filters.gaussian(img, 3)
+plt.imshow(gauss3)
+plt.title('Gaussian blur, σ=3')
 
-plt.subplot(2, 3, 5)
-gauss5 = skimage.filters.Gaussian(img, 5)
-plt.imshow(gauss5, cmap='gray')
+plt.subplot(3, 2, 5)
+gauss5 = skimage.filters.gaussian(img, 5)
+plt.imshow(gauss5)
+plt.title('Gaussian blur, σ=5')
 ```
+
+![](fig/2_1_filters.jpg){alt='Filters'}
 
 Larger mean kernels and sigma values will result in a greater smoothing
 effect and a more blurred image.
@@ -81,17 +90,17 @@ effect and a more blurred image.
 ## Removing the background
 
 Sometimes when we're trying to isolate the foreground from the background, the two
-are not entirely distinct from each other. In cases like this, a
-[rolling ball](https://scikit-image.org/docs/stable/auto_examples/segmentation/plot_rolling_ball.html)]
-algorithm can be applied.
-
-The way a rolling ball algorithm works is illustrated
-[here](https://www.researchgate.net/figure/Schematic-diagram-of-background-subtraction-by-the-rolling-ball-method-the-histogram_fig3_319985119)
+are not entirely distinct from each other. In cases like this, a rolling ball
+algorithm can be applied. The rolling ball estimates the background intensity of an
+image by using the pixel values to translate the image into a height map, and then
+rolling a ball of a given radius across it. Additional information on how it works
+can be found [here](https://www.researchgate.net/figure/Schematic-diagram-of-background-subtraction-by-the-rolling-ball-method-the-histogram_fig3_319985119).
 
 ::::::::::::::::::::::::::::::::::::: challenge
 ## Exercise 8: Rolling ball background intensity
 
-From the same nuclei channel of FluorescentCells_3channel.tif, display:
+Look at the [scikit-image documentation](https://scikit-image.org/docs/stable/auto_examples/segmentation/plot_rolling_ball.html)
+on the rolling ball filter. Load the example image `skimage.data.coins` and display:
 
 - the original image
 - image with a rolling ball of radius 100 applied
@@ -102,30 +111,36 @@ How long does it take to compute?
 
 :::::::::::::::::::::::: solution 
 
+Compute time can be found using Python's datetime library:
+
 ```python
 import datetime
 import skimage
 import matplotlib.pyplot as plt
 
-img = skimage.io.imread('data/FluorescentCells_3channel.tif')[:, :, -1]
+img = skimage.data.coins()
 t0 = datetime.datetime.now()
 
 plt.subplot(2, 2, 1)
-plt.imshow(img, cmap='gray')
+plt.imshow(img)
 t1 = datetime.datetime.now()
+plt.title('Original')
 
 plt.subplot(2, 2, 2)
 rolling_ball_100 = skimage.restoration.rolling_ball(img, radius=100)
-plt.imshow(rolling_ball_100, cmap='gray')
+plt.imshow(rolling_ball_100)
 t2 = datetime.datetime.now()
+plt.title('Rolling ball, r=100')
 
 plt.subplot(2, 2, 3)
 rolling_ball_50 = skimage.restoration.rolling_ball(img, radius=50)
-plt.imshow(rolling_ball_50, cmap='gray')
+plt.imshow(rolling_ball_50)
 t3 = datetime.datetime.now()
+plt.title('Rolling ball, r=50')
 
 plt.subplot(2, 2, 4)
-plt.imshow(img - rolling_ball_50, cmap='gray')
+plt.imshow(img - rolling_ball_50)
+plt.title('Original - rolling ball r50')
 
 plt.show()
 print('Original image:', t1 - t0)
@@ -133,11 +148,13 @@ print('Rolling ball 100: ', t2 - t1)
 print('Rolling ball 50:', t3 - t2)
 print('Total:', t3 - t0)
 ```
+
+![](fig/2_2_rolling_ball.jpg){alt='Rolling ball'}
+
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Dogs and logs
-
 
 Difference of Gaussian (DoG) and Laplacian of Gaussian (LoG) are algorithms that build on
 the Gaussian filter.
@@ -174,6 +191,9 @@ imshow(skimage.filters.difference_of_gaussians(img[15, 2, :, :], 2, 4))
 plt.subplot(1, 3, 3)
 imshow(skimage.filters.laplace(img[15, 2, :, :]))
 ```
+
+![](fig/2_3_dogs_and_logs.jpg){alt='Dogs and logs'}
+
 :::::::::::::::::::::::::::::::::
 
 ## Exercise 10: Choosing a filter

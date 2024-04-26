@@ -31,7 +31,7 @@ If you saved your images to a different location, you will need to change the fi
 provided to imread accordingly. Paths will be relative to the location of the .ipynb
 notebook file.
 
-To view things in Python, usually we `print()` them. However if we try to `print()` this
+To view things in Python, usually we use `print()`. However if we try to print this
 image to the Jupyter console, instead of getting the image we get something that may be
 unexpected:
 
@@ -59,7 +59,9 @@ from skimage.io import imshow
 imshow(image)
 ```
 
-You should see the image displayed below the current cell.
+You should see the image displayed below the current cell:
+
+![](fig/1_1_imshow.jpg){alt='Displaying an image with imshow'}
 
 Since images are multi-dimensional arrays of numbers, we can apply statistical functions
 to them and extract some basic metrics. Numpy arrays have methods for several of these
@@ -106,6 +108,8 @@ channel = image[:, :, 1]
 imshow(channel.T)
 ```
 
+![](fig/1_2_transpose.jpg){alt='Transposed image'}
+
 Remember that Numpy arrays can be sliced and indexed the same way as lists, strings and
 tuples. Up to this point we've been using `:` to select an entire axis, but we can
 give it start and end bounds to select part of the X and Y axes, like:
@@ -113,6 +117,8 @@ give it start and end bounds to select part of the X and Y axes, like:
 ```python
 image[:256, 128:384, 1]
 ```
+
+![](fig/1_3_2d_slice.jpg){alt='2-dimensional slice'}
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -153,16 +159,19 @@ the array. We can show all channels together using a matplotlib figure:
 
 ```python
 matplotlib.pyplot.figure(figsize=(12, 6))  # figure size, in inches
-nchannels = img.shape[-1]
+nchannels = image.shape[-1]
 
 for i in range(nchannels):
     matplotlib.pyplot.subplot(1, nchannels, i+1)  # 1-indexing in subplots
-    matplotlib.pyplot.imshow(img[:, :, i])
+    matplotlib.pyplot.imshow(image[:, :, i])
     matplotlib.pyplot.title('Channel %s' % i)
     matplotlib.pyplot.axis(False)
 
 matplotlib.pyplot.show()
 ```
+
+![](fig/1_4_all_channels.jpg){alt='All image channels'}
+
 
 ## Histograms
 
@@ -194,12 +203,13 @@ nchannels = img.shape[-1]
 
 for i in range(nchannels):
     matplotlib.pyplot.subplot(1, nchannels, i+1)  # 1-indexing in subplots
-    matplotlib.pyplot.hist(img[:, :, i].flatten(), bins=50)
+    matplotlib.pyplot.hist(img[:, :, i].flatten(), bins=255)
     matplotlib.pyplot.title('Channel %s' % i)
     matplotlib.pyplot.axis(False)
 
-matplotlib.pyplot.show()
 ```
+![](fig/1_5_histograms.jpg){alt='All image channels'}
+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -245,24 +255,27 @@ Load the [nd2](https://pypi.org/project/nd2) package and use it to read
 the test file 'Ersi_organoid_WT2.nd2'. Install it if you need to.
 
 What axes are present in the image? Which look most likely to be the X and
-Y axes? Use `imshow` to display a single set of X and Y coordinates.
+Y axes? Use `imshow` to display a single frame from the image.
 
 :::::::::::::::::::::::: solution
-The nd2 package can be installed with `pip install nd2`. According to its
-documentation and page on PyPI, it has an `imread` function that works in a
-similar way to the one in skimage:
+If not already present, the nd2 package can be installed with
+`pip install nd2`. According to its documentation and page on PyPI, it has
+an `imread` function that works in a similar way to the one in skimage:
 
 ```python
 image = nd2.imread('data/Ersi_organoid_WT2.nd2')
 ```
 
-`img.shape` shows that there are four axes. The latter two numbers look like the X and Y axes.
-The second number looks like a number of channels as with the first example image. We'll get to
-the first number in a moment. For now, we can show a single frame with:
+`img.shape` shows that there are four axes, `(27, 3, 512, 512)`. The latter two numbers look like
+the X and Y axes, while the second number looks like a number of channels as with the first example
+image. We'll get to the first number in a moment. For now, we can show a single frame with:
 
 ```python
-imshow(img[0, 0, :, :])
+imshow(image[0, 0, :, :])
 ```
+
+![](fig/1_6_nd2_image_frame.jpg){alt='ND2 image'}
+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -296,7 +309,7 @@ can be obtained with:
 
 ```python
 from matplotlib import colormaps
-print(sorted(colormaps))
+print(sorted(matplotlib.colormaps))
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge 
@@ -310,16 +323,21 @@ There will be many ways to do this (and many colour maps to choose from!), but h
 is one possible solution:
 
 ```python
-import matplotlib.pyplot as plt
-
-plt.figure(figsize=(12, 6))
-nchannels = img.shape[-1]
+matplotlib.pyplot.figure(figsize=(12, 6))
 colours = ('Blues', 'Oranges', 'YlOrBr')
 
-for i in range(nchannels):
-    plt.subplot(1, nchannels, i+1)
-    imshow(img[:, :, i], cmap=colours[i])
+matplotlib.pyplot.subplot(1, 3, 1)
+imshow(image[:, :, 0], cmap='Blues')
+
+matplotlib.pyplot.subplot(1, 3, 2)
+imshow(image[:, :, 1], cmap='Oranges')
+
+matplotlib.pyplot.subplot(1, 3, 3)
+imshow(image[:, :, 2], cmap='YlOrBr')
 ```
+
+![](fig/1_7_colormaps.jpg){alt='ND2 image'}
+
 :::::::::::::::::::::::::::::::::
 
 ## Exercise 6: RGB images
