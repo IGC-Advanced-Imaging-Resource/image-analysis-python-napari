@@ -185,11 +185,14 @@ colour-code each one:
 
 ![](fig/3_6_labels.jpg){alt='Image labelling'}
 
+However, we can see that the process is not perfect, as nuclei that are stuck
+together have been marked as the same feature. In the exercises below, we
+will explore how to solve this.
 
-## Watershed transforms
+## Watershed transform
 
-Sometimes, isolating objects is more complicated, for example when features are stuck
-together. To solve this, several transforming or segmentation operations exist:
+Several transforming or segmentation operations exist for solving situations like
+the one above with touching objects.
 
 This transformation requires a few preparation steps. First, we need a
 **distance transform** of the binary image, where each foreground pixel's value
@@ -214,7 +217,7 @@ labelled dot representing each one:
     mask[tuple(coords.T)] = True              # create a foreground pixel at each set of coordinates
     markers = skimage.morphology.label(mask)  # uniquely label them
 
-![](fig/3_8_maxima.jpg){alt='Local maxima'}
+![](fig/3_8_maxima.png){alt='Local maxima'}
 
 Note the `.T` to transpose the maxima coordinates.
 
@@ -243,7 +246,21 @@ we need to convert the distance map from peaks to troughs by inverting it with `
 
     labels = skimage.segmentation.watershed(-dt, markers, mask=binary_img)
 
-![](fig/3_9_watershed.jpg){alt='Masked watershed segmentation'}
+![](fig/3_9_watershed.jpg){alt='Watershed segmentation'}
+
+### Masked watershed
+
+The result of the watershed transform above does not indicate the shape of the nuclei.
+Rather, the algorithm effectively decides which nucleus each pixel of the image most
+closely corresponds to. We can generate a more meaningful image by combining the
+watershed and the binary image together to create a **masked watershed**:
+
+    masked_watershed = watershed_transform * binary_img
+
+![](fig/3_10_masked_watershed.png){alt='Masked watershed'}
+
+It's also possible to do the last two steps in one by providing `mask=some_binary_image`
+to skimage.segmentation.watershed.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 ## Exercise 13: Image segmentation

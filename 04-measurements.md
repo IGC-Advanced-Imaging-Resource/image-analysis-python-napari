@@ -17,31 +17,14 @@ Having isolated individual nuclei in the example image in the previous chapter, 
 can make some observations about the image features. The exercises here will
 require:
 
-- the result of the watershed from the previous chapter
-- the original binary image from exercise 10
-
-### Masked watershed
-
-The watershed transform has helped us pick apart any nuclei that are close
-together, but is not very informative about their morphology. Fortunately,
-we already have this in the form of the original binary image we used to
-create the watershed. We can use this as a **mask** on top of the watershed
-image to create an image containing information from both:
-
-    masked_watershed = watershed_transform * binary_img
-
-Here we effectively multiply the watershed by the binary image. Since the
-binary image's values are either 0 or 1, the watershed's pixels will either
-be untouched (multiplied by 1 if a pixel is in the foreground) or set to 0
-(multiplied by 0 if a pixel is in the background).
+- Your masked watershed transformation from the previous chapter
+- Your original image from exercise 10
 
 ### Processing one nucleus at a time
 
 Remember that each nucleus is labelled with a unique number, so we can select a
-single nucleus by applying masking to the masked watershed image a second time.
-We can construct a binary mask containing just the feature we want, but numpy
-has a [useful function](https://numpy.org/doc/stable/reference/generated/numpy.where.html)
-for this:
+single nucleus with masking. We can construct a binary mask from a labelled image
+using numpy's [where function](https://numpy.org/doc/stable/reference/generated/numpy.where.html):
 
     nucleus_1 = numpy.where(masked_watershed == 1, 1, 0)
     nucleus_2 = numpy.where(masked_watershed == 2, 1, 0)
@@ -61,15 +44,35 @@ For each labelled nucleus:
 - Find the mean pixel value for the nucleus
 
 :::::::::::::::::::::::: solution
-```python
-import numpy
+First, we need to know how many features we're looping over. We can get that from the
+numbers that the labelling process provides - if your labelled image contains the
+labels 1, 2 and 3, then you have 3 features.
 
+Next, we need to generate a mask for that feature using `numpy.where`, that will
+allow us to mask out the original image - in this case, either a corresponding
+pixel value from the original image or `None`. We can then take the result of that,
+select all pixels that are not `None` and use `numpy.mean`.
+
+```python
+plt.figure(figsize=(12, 16))
 for i in range(1, max(masked_watershed.flatten()) + 1):
-    mask = numpy.where(masked_watershed == i, 1, 0)
-    nucleus = numpy.where(mask == 1, original_img, None)
-    pixels = [p for p in nucleus.flatten() if p is not None]
-    print('Pixel %i intensity: %f' % (i, numpy.mean(pixels)))
+    _mask = numpy.where(masked_wt == i, 1, 0)
+    _nucleus = numpy.where(_mask == 1, img, 0)
+    plt.subplot(1, 3, i)
+    plt.imshow(_nucleus, cmap='gray')
+    pixels = [p for p in _nucleus.flatten() if p is not None]
+    print('Feature %i:' % i, numpy.mean(pixels))
 ```
+
+![](fig/4_1_mean_intensities.png){alt='Mean intensities'}
+
+A few notes:
+
+- The arguments to `range` are offset by +1, since we want to count up from 1, not 0,
+  i.e. select only foreground objects - since 0 will be the background.
+- In the first `numpy.where` above, we supply two single numbers, 1 and 0. The function
+  can however take an n-dimensional array instead, which is what we do in the second one.
+  In this case, it will select the value of the corresponding pixel.
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
