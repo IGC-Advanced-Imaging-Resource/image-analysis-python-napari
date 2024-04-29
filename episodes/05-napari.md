@@ -28,14 +28,16 @@ if being done for the first time.
 In the 'File' menu, go to 'Open Sample -> 'napari builtins -> Cells (3D+2Ch). Looking
 at the sidebar, Napari has opened two **layers** - 'membrane' and 'nuclei'. At the top
 of the sidebar there are options for displaying layers in different colours and opacity,
-and the eye symbol on the layer can be checked or unchecked to show/hide it.
+and the eye symbol on the layer can be checked or unchecked to show/hide it:
+
+![](fig/5_1_layers.jpg){alt='Napari layers'}
 
 Napari uses layers to represent each stage of processing an image - we run tools to
 create new processed layers based off of a previous one. In this example, the image
 consists of two channels, each of which has been loaded as a layer.
 
-In the case of z-stack or time series images, there is a slider at the bottom that can
-be used to scroll through the layers.
+In the case of z-stack or time series images such as this one, there is also a slider
+at the bottom for scrolling through the layers.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 ## Exercise 15: Opening an image
@@ -52,7 +54,13 @@ Python library.
 
 Selecting one of these gives a sidebar letting us choose how to run it, including
 which layer to use, plus any extra parameters it may take, such as sigma values
-for Gaussian filters.
+for Gaussian filters:
+
+![](fig/5_2_gaussian_filter_controls.jpg){alt='Gaussian filter controls'}
+
+![](fig/5_3_gaussian_filter.jpg){alt='Gaussian filter'}
+
+
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -62,16 +70,20 @@ for Gaussian filters.
 The example images work nicely with Napari, but sometimes it may be necessary to
 coax Napari into loading an image correctly. In 'File', select 'Open File(s)...'
 and load up FluorescentCells_3channel.tif. Doing this, we find the results aren't
-quite what we expect - the three channels have been loaded like a z-stack.
+quite what we expect - the three channels have been loaded as if they're a z-stack.
 
-To load this image correctly, we need to use the Python console. In the bottom
+Fortunately, Napari includes a Python console that gives us very fine-grained control
+of the user interface, and will let us load this image correctly. In the bottom
 left, use the '>_' button to open a terminal. This activates a Python session
 where Napari is represented as an object called `viewer`:
+
+
 
 - All the loaded layers are in a list called `viewer.layers`
 - Within a layer, the image data is an attribute called `data`
 
-We can also create new layers with `viewer.add_image`:
+In this console, we can create new layers with `viewer.add_image`. First, let's look
+at the image's shape:
 
 ```python
 from skimage.io import imread
@@ -80,7 +92,7 @@ img.shape
 (512, 512, 3)
 ```
 
-From this, we can see the three channels as the third number of the image's shape.
+From this, we can see that the colour channels are the third axis. Using this,
 We can now load each channel as a new layer:
 
 ```python
@@ -93,8 +105,8 @@ The `blending='additive'` option prevents layers on top from obscuring layers be
 so that we can view multiple layers at once. We also need to colour the layers so we
 can distinguish them from each other.
 
-`view.add_image` is also able to load all these layers in one is we tell it which axis
-represents channels:
+`viewer.add_image` is also able to load all these layers in one if we tell it which axis
+represents the colour channels:
 
 ```python
 viewer.add_image(img, name='FluorescentCells', channel_axis=2)
@@ -103,8 +115,8 @@ viewer.add_image(img, name='FluorescentCells', channel_axis=2)
 ::::::::::::::::::::::::::::::::::::: challenge 
 ## Exercise 16: Real world images
 
-- Look at the `shape` of 'confocal-series_zstack.tif' and identify which
-  axis looks like the channels
+- Load the image 'confocal-series_zstack.tif', look at its shape and identify which
+  axis looks like the channels.
 - Use `viewer.add_image` with the `channel_axis` argument to load the image.
   How has the fourth axis been represented?
 
@@ -112,7 +124,7 @@ viewer.add_image(img, name='FluorescentCells', channel_axis=2)
 From loading the image in the Python console:
 
 ```python
-img = skimage.io.imread('Documents/Image analysis/python course images/confocal-series_zstack.tif')
+img = skimage.io.imread('path/to/confocal-series_zstack.tif')
 img.shape
 (25, 2, 400, 400)
 ```
@@ -124,7 +136,7 @@ provide this when loading the image:
 viewer.add_image(img, name='FluorescentCells', channel_axis=1)
 ```
 
-Napari will load the image as two layers, with the Z axis represented via the slider
+Napari will load the image as two coloured layers, with the Z axis represented via the slider
 at the bottom.
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
