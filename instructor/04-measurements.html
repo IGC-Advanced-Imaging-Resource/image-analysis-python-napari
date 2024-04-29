@@ -257,7 +257,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Measurements</h1>
-        <p>Last updated on 2024-04-24 |
+        <p>Last updated on 2024-04-29 |
         
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/04-measurements.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -297,38 +297,19 @@ image?</li>
 <p>Having isolated individual nuclei in the example image in the
 previous chapter, we can make some observations about the image
 features. The exercises here will require:</p>
-<ul><li>the result of the watershed from the previous chapter</li>
-<li>the original binary image from exercise 10</li>
+<ul><li>Your masked watershed transformation from the previous chapter</li>
+<li>Your original image from exercise 10</li>
 </ul><div class="section level3">
-<h3 id="masked-watershed">Masked watershed<a class="anchor" aria-label="anchor" href="#masked-watershed"></a></h3>
-<p>The watershed transform has helped us pick apart any nuclei that are
-close together, but is not very informative about their morphology.
-Fortunately, we already have this in the form of the original binary
-image we used to create the watershed. We can use this as a
-<strong>mask</strong> on top of the watershed image to create an image
-containing information from both:</p>
+<h3 id="processing-one-nucleus-at-a-time">Processing one nucleus at a time<a class="anchor" aria-label="anchor" href="#processing-one-nucleus-at-a-time"></a></h3>
+<p>Remember that each nucleus is labelled with a unique number, so we
+can select a single nucleus with masking. We can construct a binary mask
+from a labelled image using numpy’s <a href="https://numpy.org/doc/stable/reference/generated/numpy.where.html" class="external-link">where
+function</a>:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">masked_watershed</span> = watershed_transform <span class="pp">*</span> binary_img</span></code></pre>
-</div>
-<p>Here we effectively multiply the watershed by the binary image. Since
-the binary image’s values are either 0 or 1, the watershed’s pixels will
-either be untouched (multiplied by 1 if a pixel is in the foreground) or
-set to 0 (multiplied by 0 if a pixel is in the background).</p>
-</div>
-<div class="section level3">
-<h3 id="processing-one-nucleus-at-a-time">Processing one nucleus at a time<a class="anchor" aria-label="anchor" href="#processing-one-nucleus-at-a-time"></a></h3>
-<p>Remember that each nucleus is labelled with a unique number, so we
-can select a single nucleus by applying masking to the masked watershed
-image a second time. We can construct a binary mask containing just the
-feature we want, but numpy has a <a href="https://numpy.org/doc/stable/reference/generated/numpy.where.html" class="external-link">useful
-function</a> for this:</p>
-<div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">nucleus_1</span> = numpy.where<span class="er">(</span><span class="ex">masked_watershed</span> == 1, 1, 0<span class="kw">)</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">nucleus_2</span> = numpy.where<span class="er">(</span><span class="ex">masked_watershed</span> == 2, 1, 0<span class="kw">)</span></span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">nucleus_1</span> = numpy.where<span class="er">(</span><span class="ex">masked_watershed</span> == 1, 1, 0<span class="kw">)</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">nucleus_2</span> = numpy.where<span class="er">(</span><span class="ex">masked_watershed</span> == 2, 1, 0<span class="kw">)</span></span></code></pre>
 </div>
 <p>Here, each pixel will be set to either 1 or 0 depending on whether
 its value matches the label we’re looking for.</p>
@@ -358,18 +339,37 @@ docs to see the different ways it can be used.</li>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb3">
+<p>First, we need to know how many features we’re looping over. We can
+get that from the numbers that the labelling process provides - if your
+labelled image contains the labels 1, 2 and 3, then you have 3
+features.</p>
+<p>Next, we need to generate a mask for that feature using
+<code>numpy.where</code>, that will allow us to mask out the original
+image - in this case, either a corresponding pixel value from the
+original image or <code>None</code>. We can then take the result of
+that, select all pixels that are not <code>None</code> and use
+<code>numpy.mean</code>.</p>
+<div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">import</span> numpy</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">max</span>(masked_watershed.flatten()) <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>    mask <span class="op">=</span> numpy.where(masked_watershed <span class="op">==</span> i, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>    nucleus <span class="op">=</span> numpy.where(mask <span class="op">==</span> <span class="dv">1</span>, original_img, <span class="va">None</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>    pixels <span class="op">=</span> [p <span class="cf">for</span> p <span class="kw">in</span> nucleus.flatten() <span class="cf">if</span> p <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>]</span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Pixel </span><span class="sc">%i</span><span class="st"> intensity: </span><span class="sc">%f</span><span class="st">'</span> <span class="op">%</span> (i, numpy.mean(pixels)))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">16</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">max</span>(masked_watershed.flatten()) <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    _mask <span class="op">=</span> numpy.where(masked_wt <span class="op">==</span> i, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>    _nucleus <span class="op">=</span> numpy.where(_mask <span class="op">==</span> <span class="dv">1</span>, img, <span class="dv">0</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>    plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, i)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    plt.imshow(_nucleus, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>    pixels <span class="op">=</span> [p <span class="cf">for</span> p <span class="kw">in</span> _nucleus.flatten() <span class="cf">if</span> p <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>]</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Feature </span><span class="sc">%i</span><span class="st">:'</span> <span class="op">%</span> i, numpy.mean(pixels))</span></code></pre>
 </div>
-</div>
+<figure><img src="../fig/4_1_mean_intensities.png" alt="Mean intensities" class="figure mx-auto d-block"></figure><p>A few notes:</p>
+<ul><li>The arguments to <code>range</code> are offset by +1, since we want
+to count up from 1, not 0, i.e. select only foreground objects - since 0
+will be the background.</li>
+<li>In the first <code>numpy.where</code> above, we supply two single
+numbers, 1 and 0. The function can however take an n-dimensional array
+instead, which is what we do in the second one. In this case, it will
+select the value of the corresponding pixel.</li>
+</ul></div>
 </div>
 </div>
 </div>
@@ -454,8 +454,8 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/04-measurements.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/04-measurements.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2024-04-24",
-  "datePublished": "2024-04-26"
+  "dateModified": "2024-04-29",
+  "datePublished": "2024-04-29"
 }
 
   </script><script>

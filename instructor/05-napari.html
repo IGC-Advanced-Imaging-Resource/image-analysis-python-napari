@@ -267,7 +267,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Napari</h1>
-        <p>Last updated on 2024-01-30 |
+        <p>Last updated on 2024-04-29 |
         
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/05-napari.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -320,13 +320,13 @@ Cells (3D+2Ch). Looking at the sidebar, Napari has opened two
 <strong>layers</strong> - ’membrane’ and ‘nuclei’. At the top of the
 sidebar there are options for displaying layers in different colours and
 opacity, and the eye symbol on the layer can be checked or unchecked to
-show/hide it.</p>
-<p>Napari uses layers to represent each stage of processing an image -
+show/hide it:</p>
+<figure><img src="../fig/5_1_layers.jpg" alt="Napari layers" class="figure mx-auto d-block"></figure><p>Napari uses layers to represent each stage of processing an image -
 we run tools to create new processed layers based off of a previous one.
 In this example, the image consists of two channels, each of which has
 been loaded as a layer.</p>
-<p>In the case of z-stack or time series images, there is a slider at
-the bottom that can be used to scroll through the layers.</p>
+<p>In the case of z-stack or time series images such as this one, there
+is also a slider at the bottom for scrolling through the layers.</p>
 <div id="exercise-15-opening-an-image" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -354,8 +354,8 @@ versions of a filter (e.g. there are three Gaussian filters), each of
 which uses a different Python library.</p>
 <p>Selecting one of these gives a sidebar letting us choose how to run
 it, including which layer to use, plus any extra parameters it may take,
-such as sigma values for Gaussian filters.</p>
-</div>
+such as sigma values for Gaussian filters:</p>
+<figure><img src="../fig/5_2_gaussian_filter_controls.jpg" alt="Gaussian filter controls" class="figure mx-auto d-block"></figure><figure><img src="../fig/5_3_gaussian_filter.jpg" alt="Gaussian filter" class="figure mx-auto d-block"></figure></div>
 </div>
 </div>
 </div>
@@ -365,18 +365,21 @@ such as sigma values for Gaussian filters.</p>
 necessary to coax Napari into loading an image correctly. In ‘File’,
 select ‘Open File(s)…’ and load up FluorescentCells_3channel.tif. Doing
 this, we find the results aren’t quite what we expect - the three
-channels have been loaded like a z-stack.</p>
-<p>To load this image correctly, we need to use the Python console. In
-the bottom left, use the ’&gt;_’ button to open a terminal. This
-activates a Python session where Napari is represented as an object
-called <code>viewer</code>:</p>
+channels have been loaded as if they’re a z-stack.</p>
+<p>Fortunately, Napari includes a Python console that gives us very
+fine-grained control of the user interface, and will let us load this
+image correctly. In the bottom left, use the ’&gt;_’ button to open a
+terminal. This activates a Python session where Napari is represented as
+an object called <code>viewer</code>:</p>
 <ul><li>All the loaded layers are in a list called
 <code>viewer.layers</code>
 </li>
 <li>Within a layer, the image data is an attribute called
 <code>data</code>
 </li>
-</ul><p>We can also create new layers with <code>viewer.add_image</code>:</p>
+</ul><p>In this console, we can create new layers with
+<code>viewer.add_image</code>. First, let’s look at the image’s
+shape:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -385,8 +388,8 @@ called <code>viewer</code>:</p>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>img.shape</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>(<span class="dv">512</span>, <span class="dv">512</span>, <span class="dv">3</span>)</span></code></pre>
 </div>
-<p>From this, we can see the three channels as the third number of the
-image’s shape. We can now load each channel as a new layer:</p>
+<p>From this, we can see that the colour channels are the third axis.
+Using this, We can now load each channel as a new layer:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -398,8 +401,8 @@ image’s shape. We can now load each channel as a new layer:</p>
 from obscuring layers below it so that we can view multiple layers at
 once. We also need to colour the layers so we can distinguish them from
 each other.</p>
-<p><code>view.add_image</code> is also able to load all these layers in
-one is we tell it which axis represents channels:</p>
+<p><code>viewer.add_image</code> is also able to load all these layers
+in one if we tell it which axis represents the colour channels:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -413,8 +416,8 @@ one is we tell it which axis represents channels:</p>
 <h3 class="callout-title">Exercise 16: Real world images<a class="anchor" aria-label="anchor" href="#exercise-16-real-world-images"></a>
 </h3>
 <div class="callout-content">
-<ul><li>Look at the <code>shape</code> of ‘confocal-series_zstack.tif’ and
-identify which axis looks like the channels</li>
+<ul><li>Load the image ‘confocal-series_zstack.tif’, look at its shape and
+identify which axis looks like the channels.</li>
 <li>Use <code>viewer.add_image</code> with the <code>channel_axis</code>
 argument to load the image. How has the fourth axis been
 represented?</li>
@@ -432,7 +435,7 @@ represented?</li>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'Documents/Image analysis/python course images/confocal-series_zstack.tif'</span>)</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'path/to/confocal-series_zstack.tif'</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>img.shape</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>(<span class="dv">25</span>, <span class="dv">2</span>, <span class="dv">400</span>, <span class="dv">400</span>)</span></code></pre>
 </div>
@@ -443,8 +446,8 @@ channel axis. We can then provide this when loading the image:</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>viewer.add_image(img, name<span class="op">=</span><span class="st">'FluorescentCells'</span>, channel_axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre>
 </div>
-<p>Napari will load the image as two layers, with the Z axis represented
-via the slider at the bottom.</p>
+<p>Napari will load the image as two coloured layers, with the Z axis
+represented via the slider at the bottom.</p>
 </div>
 </div>
 </div>
@@ -607,8 +610,8 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/05-napari.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/05-napari.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2024-01-30",
-  "datePublished": "2024-04-26"
+  "dateModified": "2024-04-29",
+  "datePublished": "2024-04-29"
 }
 
   </script><script>

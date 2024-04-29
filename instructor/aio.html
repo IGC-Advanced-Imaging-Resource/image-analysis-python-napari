@@ -1199,7 +1199,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-03-thresholding-and-segmentation"><p>Content from <a href="03-thresholding-and-segmentation.html">Thresholding and Segmentation</a></p>
 <hr>
-<p>Last updated on 2024-04-26 |
+<p>Last updated on 2024-04-29 |
         
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/03-thresholding-and-segmentation.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
@@ -1300,7 +1300,7 @@ and apply the resulting threshold on it. How do the results differ?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>We can display the two threshold algorithms in a figure:</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -1371,7 +1371,7 @@ footprint. For this, use a disc-shaped kernel of radius 4:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1436,12 +1436,14 @@ objects in the foreground:</p>
 but instead of just 1s, each feature will have a unique number assigned
 to all of its pixels. Displaying this with a colour scale will
 effectively colour-code each one:</p>
-<figure><img src="../fig/3_6_labels.jpg" alt="Image labelling" class="figure mx-auto d-block"></figure></section><section id="watershed-transforms"><h2 class="section-heading">Watershed transforms<a class="anchor" aria-label="anchor" href="#watershed-transforms"></a>
+<figure><img src="../fig/3_6_labels.jpg" alt="Image labelling" class="figure mx-auto d-block"></figure><p>However, we can see that the process is not perfect, as nuclei that
+are stuck together have been marked as the same feature. In the
+exercises below, we will explore how to solve this.</p>
+</section><section id="watershed-transform"><h2 class="section-heading">Watershed transform<a class="anchor" aria-label="anchor" href="#watershed-transform"></a>
 </h2>
 <hr class="half-width">
-<p>Sometimes, isolating objects is more complicated, for example when
-features are stuck together. To solve this, several transforming or
-segmentation operations exist:</p>
+<p>Several transforming or segmentation operations exist for solving
+situations like the one above with touching objects.</p>
 <p>This transformation requires a few preparation steps. First, we need
 a <strong>distance transform</strong> of the binary image, where each
 foreground pixel’s value is its Euclidean distance to the background.
@@ -1469,7 +1471,7 @@ individually labelled dot representing each one:</p>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="va">mask</span><span class="op">[</span>tuple(coords.T)<span class="op">]</span> <span class="ex">=</span> True              <span class="co"># create a foreground pixel at each set of coordinates</span></span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="ex">markers</span> = skimage.morphology.label<span class="er">(</span><span class="ex">mask</span><span class="kw">)</span>  <span class="co"># uniquely label them</span></span></code></pre>
 </div>
-<figure><img src="../fig/3_8_maxima.jpg" alt="Local maxima" class="figure mx-auto d-block"></figure><p>Note the <code>.T</code> to transpose the maxima coordinates.</p>
+<figure><img src="../fig/3_8_maxima.png" alt="Local maxima" class="figure mx-auto d-block"></figure><p>Note the <code>.T</code> to transpose the maxima coordinates.</p>
 <p>At this point depending on your image, you may get clusters of peaks
 close together rather than one clean, distinct peak per feature. This is
 especially likely if your features are not circular. Applied to the
@@ -1503,7 +1505,23 @@ peaks to troughs by inverting it with <code>-</code>:</p>
 </h3>
 <pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">labels</span> = skimage.segmentation.watershed<span class="er">(</span><span class="ex">-dt,</span> markers, mask=binary_img<span class="kw">)</span></span></code></pre>
 </div>
-<figure><img src="../fig/3_9_watershed.jpg" alt="Masked watershed segmentation" class="figure mx-auto d-block"></figure><div id="exercise-13-image-segmentation" class="callout challenge">
+<figure><img src="../fig/3_9_watershed.jpg" alt="Watershed segmentation" class="figure mx-auto d-block"></figure><div class="section level3">
+<h3 id="masked-watershed">Masked watershed<a class="anchor" aria-label="anchor" href="#masked-watershed"></a>
+</h3>
+<p>The result of the watershed transform above does not indicate the
+shape of the nuclei. Rather, the algorithm effectively decides which
+nucleus each pixel of the image most closely corresponds to. We can
+generate a more meaningful image by combining the watershed and the
+binary image together to create a <strong>masked watershed</strong>:</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">masked_watershed</span> = watershed_transform <span class="pp">*</span> binary_img</span></code></pre>
+</div>
+<figure><img src="../fig/3_10_masked_watershed.png" alt="Masked watershed" class="figure mx-auto d-block"></figure><p>It’s also possible to do the last two steps in one by providing
+<code>mask=some_binary_image</code> to
+skimage.segmentation.watershed.</p>
+<div id="exercise-13-image-segmentation" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -1530,55 +1548,55 @@ transformation?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Labelling applies a unique number to each feature. This means that if
 we apply thresholding and labelling to the image, we can flatten the
 result and cast it to a set to find all the unique label numbers
 present, and find the highest numbered label to get the number of
 features:</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_triangle(img)</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>binary_img <span class="op">=</span> img <span class="op">&gt;</span> threshold</span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>plt.imshow(binary_img)</span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>labels <span class="op">=</span> skimage.morphology.label(img)</span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>plt.imshow(labels)</span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>flat <span class="op">=</span> labels.flatten()</span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">set</span>(flat))</span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">max</span>(flat))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_triangle(img)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>binary_img <span class="op">=</span> img <span class="op">&gt;</span> threshold</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>plt.imshow(binary_img)</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>labels <span class="op">=</span> skimage.morphology.label(img)</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>plt.imshow(labels)</span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>flat <span class="op">=</span> labels.flatten()</span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">set</span>(flat))</span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">max</span>(flat))</span></code></pre>
 </div>
 <p>However, we see from the intermediate images that multiple touching
 nuclei are treated as a single feature.</p>
 <p>Here is an example of using distance and watershed transforms to
 segment touching objects:</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>plt.imshow(img)</span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>dt <span class="op">=</span> scipy.ndimage.distance_transform_edt(binary_img)</span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>plt.imshow(dt)</span>
-<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>coords <span class="op">=</span> skimage.feature.peak_local_max(dt, min_distance<span class="op">=</span><span class="dv">10</span>, labels<span class="op">=</span>binary_img)</span>
-<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>mask <span class="op">=</span> numpy.zeros(dt.shape, dtype<span class="op">=</span><span class="bu">bool</span>)</span>
-<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>mask[<span class="bu">tuple</span>(coords.T)] <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>plt.imshow(mask)</span>
-<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a></span>
-<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a>markers <span class="op">=</span> skimage.morphology.label(mask)</span>
-<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a>labels <span class="op">=</span> skimage.segmentation.watershed(<span class="op">-</span>dt, markers, mask<span class="op">=</span>binary_img)</span>
-<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a>plt.imshow(labels)</span>
-<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">set</span>(labels.flatten()))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>plt.imshow(img)</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>dt <span class="op">=</span> scipy.ndimage.distance_transform_edt(binary_img)</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>plt.imshow(dt)</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>coords <span class="op">=</span> skimage.feature.peak_local_max(dt, min_distance<span class="op">=</span><span class="dv">10</span>, labels<span class="op">=</span>binary_img)</span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>mask <span class="op">=</span> numpy.zeros(dt.shape, dtype<span class="op">=</span><span class="bu">bool</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>mask[<span class="bu">tuple</span>(coords.T)] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>plt.imshow(mask)</span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a>markers <span class="op">=</span> skimage.morphology.label(mask)</span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a>labels <span class="op">=</span> skimage.segmentation.watershed(<span class="op">-</span>dt, markers, mask<span class="op">=</span>binary_img)</span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a>plt.imshow(labels)</span>
+<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">set</span>(labels.flatten()))</span></code></pre>
 </div>
 <p>This will segment more correctly, however the accuracy of the process
 still depends on the inputs supplied. Irregular objects with holes in
@@ -1612,9 +1630,10 @@ features of interest are very close or stuck together</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
+</div>
 </section></section><section id="aio-04-measurements"><p>Content from <a href="04-measurements.html">Measurements</a></p>
 <hr>
-<p>Last updated on 2024-04-24 |
+<p>Last updated on 2024-04-29 |
         
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/04-measurements.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 11 minutes</p>
@@ -1652,41 +1671,21 @@ image?</li>
 previous chapter, we can make some observations about the image
 features. The exercises here will require:</p>
 <ul>
-<li>the result of the watershed from the previous chapter</li>
-<li>the original binary image from exercise 10</li>
+<li>Your masked watershed transformation from the previous chapter</li>
+<li>Your original image from exercise 10</li>
 </ul>
-<div class="section level3">
-<h3 id="masked-watershed">Masked watershed<a class="anchor" aria-label="anchor" href="#masked-watershed"></a>
-</h3>
-<p>The watershed transform has helped us pick apart any nuclei that are
-close together, but is not very informative about their morphology.
-Fortunately, we already have this in the form of the original binary
-image we used to create the watershed. We can use this as a
-<strong>mask</strong> on top of the watershed image to create an image
-containing information from both:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">masked_watershed</span> = watershed_transform <span class="pp">*</span> binary_img</span></code></pre>
-</div>
-<p>Here we effectively multiply the watershed by the binary image. Since
-the binary image’s values are either 0 or 1, the watershed’s pixels will
-either be untouched (multiplied by 1 if a pixel is in the foreground) or
-set to 0 (multiplied by 0 if a pixel is in the background).</p>
-</div>
 <div class="section level3">
 <h3 id="processing-one-nucleus-at-a-time">Processing one nucleus at a time<a class="anchor" aria-label="anchor" href="#processing-one-nucleus-at-a-time"></a>
 </h3>
 <p>Remember that each nucleus is labelled with a unique number, so we
-can select a single nucleus by applying masking to the masked watershed
-image a second time. We can construct a binary mask containing just the
-feature we want, but numpy has a <a href="https://numpy.org/doc/stable/reference/generated/numpy.where.html" class="external-link">useful
-function</a> for this:</p>
-<div class="codewrapper sourceCode" id="cb2">
+can select a single nucleus with masking. We can construct a binary mask
+from a labelled image using numpy’s <a href="https://numpy.org/doc/stable/reference/generated/numpy.where.html" class="external-link">where
+function</a>:</p>
+<div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">nucleus_1</span> = numpy.where<span class="er">(</span><span class="ex">masked_watershed</span> == 1, 1, 0<span class="kw">)</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">nucleus_2</span> = numpy.where<span class="er">(</span><span class="ex">masked_watershed</span> == 2, 1, 0<span class="kw">)</span></span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">nucleus_1</span> = numpy.where<span class="er">(</span><span class="ex">masked_watershed</span> == 1, 1, 0<span class="kw">)</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">nucleus_2</span> = numpy.where<span class="er">(</span><span class="ex">masked_watershed</span> == 2, 1, 0<span class="kw">)</span></span></code></pre>
 </div>
 <p>Here, each pixel will be set to either 1 or 0 depending on whether
 its value matches the label we’re looking for.</p>
@@ -1720,17 +1719,38 @@ docs to see the different ways it can be used.</li>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb3">
+<p>First, we need to know how many features we’re looping over. We can
+get that from the numbers that the labelling process provides - if your
+labelled image contains the labels 1, 2 and 3, then you have 3
+features.</p>
+<p>Next, we need to generate a mask for that feature using
+<code>numpy.where</code>, that will allow us to mask out the original
+image - in this case, either a corresponding pixel value from the
+original image or <code>None</code>. We can then take the result of
+that, select all pixels that are not <code>None</code> and use
+<code>numpy.mean</code>.</p>
+<div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">import</span> numpy</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">max</span>(masked_watershed.flatten()) <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>    mask <span class="op">=</span> numpy.where(masked_watershed <span class="op">==</span> i, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>    nucleus <span class="op">=</span> numpy.where(mask <span class="op">==</span> <span class="dv">1</span>, original_img, <span class="va">None</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>    pixels <span class="op">=</span> [p <span class="cf">for</span> p <span class="kw">in</span> nucleus.flatten() <span class="cf">if</span> p <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>]</span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Pixel </span><span class="sc">%i</span><span class="st"> intensity: </span><span class="sc">%f</span><span class="st">'</span> <span class="op">%</span> (i, numpy.mean(pixels)))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">16</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">max</span>(masked_watershed.flatten()) <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    _mask <span class="op">=</span> numpy.where(masked_wt <span class="op">==</span> i, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>    _nucleus <span class="op">=</span> numpy.where(_mask <span class="op">==</span> <span class="dv">1</span>, img, <span class="dv">0</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>    plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, i)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    plt.imshow(_nucleus, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>    pixels <span class="op">=</span> [p <span class="cf">for</span> p <span class="kw">in</span> _nucleus.flatten() <span class="cf">if</span> p <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>]</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Feature </span><span class="sc">%i</span><span class="st">:'</span> <span class="op">%</span> i, numpy.mean(pixels))</span></code></pre>
 </div>
+<figure><img src="../fig/4_1_mean_intensities.png" alt="Mean intensities" class="figure mx-auto d-block"></figure><p>A few notes:</p>
+<ul>
+<li>The arguments to <code>range</code> are offset by +1, since we want
+to count up from 1, not 0, i.e. select only foreground objects - since 0
+will be the background.</li>
+<li>In the first <code>numpy.where</code> above, we supply two single
+numbers, 1 and 0. The function can however take an n-dimensional array
+instead, which is what we do in the second one. In this case, it will
+select the value of the corresponding pixel.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1758,7 +1778,7 @@ any links that you are not going to use.
  -->
 </div></section><section id="aio-05-napari"><p>Content from <a href="05-napari.html">Introduction to Napari</a></p>
 <hr>
-<p>Last updated on 2024-01-30 |
+<p>Last updated on 2024-04-29 |
         
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/05-napari.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -1810,13 +1830,13 @@ Cells (3D+2Ch). Looking at the sidebar, Napari has opened two
 <strong>layers</strong> - ’membrane’ and ‘nuclei’. At the top of the
 sidebar there are options for displaying layers in different colours and
 opacity, and the eye symbol on the layer can be checked or unchecked to
-show/hide it.</p>
-<p>Napari uses layers to represent each stage of processing an image -
+show/hide it:</p>
+<figure><img src="../fig/5_1_layers.jpg" alt="Napari layers" class="figure mx-auto d-block"></figure><p>Napari uses layers to represent each stage of processing an image -
 we run tools to create new processed layers based off of a previous one.
 In this example, the image consists of two channels, each of which has
 been loaded as a layer.</p>
-<p>In the case of z-stack or time series images, there is a slider at
-the bottom that can be used to scroll through the layers.</p>
+<p>In the case of z-stack or time series images such as this one, there
+is also a slider at the bottom for scrolling through the layers.</p>
 <div id="exercise-15-opening-an-image" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -1844,7 +1864,8 @@ versions of a filter (e.g. there are three Gaussian filters), each of
 which uses a different Python library.</p>
 <p>Selecting one of these gives a sidebar letting us choose how to run
 it, including which layer to use, plus any extra parameters it may take,
-such as sigma values for Gaussian filters.</p>
+such as sigma values for Gaussian filters:</p>
+<figure><img src="../fig/5_2_gaussian_filter_controls.jpg" alt="Gaussian filter controls" class="figure mx-auto d-block"></figure><figure><img src="../fig/5_3_gaussian_filter.jpg" alt="Gaussian filter" class="figure mx-auto d-block"></figure>
 </div>
 </div>
 </div>
@@ -1856,11 +1877,12 @@ such as sigma values for Gaussian filters.</p>
 necessary to coax Napari into loading an image correctly. In ‘File’,
 select ‘Open File(s)…’ and load up FluorescentCells_3channel.tif. Doing
 this, we find the results aren’t quite what we expect - the three
-channels have been loaded like a z-stack.</p>
-<p>To load this image correctly, we need to use the Python console. In
-the bottom left, use the ’&gt;_’ button to open a terminal. This
-activates a Python session where Napari is represented as an object
-called <code>viewer</code>:</p>
+channels have been loaded as if they’re a z-stack.</p>
+<p>Fortunately, Napari includes a Python console that gives us very
+fine-grained control of the user interface, and will let us load this
+image correctly. In the bottom left, use the ’&gt;_’ button to open a
+terminal. This activates a Python session where Napari is represented as
+an object called <code>viewer</code>:</p>
 <ul>
 <li>All the loaded layers are in a list called
 <code>viewer.layers</code>
@@ -1869,7 +1891,9 @@ called <code>viewer</code>:</p>
 <code>data</code>
 </li>
 </ul>
-<p>We can also create new layers with <code>viewer.add_image</code>:</p>
+<p>In this console, we can create new layers with
+<code>viewer.add_image</code>. First, let’s look at the image’s
+shape:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1878,8 +1902,8 @@ called <code>viewer</code>:</p>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>img.shape</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>(<span class="dv">512</span>, <span class="dv">512</span>, <span class="dv">3</span>)</span></code></pre>
 </div>
-<p>From this, we can see the three channels as the third number of the
-image’s shape. We can now load each channel as a new layer:</p>
+<p>From this, we can see that the colour channels are the third axis.
+Using this, We can now load each channel as a new layer:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1891,8 +1915,8 @@ image’s shape. We can now load each channel as a new layer:</p>
 from obscuring layers below it so that we can view multiple layers at
 once. We also need to colour the layers so we can distinguish them from
 each other.</p>
-<p><code>view.add_image</code> is also able to load all these layers in
-one is we tell it which axis represents channels:</p>
+<p><code>viewer.add_image</code> is also able to load all these layers
+in one if we tell it which axis represents the colour channels:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1907,8 +1931,8 @@ one is we tell it which axis represents channels:</p>
 </h3>
 <div class="callout-content">
 <ul>
-<li>Look at the <code>shape</code> of ‘confocal-series_zstack.tif’ and
-identify which axis looks like the channels</li>
+<li>Load the image ‘confocal-series_zstack.tif’, look at its shape and
+identify which axis looks like the channels.</li>
 <li>Use <code>viewer.add_image</code> with the <code>channel_axis</code>
 argument to load the image. How has the fourth axis been
 represented?</li>
@@ -1927,7 +1951,7 @@ represented?</li>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'Documents/Image analysis/python course images/confocal-series_zstack.tif'</span>)</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'path/to/confocal-series_zstack.tif'</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>img.shape</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>(<span class="dv">25</span>, <span class="dv">2</span>, <span class="dv">400</span>, <span class="dv">400</span>)</span></code></pre>
 </div>
@@ -1938,8 +1962,8 @@ channel axis. We can then provide this when loading the image:</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>viewer.add_image(img, name<span class="op">=</span><span class="st">'FluorescentCells'</span>, channel_axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre>
 </div>
-<p>Napari will load the image as two layers, with the Z axis represented
-via the slider at the bottom.</p>
+<p>Napari will load the image as two coloured layers, with the Z axis
+represented via the slider at the bottom.</p>
 </div>
 </div>
 </div>
@@ -2097,8 +2121,8 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/aio.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/aio.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2024-04-26",
-  "datePublished": "2024-04-26"
+  "dateModified": "2024-04-29",
+  "datePublished": "2024-04-29"
 }
 
   </script><script>
