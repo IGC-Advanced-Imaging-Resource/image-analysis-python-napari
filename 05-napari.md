@@ -77,7 +77,7 @@ of the user interface, and will let us load this image correctly. In the bottom
 left, use the '>_' button to open a terminal. This activates a Python session
 where Napari is represented as an object called `viewer`:
 
-
+![](fig/5_4_python_console.png){alt='Napari Python console'}
 
 - All the loaded layers are in a list called `viewer.layers`
 - Within a layer, the image data is an attribute called `data`
