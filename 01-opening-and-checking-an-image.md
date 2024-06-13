@@ -199,11 +199,11 @@ Multiple histograms can be plotted with:
 
 ```python
 matplotlib.pyplot.figure(figsize=(12, 6))  # figsize is width and height, in inches
-nchannels = img.shape[-1]
+nchannels = image.shape[-1]
 
 for i in range(nchannels):
     matplotlib.pyplot.subplot(1, nchannels, i+1)  # 1-indexing in subplots
-    matplotlib.pyplot.hist(img[:, :, i].flatten(), bins=255)
+    matplotlib.pyplot.hist(image[:, :, i].flatten(), bins=255)
     matplotlib.pyplot.title('Channel %s' % i)
     matplotlib.pyplot.axis(False)
 
