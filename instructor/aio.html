@@ -897,7 +897,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-02-applying-filters"><p>Content from <a href="02-applying-filters.html">Applying Filters</a></p>
 <hr>
-<p>Last updated on 2024-04-26 |
+<p>Last updated on 2024-06-13 |
         
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/02-applying-filters.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 13 minutes</p>
@@ -986,7 +986,7 @@ forms:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1000,8 +1000,8 @@ forms:</p>
 <span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>mean5x5 <span class="op">=</span> skimage.filters.rank.mean(img, skimage.morphology.square(<span class="dv">5</span>))</span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>plt.plt.imshow(mean5x5)</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>title(<span class="st">'5x5 mean filter'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>plt.imshow(mean5x5)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>plt.title(<span class="st">'5x5 mean filter'</span>)</span>
 <span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>mean15x15 <span class="op">=</span> skimage.filters.rank.mean(img, skimage.morphology.square(<span class="dv">15</span>))</span>
@@ -1061,7 +1061,7 @@ documentation</a> on the rolling ball filter. Load the example image
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Compute time can be found using Python’s datetime library:</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -1146,7 +1146,7 @@ filter linked above does not perform the Gaussian filter for you.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1856,7 +1856,7 @@ happens if you select one and try running it on a layer?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The options here consist of smoothing filters, several of which will
 be familiar from previous chapters. In some cases there are multiple
@@ -1945,7 +1945,7 @@ represented?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>From loading the image in the Python console:</p>
 <div class="codewrapper sourceCode" id="cb5">
@@ -2007,7 +2007,7 @@ one. Try using the tools to perform each individual step</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 
 </div>
@@ -2034,7 +2034,7 @@ without modification?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>There are several options to export in different ways, including to a
 Jupyter notebook. The simplest way is probably to copy to clipboard -
