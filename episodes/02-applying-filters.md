@@ -61,8 +61,8 @@ plt.title('Original')
 
 plt.subplot(3, 2, 2)
 mean5x5 = skimage.filters.rank.mean(img, skimage.morphology.square(5))
-plt.plt.imshow(mean5x5)
-title('5x5 mean filter')
+plt.imshow(mean5x5)
+plt.title('5x5 mean filter')
 
 plt.subplot(3, 2, 3)
 mean15x15 = skimage.filters.rank.mean(img, skimage.morphology.square(15))
