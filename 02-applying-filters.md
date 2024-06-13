@@ -52,6 +52,9 @@ How do the different methods compare?
 
 :::::::::::::::::::::::: solution
 ```python
+import skimage
+import matplotlib.pyplot as plt
+
 img = imread('data/FluorescentCells_3channel.tif')[:, :, -1]
 
 plt.figure(figsize=(10, 12))
