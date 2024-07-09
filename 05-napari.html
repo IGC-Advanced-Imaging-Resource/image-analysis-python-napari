@@ -27,7 +27,7 @@
             <span class="visually-hidden">This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.</span>
           </abbr>
         </span>
-        
+
       </div>
     </div>
     <div class="selector-container">
@@ -56,7 +56,7 @@
             </li>
           </ul></li>
       </div>
-      
+
       <div class="dropdown" id="instructor-dropdown">
         <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
           <i aria-hidden="true" class="icon" data-feather="eye"></i> Learner View <i data-feather="chevron-down"></i>
@@ -180,7 +180,7 @@
                 </div><!--/div.accordion-flush-->
               </div><!--div.sidenav-view-selector -->
             </div><!--/div.col -->
-      
+
             <hr></div><!--/div.mobile-row -->
 
           <div class="accordion accordion-flush" id="accordionFlush11">
@@ -199,7 +199,7 @@
     <div class="accordion-header" id="flush-heading1">
         <a href="index.html">Summary and Setup</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -208,7 +208,7 @@
     <div class="accordion-header" id="flush-heading2">
         <a href="01-opening-and-checking-an-image.html">1. Opening and Checking an Image</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -217,7 +217,7 @@
     <div class="accordion-header" id="flush-heading3">
         <a href="02-applying-filters.html">2. Applying Filters</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -226,7 +226,7 @@
     <div class="accordion-header" id="flush-heading4">
         <a href="03-thresholding-and-segmentation.html">3. Thresholding and Segmentation</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -235,7 +235,7 @@
     <div class="accordion-header" id="flush-heading5">
         <a href="04-measurements.html">4. Measurements</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -249,7 +249,7 @@
         </span>
       </button>
     </div><!--/div.accordion-header-->
-        
+
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#starting-napari">Starting Napari</a></li>
@@ -258,7 +258,7 @@
 <li><a href="#wrapup-challenge-image-segmentation-in-napari">Wrapup challenge: image segmentation in Napari</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -290,10 +290,10 @@
               </div>
             </div>
             <hr class="half-width resources"><a href="aio.html">See all in one page</a>
-            
+
 
             <hr class="d-none d-sm-block d-md-none"><div class="d-grid gap-1">
-            
+
             </div>
           </div><!-- /div.accordion -->
         </div><!-- /div.sidebar-inner -->
@@ -321,11 +321,11 @@
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Napari</h1>
         <p>Last updated on 2024-04-30 |
-        
+
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/05-napari.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-        
-        
-        
+
+
+
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -354,8 +354,8 @@ same process in Python</li>
 </div>
 </div>
 </div>
-<section id="starting-napari"><h2 class="section-heading">Starting Napari<a class="anchor" aria-label="anchor" href="#starting-napari"></a>
-</h2>
+<section><h2 class="section-heading" id="starting-napari">Starting Napari<a class="anchor" aria-label="anchor" href="#starting-napari"></a>
+<a class="anchor" aria-label="anchor" href="#starting-napari"></a></h2>
 <hr class="half-width"><p>With Napari installed, run:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -364,8 +364,8 @@ same process in Python</li>
 </div>
 <p>This will start up Napari in a new window. This may take about a
 minute, especially if being done for the first time.</p>
-</section><section id="looking-around"><h2 class="section-heading">Looking around<a class="anchor" aria-label="anchor" href="#looking-around"></a>
-</h2>
+</section><section><h2 class="section-heading" id="looking-around">Looking around<a class="anchor" aria-label="anchor" href="#looking-around"></a>
+<a class="anchor" aria-label="anchor" href="#looking-around"></a></h2>
 <hr class="half-width"><p>In the ‘File’ menu, go to ‘Open Sample -&gt; ’napari builtins -&gt;
 Cells (3D+2Ch). Looking at the sidebar, Napari has opened two
 <strong>layers</strong> - ’membrane’ and ‘nuclei’. At the top of the
@@ -410,8 +410,8 @@ such as sigma values for Gaussian filters:</p>
 </div>
 </div>
 </div>
-</section><section id="loading-real-world-images"><h2 class="section-heading">Loading real-world images<a class="anchor" aria-label="anchor" href="#loading-real-world-images"></a>
-</h2>
+</section><section><h2 class="section-heading" id="loading-real-world-images">Loading real-world images<a class="anchor" aria-label="anchor" href="#loading-real-world-images"></a>
+<a class="anchor" aria-label="anchor" href="#loading-real-world-images"></a></h2>
 <hr class="half-width"><p>The example images work nicely with Napari, but sometimes it may be
 necessary to coax Napari into loading an image correctly. In ‘File’,
 select ‘Open File(s)…’ and load up FluorescentCells_3channel.tif. Doing
@@ -503,8 +503,8 @@ represented via the slider at the bottom.</p>
 </div>
 </div>
 </div>
-</section><section id="wrapup-challenge-image-segmentation-in-napari"><h2 class="section-heading">Wrapup challenge: image segmentation in Napari<a class="anchor" aria-label="anchor" href="#wrapup-challenge-image-segmentation-in-napari"></a>
-</h2>
+</section><section><h2 class="section-heading" id="wrapup-challenge-image-segmentation-in-napari">Wrapup challenge: image segmentation in Napari<a class="anchor" aria-label="anchor" href="#wrapup-challenge-image-segmentation-in-napari"></a>
+<a class="anchor" aria-label="anchor" href="#wrapup-challenge-image-segmentation-in-napari"></a></h2>
 <hr class="half-width"><p>These two exercises will put together everything that has been
 covered in previous chapters, and apply the data processing performed in
 Python/Jupyter to Napari. Finally, we will see how the processing that
@@ -599,9 +599,9 @@ Napari, either graphically or in the terminal</li>
 </ul></div>
 </div>
 </div>
-<!-- 
+<!--
 Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use. 
+any links that you are not going to use.
  -->
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
@@ -626,18 +626,18 @@ any links that you are not going to use.
       		<footer class="row footer mx-md-3"><hr><div class="col-md-6">
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
-        
+
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/05-napari.md" class="external-link">Edit on GitHub</a>
-        
+
 	
         | <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
         | <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/" class="external-link">Source</a></p>
 				<p><a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
-        
+
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
-        
+
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
         <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.5" class="external-link">sandpaper (0.16.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.3" class="external-link">varnish (1.0.3)</a></p>
 			</div>
@@ -662,7 +662,7 @@ any links that you are not going to use.
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/05-napari.html",
   "dateCreated": "2023-09-19",
   "dateModified": "2024-04-30",
-  "datePublished": "2024-07-02"
+  "datePublished": "2024-07-09"
 }
 
   </script><script>
