@@ -11,7 +11,7 @@
 carpentry: 'incubator'
 
 # Overall title for pages.
-title: 'Image Analysis with Python and Napari'
+title: 'Microscopy Image Analysis with Python and Napari'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
 created: '2023-09-19'
