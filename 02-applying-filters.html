@@ -118,11 +118,11 @@
   Microscopy Image Analysis with Python and Napari
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 56%" class="percentage">
-    56%
+<aside class="col-md-12 lesson-progress"><div style="width: 45%" class="percentage">
+    45%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 56%" aria-valuenow="56" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 45%" aria-valuenow="45" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -319,7 +319,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Applying Filters</h1>
-        <p>Last updated on 2024-06-13 |
+        <p>Last updated on 2025-02-07 |
 
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/02-applying-filters.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -331,6 +331,7 @@
 
         
 
+<hr><p>title: ‘Applying Filters’ teaching: 40 exercises: 3 —</p>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
 <div class="row g-0">
@@ -349,8 +350,6 @@
 <ul><li>Apply mean and Gaussian filters to an image</li>
 <li>Select one of these filtered images to use for processing in
 subsequent chapters</li>
-<li>Todo: Discuss Difference of Gaussian and Laplacian of Gaussian
-algorithms</li>
 </ul></div>
 </div>
 </div>
@@ -366,8 +365,8 @@ filter</a></li>
 <li><a href="https://scikit-image.org/docs/stable/api/skimage.filters.html#skimage.filters.Gaussian" class="external-link">Gaussian
 filter</a></li>
 </ul><p>A mean filter will, for each pixel:</p>
-<ul><li>Create a kernel of pixels around it, in a size/shape of the user’s
-choosing</li>
+<ul><li>Create a <strong>kernel</strong> of pixels around it, in a
+size/shape of the user’s choosing</li>
 <li>Take the mean of all pixels within this kernel</li>
 <li>Assign this new value to the pixel</li>
 </ul><p>The kernel in this case can be considered analogous to a
@@ -375,21 +374,39 @@ choosing</li>
 <p>A Gaussian filter is similar to a mean filter, except that pixels
 near the centre of the kernel will have a greater effect on the
 result.</p>
-<div id="exercise-7-applying-filters" class="callout challenge">
+<p>You can create a kernel with skimage:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">from</span> skimage.morphology <span class="im">import</span> square</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>kernel <span class="op">=</span> square(<span class="dv">3</span>)  <span class="co"># create a 3x3 square kernel</span></span></code></pre>
+</div>
+<p>There are other shapes of kernel that can be used, and are documented
+<a href="https://scikit-image.org/docs/stable/api/skimage.morphology.html" class="external-link">here</a>.</p>
+<p>(Note that as of skimage 0.25.0, the <code>square</code> function has
+been deprecated in favour of a new function, <a href="https://scikit-image.org/docs/stable/api/skimage.morphology.html#skimage.morphology.footprint_rectangle" class="external-link">footprint_rectangle</a>.)</p>
+<div id="exercise-6-applying-filters" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-7-applying-filters" class="callout-inner">
-<h3 class="callout-title">Exercise 7: Applying filters</h3>
+<div id="exercise-6-applying-filters" class="callout-inner">
+<h3 class="callout-title">Exercise 6: Applying filters</h3>
 <div class="callout-content">
 <p>Look at the documentation pages for the mean and Gaussian filters
-above. Load the last channel of FluorescentCells_3channel.tif containing
-the nuclei, and build a figure displaying it in each of the following
+above. Load the second channel of the 30th frame of the test image <a href="https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.cells3d" class="external-link">skimage.data.cells3d()</a>:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">from</span> skimage.data <span class="im">import</span> cells3d</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>image <span class="op">=</span> cells3d()[<span class="dv">30</span>, <span class="dv">1</span>, :, :]</span></code></pre>
+</div>
+<p>Build a figure displaying this image in each of the following
 forms:</p>
 <ul><li>original image</li>
-<li>5x5 square mean filter applied</li>
-<li>15x15 square mean filter</li>
-<li>Gaussian filter of sigma = 3</li>
+<li>mean filter using a 3x3 square kernel</li>
+<li>mean filter using a 9x9 square kernel</li>
+<li>Gaussian filter of sigma = 1</li>
 <li>Gaussian filter of sigma = 5</li>
 </ul><p>How do the different methods compare?</p>
 </div>
@@ -400,65 +417,65 @@ forms:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb1">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> skimage</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>img <span class="op">=</span> imread(<span class="st">'data/FluorescentCells_3channel.tif'</span>)[:, :, <span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">12</span>))</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>plt.imshow(img)</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>plt.title(<span class="st">'Original'</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>mean5x5 <span class="op">=</span> skimage.filters.rank.mean(img, skimage.morphology.square(<span class="dv">5</span>))</span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>plt.imshow(mean5x5)</span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>plt.title(<span class="st">'5x5 mean filter'</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>mean15x15 <span class="op">=</span> skimage.filters.rank.mean(img, skimage.morphology.square(<span class="dv">15</span>))</span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>plt.imshow(mean15x15)</span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>plt.title(<span class="st">'15 x 15 mean filter'</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>gauss3 <span class="op">=</span> skimage.filters.gaussian(img, <span class="dv">3</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>plt.imshow(gauss3)</span>
-<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>plt.title(<span class="st">'Gaussian blur, σ=3'</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>gauss5 <span class="op">=</span> skimage.filters.gaussian(img, <span class="dv">5</span>)</span>
-<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>plt.imshow(gauss5)</span>
-<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>plt.title(<span class="st">'Gaussian blur, σ=5'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">from</span> skimage.data <span class="im">import</span> cells3d</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="im">from</span> skimage.filters <span class="im">import</span> gaussian</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="im">from</span> skimage.filters.rank <span class="im">import</span> mean</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="im">from</span> skimage.morphology <span class="im">import</span> square</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>image <span class="op">=</span> cells3d()[<span class="dv">30</span>, <span class="dv">1</span>, :, :]</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">12</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>imshow(image)</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>matplotlib.pyplot.title(<span class="st">'Original'</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>imshow(mean(image, footprint<span class="op">=</span>square(<span class="dv">3</span>)))</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>matplotlib.pyplot.title(<span class="st">'3x3 mean filter'</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>imshow(mean(image, footprint<span class="op">=</span>square(<span class="dv">9</span>)))</span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>matplotlib.pyplot.title(<span class="st">'9x9 mean filter'</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a>imshow(gaussian(image, sigma<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>matplotlib.pyplot.title(<span class="st">'Gaussian blur, σ=1'</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a>imshow(gaussian(image, sigma<span class="op">=</span><span class="dv">5</span>))</span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a>matplotlib.pyplot.title(<span class="st">'Gaussian blur, σ=5'</span>)</span></code></pre>
 </div>
-<figure><img src="fig/2_1_filters.jpg" alt="Filters" class="figure mx-auto d-block"></figure><p>Larger mean kernels and sigma values will result in a greater
-smoothing effect and a more blurred image.</p>
+<figure><img src="fig/2_1_filters.jpg" alt="Filters" class="figure mx-auto d-block"></figure><p>Larger kernels and sigma values will result in a greater smoothing
+effect and a more blurred image - as you can see, it is possible to
+over-blur the image.</p>
 </div>
 </div>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="removing-the-background">Removing the background<a class="anchor" aria-label="anchor" href="#removing-the-background"></a></h2>
-<hr class="half-width"><p>Sometimes when we’re trying to isolate the foreground from the
-background, the two are not entirely distinct from each other. In cases
-like this, a rolling ball algorithm can be applied. The rolling ball
-estimates the background intensity of an image by using the pixel values
-to translate the image into a height map, and then rolling a ball of a
-given radius across it. Additional information on how it works can be
-found <a href="https://www.researchgate.net/figure/Schematic-diagram-of-background-subtraction-by-the-rolling-ball-method-the-histogram_fig3_319985119" class="external-link">here</a>.</p>
-<div id="exercise-8-rolling-ball-background-intensity" class="callout challenge">
+<hr class="half-width"><p>Eventually we’re going to want to isolate the foreground from the
+background. In some images, this may be difficult especially if the two
+are not entirely distinct from each other, or if the background is not a
+uniform shade. In cases like this, a rolling ball algorithm can be
+applied. The rolling ball estimates the background intensity of an image
+by using the pixel values to translate the image into a height map, and
+then rolling a ball of a given radius across it. Additional information
+on how it works can be found <a href="https://www.researchgate.net/figure/Schematic-diagram-of-background-subtraction-by-the-rolling-ball-method-the-histogram_fig3_319985119" class="external-link">here</a>.</p>
+<div id="exercise-7-rolling-ball-background-intensity" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-8-rolling-ball-background-intensity" class="callout-inner">
-<h3 class="callout-title">Exercise 8: Rolling ball background intensity</h3>
+<div id="exercise-7-rolling-ball-background-intensity" class="callout-inner">
+<h3 class="callout-title">Exercise 7: Rolling ball background intensity</h3>
 <div class="callout-content">
 <p>Look at the <a href="https://scikit-image.org/docs/stable/auto_examples/segmentation/plot_rolling_ball.html" class="external-link">scikit-image
-documentation</a> on the rolling ball filter. Load the example image
-<code>skimage.data.coins</code> and display:</p>
+documentation</a> on the rolling ball filter. Load the example image <a href="https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.coins" class="external-link">skimage.data.coins</a>
+and display:</p>
 <ul><li>the original image</li>
 <li>image with a rolling ball of radius 100 applied</li>
 <li>image with a rolling ball of radius 50 applied</li>
@@ -472,45 +489,45 @@ documentation</a> on the rolling ball filter. Load the example image
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Compute time can be found using Python’s datetime library:</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">import</span> datetime</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="im">import</span> skimage</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>img <span class="op">=</span> skimage.data.coins()</span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>t0 <span class="op">=</span> datetime.datetime.now()</span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>plt.imshow(img)</span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>t1 <span class="op">=</span> datetime.datetime.now()</span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>plt.title(<span class="st">'Original'</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>rolling_ball_100 <span class="op">=</span> skimage.restoration.rolling_ball(img, radius<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>plt.imshow(rolling_ball_100)</span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>t2 <span class="op">=</span> datetime.datetime.now()</span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>plt.title(<span class="st">'Rolling ball, r=100'</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>rolling_ball_50 <span class="op">=</span> skimage.restoration.rolling_ball(img, radius<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>plt.imshow(rolling_ball_50)</span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>t3 <span class="op">=</span> datetime.datetime.now()</span>
-<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>plt.title(<span class="st">'Rolling ball, r=50'</span>)</span>
-<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a>plt.imshow(img <span class="op">-</span> rolling_ball_50)</span>
-<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a>plt.title(<span class="st">'Original - rolling ball r50'</span>)</span>
-<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a>plt.show()</span>
-<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Original image:'</span>, t1 <span class="op">-</span> t0)</span>
-<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Rolling ball 100: '</span>, t2 <span class="op">-</span> t1)</span>
-<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Rolling ball 50:'</span>, t3 <span class="op">-</span> t2)</span>
-<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Total:'</span>, t3 <span class="op">-</span> t0)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="im">from</span> skimage.data <span class="im">import</span> coins</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="im">from</span> skimage.restoration <span class="im">import</span> rolling_ball</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>image <span class="op">=</span> coins()</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">12</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>t0 <span class="op">=</span> datetime.datetime.now()</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>imshow(image)</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>matplotlib.pyplot.title(<span class="st">'Original'</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>t1 <span class="op">=</span> datetime.datetime.now()</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>rolling_ball_100 <span class="op">=</span> rolling_ball(image, radius<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>imshow(rolling_ball_100)</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>matplotlib.pyplot.title(<span class="st">'Rolling ball, r=100'</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a>t2 <span class="op">=</span> datetime.datetime.now()</span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a>rolling_ball_50 <span class="op">=</span> rolling_ball(image, radius<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a>imshow(rolling_ball_50)</span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a>matplotlib.pyplot.title(<span class="st">'Rolling ball, r=50'</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a>t3 <span class="op">=</span> datetime.datetime.now()</span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a>imshow(image <span class="op">-</span> rolling_ball_50)</span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a>matplotlib.pyplot.title(<span class="st">'Original - rolling ball r50'</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Original image:'</span>, t1 <span class="op">-</span> t0)</span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Rolling ball 100:'</span>, t2 <span class="op">-</span> t1)</span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Rolling ball 50:'</span>, t3 <span class="op">-</span> t2)</span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Total:'</span>, t3 <span class="op">-</span> t0)</span></code></pre>
 </div>
 <figure><img src="fig/2_2_rolling_ball.jpg" alt="Rolling ball" class="figure mx-auto d-block"></figure></div>
 </div>
@@ -522,27 +539,35 @@ algorithms that build on the Gaussian filter.</p>
 <p>In a <a href="https://scikit-image.org/docs/stable/api/skimage.filters.html#skimage.filters.difference_of_gaussians" class="external-link">Difference
 of Gaussian</a>, two Gaussian filters are taken of the image, each with
 a different sigma value. The larger filter is then subtracted from the
-first to give an image where image features are effectively highlighted
-by an area of high contrast.</p>
+first to give an image where features are effectively highlighted by an
+area of high contrast.</p>
 <p>In a Laplacian of Gaussian, a Gaussian-filtered image is supplied to
 a <a href="https://scikit-image.org/docs/stable/api/skimage.filters.html#skimage.filters.laplace" class="external-link">Laplace</a>
 filter. This eliminates the need to manually select two sigma values as
 with Difference of Gaussian.</p>
-<div id="exercise-9-dogs-and-logs" class="callout challenge">
+<div id="exercise-8-dogs-and-logs" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-9-dogs-and-logs" class="callout-inner">
-<h3 class="callout-title">Exercise 9: Dogs and logs</h3>
+<div id="exercise-8-dogs-and-logs" class="callout-inner">
+<h3 class="callout-title">Exercise 8: Dogs and logs</h3>
 <div class="callout-content">
-<p>Load the image ‘Ersi_organoid_WT2.nd2’ and select the end channel of
-the 16th frame, i.e. <code>img[15, 2, :, :]</code>. Display a figure
-of:</p>
+<p>Load the second channel of the 30th frame of <a href="https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.cells3d" class="external-link">skimage.data.cells3d()</a>
+again:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">from</span> skimage.data <span class="im">import</span> cells3d</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>image <span class="op">=</span> cells3d()[<span class="dv">30</span>, <span class="dv">1</span>, :, :]</span></code></pre>
+</div>
+<p>Display a figure of:</p>
 <ul><li>The original image</li>
 <li>Image with a Difference of Gaussians applied with sigma values 2 and
 4</li>
 <li>Image with a Laplacian of Gaussians applied. Note that the Laplace
-filter linked above does not perform the Gaussian filter for you.</li>
+filter linked above does not perform the Gaussian filter for you, so you
+will need to pass the image through <code>gaussian()</code> first.</li>
 </ul></div>
 </div>
 </div>
@@ -551,32 +576,41 @@ filter linked above does not perform the Gaussian filter for you.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>imshow(img[<span class="dv">15</span>, <span class="dv">2</span>, :, :])</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>imshow(skimage.filters.difference_of_gaussians(img[<span class="dv">15</span>, <span class="dv">2</span>, :, :], <span class="dv">2</span>, <span class="dv">4</span>))</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>imshow(skimage.filters.laplace(img[<span class="dv">15</span>, <span class="dv">2</span>, :, :]))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="im">from</span> skimage.data <span class="im">import</span> cells3d</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="im">from</span> skimage.filters <span class="im">import</span> difference_of_gaussians, laplace</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>image <span class="op">=</span> cells3d()[<span class="dv">30</span>, <span class="dv">1</span>, :, :]</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">12</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>imshow(image)</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>matplotlib.pyplot.title(<span class="st">'Original'</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>imshow(difference_of_gaussians(image, <span class="dv">1</span>, <span class="dv">2</span>), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a>matplotlib.pyplot.title(<span class="st">'Difference of Gaussians'</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a>imshow(laplace(gaussian(image, sigma<span class="op">=</span><span class="dv">2</span>)), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a>matplotlib.pyplot.title(<span class="st">'Laplacian of Gaussian'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/2_3_dogs_and_logs.jpg" alt="Dogs and logs" class="figure mx-auto d-block"></figure></div>
 </div>
 </div>
 </div>
-<div id="exercise-10-choosing-a-filter" class="callout discussion">
+<div id="exercise-9-choosing-a-filter" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<div id="exercise-10-choosing-a-filter" class="callout-inner">
-<h3 class="callout-title">Exercise 10: Choosing a filter</h3>
+<div id="exercise-9-choosing-a-filter" class="callout-inner">
+<h3 class="callout-title">Exercise 9: Choosing a filter</h3>
 <div class="callout-content">
-<p>Look at the images you produced in exercises 7 and 9, and select one
+<p>Look at the images you produced in exercises 6 and 8, and select one
 to use in subsequent chapters for thresholding and segmentation!</p>
 </div>
 </div>
@@ -655,7 +689,7 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/02-applying-filters.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/02-applying-filters.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2024-06-13",
+  "dateModified": "2025-02-07",
   "datePublished": "2025-02-07"
 }
 
