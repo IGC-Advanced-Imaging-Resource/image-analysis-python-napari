@@ -2,7 +2,7 @@
 title: Setup
 ---
 
-Part 1 of this course requires access to some kind of Python environment, which
+Part one of this course requires access to some kind of Python environment, which
 may be any of:
 
 - A plain Python interpreter on the command line
@@ -21,19 +21,18 @@ Installation of Napari is covered below.
 
 ::::::::::::::::::::::::::::::::::::::: discussion
 Test data is available in the [GitHub repo](https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/tree/main/data).
-These can be downloaded by visiting each image and selecting 'Download raw file'.
+These can be downloaded either by visiting each image and selecting 'Download raw file', or using a command line utility such as wget, as below.
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::: solution
 ### Downloading on the command line
 
-The test images can be downloaded in fewer clicks with the command line:
+The test images can be downloaded in fewer clicks with the command:
 
-       wget \
-       https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/FluorescentCells_3channel.tif \
-       https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/confocal-series_zstack.tif \
-       https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/hela-cells_rgb.tif \
-       https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/Ersi_organoid_WT2.nd2
+       wget https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/FluorescentCells_3channel.tif \
+            https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/confocal-series_zstack.tif \
+            https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/hela-cells_rgb.tif \
+            https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/Ersi_organoid_WT2.nd2
 
 :::::::::::::::::::::::::
 
@@ -53,14 +52,14 @@ or [pip](https://pip.pypa.io) with Python
 
 Once logged in, select 'New -> Folder' in the top right menu. This will create a new
 folder called 'Untitled'. To rename it, check the box next to it, select 'Rename' in
-the top left and enter a suitable name for this course. Navigate into the folder by
+the top left and enter a suitable name for the folder. Navigate into it by
 selecting its name in the navigator.
 
 Now do the same steps again to create a folder called 'test_data' and navigate into
 it.
 
-Now that you're in a sensible location, you can upload select the 'Upload' button in
-the top right and select the files to upload.
+Now that you're in a sensible location, you can use the 'Upload' button in
+the top right to select and upload your downloaded image files from GitHub.
 
 In the folder you've created, select 'New' -> 'Python 3 (ipykernel)'. This will open a
 Jupyter notebook in a new browser tab.
@@ -84,7 +83,7 @@ browser tab.
 :::::::::::::::: solution
 ### Jupyter installation
 
-If you don't have access to a JupyterHub instance but will want to use Jupyter, you can
+If you don't have access to a JupyterHub instance but still want to use Jupyter, you can
 install it locally:
 
        $ conda install -c conda-forge jupyterlab  # with Conda
@@ -95,7 +94,7 @@ Once installed, start Jupyter with:
        $ jupyter-lab
 
 This will start the server process and open JupyterLab in a new browser window. Follow the same
-GUI or graphical folder setup as for JupyterHub.
+GUI or graphical folder setup as for JupyterHub above.
 :::::::::::::::::::::::::
 
 :::::::::::::::: solution
@@ -106,11 +105,16 @@ You will also need the packages skimage, imageio, numpy and matplotlib.
 
 When working with a local Python instance, it's almost always a good idea to install
 packages into a [virtual environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment)
-such as those created by Conda or Python's `venv` module.
+such as those created by Conda or Python's `venv` module:
 
        $ python -m venv ./python_environment
        $ source ./python_environment/bin/activate
        $ pip install skimage imageio numpy matplotlib
+
+Then to start up Python:
+
+       $ python
+
 :::::::::::::::::::::::::
 
 
@@ -121,12 +125,13 @@ such as those created by Conda or Python's `venv` module.
 ### Details
 
 While Napari has developed enormously in recent years, installing it still requires
-the use of Pip and/or Conda.
+the use of Pip and/or Conda. See below for installation on Unix-like systems. The process
+should take a few minutes to run.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::: solution
-### Installation with Pip
+### Installation on Unix with Pip
 
 Pip is Python's package manager. To install Napari into a Python virtual environment:
 
@@ -138,7 +143,7 @@ $ pip install 'napari[all]'
 :::::::::::::::::::::::::
 
 :::::::::::::::: solution
-### Installation with Conda
+### Installation on Unix with Conda
 
 A Conda environment containing Napari can be created with:
 
@@ -156,5 +161,20 @@ $ conda install -n base conda-libmamba-solver  # install the Mamba solver if nee
 $ conda config --show solver  # check the configured solver
 $ config config --set solver libmamba  # if the confgured solver is 'classic'
 ```
+
+:::::::::::::::::::::::::
+
+:::::::::::::::: solution
+### Installation on Windows with Conda
+
+This assumes that you already have Anaconda installed on your system. You will need to use the
+'Anaconda' prompt option to open a terminal session with Conda loaded:
+
+       > conda create --name devbio-napari napari=0.4.19 python=3.9 devbio-napari pyqt -c conda-forge -c pytorch
+
+You can then activate the environment and run Napari from the terminal window:
+
+       > conda activate devbio-napari
+       > naparia
 
 :::::::::::::::::::::::::
