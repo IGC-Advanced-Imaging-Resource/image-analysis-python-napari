@@ -312,11 +312,30 @@
       <hr></nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Setup</h1>
       
 
-<p>This image analysis course consists of two main parts:</p>
-<ol style="list-style-type: decimal"><li>Image analysis in Python</li>
-<li>Image analysis in <a href="https://napari.org" class="external-link">Napari</a>
-</li>
-</ol><p>Two main sources were used for building this course:</p>
+<p>This image analysis course provides an introduction to basic image
+analysis techniques in two environments: <a href="https://www.python.org" class="external-link">Python</a> and <a href="https://napari.org" class="external-link">Napari</a>.</p>
+<p>These two environments have different interfaces for user
+interaction, but both offer powerful tools for image processing and
+analysis. Both are discussed here in order to highlight the relative
+strengths of each one, and to present the analysis techniques in this
+course as generic and independent of one particular platform.</p>
+<p>The first section on Python consists of working in a Jupyter notebook
+setting, but can equally be done in the terminal. This way of working
+also lends itself quite well to adapting your analysis process into a
+workflow that can be applied to a batch of many images.</p>
+<p>Napari is a point-and-click graphical user interface, which is
+well-suited to exploring and previewing images, and is particularly
+useful for viewing multi-dimensional data such as 3D Z-stacks and time
+series. Incidentally, Napari is built on top of Python, using many of
+the same tools available in a Jupyter or terminal setting. The
+interactive nature of Napari makes it less easy to adapt to batch
+processing of many images, but it does have ways of exporting the
+processing steps performed in the GUI to a text file or even a Jupyter
+notebook, that can then be adapted for your own purposes.</p>
+<p>This course will cover a range of basic filtering and segmentation
+techniques in Jupyter, and then the final chapter will explore
+equivalents of these in Napari.</p>
+<p>Two main sources were used for building this course:</p>
 <ul><li><a href="https://bioimagebook.github.io" class="external-link">Introduction to Bioimage
 Analysis by Pete Bankhead</a></li>
 <li><a href="https://biapol.github.io/Image-data-science-with-Python-and-Napari-EPFL2022" class="external-link">Image
@@ -330,7 +349,7 @@ any links that you are not going to use.
  -->
 
 
-      <section id="setup"><p>Part 1 of this course requires access to some kind of Python
+      <section id="setup"><p>Part one of this course requires access to some kind of Python
 environment, which may be any of:</p>
 <ul><li>A plain Python interpreter on the command line</li>
 <li>An IDE, e.g. PyCharm, Visual Studio Code</li>
@@ -352,8 +371,9 @@ installed. Installation of Napari is covered below.</p>
 <h3 class="callout-title">Discussion</h3>
 <div class="callout-content">
 <p>Test data is available in the <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/tree/main/data" class="external-link">GitHub
-repo</a>. These can be downloaded by visiting each image and selecting
-‘Download raw file’.</p>
+repo</a>. These can be downloaded either by visiting each image and
+selecting ‘Download raw file’, or using a command line utility such as
+wget, as below.</p>
 </div>
 </div>
 </div>
@@ -364,18 +384,17 @@ repo</a>. These can be downloaded by visiting each image and selecting
   Downloading on the command line
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>The test images can be downloaded in fewer clicks with the command
-line:</p>
+<p>The test images can be downloaded in fewer clicks with the
+command:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>   <span class="fu">wget</span> <span class="dt">\</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>   https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/FluorescentCells_3channel.tif <span class="dt">\</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>   https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/confocal-series_zstack.tif <span class="dt">\</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>   https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/hela-cells_rgb.tif <span class="dt">\</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>   https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/Ersi_organoid_WT2.nd2</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>   <span class="fu">wget</span> https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/FluorescentCells_3channel.tif <span class="dt">\</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>        https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/confocal-series_zstack.tif <span class="dt">\</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>        https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/hela-cells_rgb.tif <span class="dt">\</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>        https://raw.githubusercontent.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/main/data/Ersi_organoid_WT2.nd2</span></code></pre>
 </div>
 </div>
 </div>
@@ -403,17 +422,18 @@ environments</a>.</p>
   JupyterHub - GUI setup
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Once logged in, select ‘New -&gt; Folder’ in the top right menu. This
 will create a new folder called ‘Untitled’. To rename it, check the box
 next to it, select ‘Rename’ in the top left and enter a suitable name
-for this course. Navigate into the folder by selecting its name in the
+for the folder. Navigate into it by selecting its name in the
 navigator.</p>
 <p>Now do the same steps again to create a folder called ‘test_data’ and
 navigate into it.</p>
-<p>Now that you’re in a sensible location, you can upload select the
-‘Upload’ button in the top right and select the files to upload.</p>
+<p>Now that you’re in a sensible location, you can use the ‘Upload’
+button in the top right to select and upload your downloaded image files
+from GitHub.</p>
 <p>In the folder you’ve created, select ‘New’ -&gt; ‘Python 3
 (ipykernel)’. This will open a Jupyter notebook in a new browser
 tab.</p>
@@ -428,7 +448,7 @@ tab.</p>
   JupyterHub - command line setup
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Once logged in, select ‘New -&gt; Terminal’ in the top right. This
 will open a command line shell in a new tab. Once here:</p>
@@ -451,9 +471,9 @@ This will open a Jupyter notebook in a new browser tab.</p>
   Jupyter installation
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
-<p>If you don’t have access to a JupyterHub instance but will want to
+<p>If you don’t have access to a JupyterHub instance but still want to
 use Jupyter, you can install it locally:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -469,7 +489,7 @@ use Jupyter, you can install it locally:</p>
 </div>
 <p>This will start the server process and open JupyterLab in a new
 browser window. Follow the same GUI or graphical folder setup as for
-JupyterHub.</p>
+JupyterHub above.</p>
 </div>
 </div>
 </div>
@@ -481,20 +501,26 @@ JupyterHub.</p>
   Local setup
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>If you wish to use Python on its own, then that is also possible. You
 will also need the packages skimage, imageio, numpy and matplotlib.</p>
 <p>When working with a local Python instance, it’s almost always a good
 idea to install packages into a <a href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment" class="external-link">virtual
 environment</a> such as those created by Conda or Python’s
-<code>venv</code> module.</p>
+<code>venv</code> module:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>   <span class="ex">$</span> python <span class="at">-m</span> venv ./python_environment</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>   <span class="ex">$</span> source ./python_environment/bin/activate</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   <span class="ex">$</span> pip install skimage imageio numpy matplotlib</span></code></pre>
+</div>
+<p>Then to start up Python:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>   <span class="ex">$</span> python</span></code></pre>
 </div>
 </div>
 </div>
@@ -509,7 +535,8 @@ environment</a> such as those created by Conda or Python’s
 <h3 class="callout-title">Details</h3>
 <div class="callout-content">
 <p>While Napari has developed enormously in recent years, installing it
-still requires the use of Pip and/or Conda.</p>
+still requires the use of Pip and/or Conda. See below for installation
+on Unix-like systems. The process should take a few minutes to run.</p>
 </div>
 </div>
 </div>
@@ -517,10 +544,10 @@ still requires the use of Pip and/or Conda.</p>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6">
-  Installation with Pip
+  Installation on Unix with Pip
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>Pip is Python’s package manager. To install Napari into a Python
 virtual environment:</p>
@@ -535,10 +562,10 @@ $ pip install 'napari[all]'</code></pre>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7">
-  Installation with Conda
+  Installation on Unix with Conda
   </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <p>A Conda environment containing Napari can be created with:</p>
 <pre><code>$ conda create -p path/to/new/env -c conda-forge -c pytorch devbio-napari pyqt</code></pre>
@@ -549,6 +576,35 @@ solver, <a href="https://mamba.readthedocs.io" class="external-link">Mamba</a>:<
 $ conda install -n base conda-libmamba-solver  # install the Mamba solver if needed
 $ conda config --show solver  # check the configured solver
 $ config config --set solver libmamba  # if the confgured solver is 'classic'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution8" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
+  <h4 class="accordion-header" id="headingSolution8">
+  Installation on Windows with Conda
+  </h4>
+</button>
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
+<div class="accordion-body">
+<p>This assumes that you already have Anaconda installed on your system.
+You will need to use the ‘Anaconda’ prompt option to open a terminal
+session with Conda loaded:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>   <span class="op">&gt;</span> conda <span class="ex">create</span> <span class="at">--name</span> devbio-napari napari=0.4.19 python=3.9 devbio-napari pyqt <span class="at">-c</span> conda-forge <span class="at">-c</span> pytorch</span></code></pre>
+</div>
+<p>You can then activate the environment and run Napari from the
+terminal window:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>   <span class="op">&gt;</span> conda <span class="ex">activate</span> devbio-napari</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>   <span class="op">&gt;</span> naparia</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -606,8 +662,8 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/index.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/index.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2025-02-04",
-  "datePublished": "2025-02-04"
+  "dateModified": "2025-02-07",
+  "datePublished": "2025-02-07"
 }
 
   </script><script>
