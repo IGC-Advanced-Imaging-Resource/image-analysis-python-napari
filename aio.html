@@ -1433,7 +1433,7 @@ do the results differ?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>We can display the two threshold algorithms in a figure:</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -1507,7 +1507,7 @@ footprint. For each of these, use a disc-shaped kernel of radius 2:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1731,7 +1731,7 @@ transformation?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Labelling applies a unique number to each feature. This means that if
 we apply thresholding and labelling to the image, we can flatten the
@@ -1970,7 +1970,7 @@ any links that you are not going to use.
  -->
 </div></section><section id="aio-05-napari"><p>Content from <a href="05-napari.html">Introduction to Napari</a></p>
 <hr>
-<p>Last updated on 2024-04-30 |
+<p>Last updated on 2025-02-11 |
 
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/05-napari.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2005,20 +2005,20 @@ same process in Python</li>
 <section><h2 class="section-heading" id="starting-napari">Starting Napari<a class="anchor" aria-label="anchor" href="#starting-napari"></a>
 </h2>
 <hr class="half-width">
-<p>With Napari installed, run:</p>
+<p>With Napari installed and its Conda environment active, run:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">napari</span></span></code></pre>
 </div>
 <p>This will start up Napari in a new window. This may take about a
-minute, especially if being done for the first time.</p>
+minute, especially the first time.</p>
 </section><section><h2 class="section-heading" id="looking-around">Looking around<a class="anchor" aria-label="anchor" href="#looking-around"></a>
 </h2>
 <hr class="half-width">
-<p>In the ‘File’ menu, go to ‘Open Sample -&gt; ’napari builtins -&gt;
-Cells (3D+2Ch). Looking at the sidebar, Napari has opened two
-<strong>layers</strong> - ’membrane’ and ‘nuclei’. At the top of the
+<p>In the ‘File’ menu, go to ‘Open Sample -&gt; napari builtins -&gt;
+Cells (3D+2Ch)’. Looking at the sidebar, Napari has opened two
+<strong>layers</strong> - ‘membrane’ and ‘nuclei’. At the top of the
 sidebar there are options for displaying layers in different colours and
 opacity, and the eye symbol on the layer can be checked or unchecked to
 show/hide it:</p>
@@ -2028,12 +2028,12 @@ In this example, the image consists of two channels, each of which has
 been loaded as a layer.</p>
 <p>In the case of z-stack or time series images such as this one, there
 is also a slider at the bottom for scrolling through the layers.</p>
-<div id="exercise-15-opening-an-image" class="callout challenge">
+<div id="exercise-14-napari-tools" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-15-opening-an-image" class="callout-inner">
-<h3 class="callout-title">Exercise 15: Opening an image</h3>
+<div id="exercise-14-napari-tools" class="callout-inner">
+<h3 class="callout-title">Exercise 14: Napari tools</h3>
 <div class="callout-content">
 <p>With ‘Cells (3D + 2Ch)’ open, go to ‘Tools -&gt; Filtering / Noise
 Removal’ and look at the options available. What are these options? What
@@ -2046,7 +2046,7 @@ happens if you select one and try running it on a layer?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The options here consist of smoothing filters, several of which will
 be familiar from previous chapters. In some cases there are multiple
@@ -2064,10 +2064,11 @@ such as sigma values for Gaussian filters:</p>
 </h2>
 <hr class="half-width">
 <p>The example images work nicely with Napari, but sometimes it may be
-necessary to coax Napari into loading an image correctly. In ‘File’,
-select ‘Open File(s)…’ and load up FluorescentCells_3channel.tif. Doing
-this, we find the results aren’t quite what we expect - the three
-channels have been loaded as if they’re a z-stack.</p>
+more difficult to coax Napari into loading an image correctly. In
+‘File’, select ‘Open File(s)…’ and load up
+FluorescentCells_3channel.tif. Doing this, we find the results aren’t
+quite what we expect - the three channels have been loaded as if they’re
+a z-stack.</p>
 <p>Fortunately, Napari includes a Python console that gives us very
 fine-grained control of the user interface, and will let us load this
 image correctly. In the bottom left, use the ’&gt;_’ button to open a
@@ -2088,43 +2089,45 @@ shape:</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imread</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>img <span class="op">=</span> imread(<span class="st">'path/to/FluorescentCells_3channel.tif'</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>img.shape</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>(<span class="dv">512</span>, <span class="dv">512</span>, <span class="dv">3</span>)</span></code></pre>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>iage <span class="op">=</span> imread(<span class="st">'path/to/FluorescentCells_3channel.tif'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>image.shape</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># returns: (512, 512, 3)</span></span></code></pre>
 </div>
 <p>From this, we can see that the colour channels are the third axis.
 Using this, We can now load each channel as a new layer:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>viewer.add_image(img[:, :, <span class="dv">0</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch0'</span>, colormap<span class="op">=</span><span class="st">'cyan'</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>viewer.add_image(img[:, :, <span class="dv">1</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch1'</span>, colormap<span class="op">=</span><span class="st">'yellow'</span>, blending<span class="op">=</span><span class="st">'additive'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>viewer.add_image(img[:, :, <span class="dv">2</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch2'</span>, colormap<span class="op">=</span><span class="st">'magenta'</span>, blending<span class="op">=</span><span class="st">'additive'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>viewer.add_image(image[:, :, <span class="dv">0</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch0'</span>, colormap<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>viewer.add_image(image[:, :, <span class="dv">1</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch1'</span>, colormap<span class="op">=</span><span class="st">'green'</span>, blending<span class="op">=</span><span class="st">'additive'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>viewer.add_image(image[:, :, <span class="dv">2</span>], name<span class="op">=</span><span class="st">'FluorescentCells_ch2'</span>, colormap<span class="op">=</span><span class="st">'blue'</span>, blending<span class="op">=</span><span class="st">'additive'</span>)</span></code></pre>
 </div>
 <p>The <code>blending='additive'</code> option prevents layers on top
 from obscuring layers below it so that we can view multiple layers at
-once. We also need to colour the layers so we can distinguish them from
-each other.</p>
+once. We also use <code>colormap</code> to colour the layers so we can
+distinguish them from each other.</p>
 <p><code>viewer.add_image</code> is also able to load all these layers
 in one if we tell it which axis represents the colour channels:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>viewer.add_image(img, name<span class="op">=</span><span class="st">'FluorescentCells'</span>, channel_axis<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>viewer.add_image(image, name<span class="op">=</span><span class="st">'FluorescentCells'</span>, channel_axis<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
 </div>
-<div id="exercise-16-real-world-images" class="callout challenge">
+<div id="exercise-15-real-world-images" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-16-real-world-images" class="callout-inner">
-<h3 class="callout-title">Exercise 16: Real world images</h3>
+<div id="exercise-15-real-world-images" class="callout-inner">
+<h3 class="callout-title">Exercise 15: Real world images</h3>
 <div class="callout-content">
 <ul>
-<li>Load the image ‘confocal-series_zstack.tif’, look at its shape and
-identify which axis looks like the channels.</li>
-<li>Use <code>viewer.add_image</code> with the <code>channel_axis</code>
-argument to load the image. How has the fourth axis been
-represented?</li>
+<li>Go to ‘File’ -&gt; ‘Open File(s)…’ and load the image
+‘confocal-series_zstack.tif’. How does it look? Can you view each
+channel simultaneously?</li>
+<li>Now try loading the same image in the console as above, looking at
+the image’s shape and passing the channel axis to
+<code>viewer_add_image</code>. axis looks like the channels. How has the
+fourth axis been represented?</li>
 </ul>
 </div>
 </div>
@@ -2134,22 +2137,25 @@ represented?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<p>From loading the image in the Python console:</p>
+<p>Loading the image from the menu, we can see some results but it’s all
+in one layer and the channel axis is represented as a slider, meaning we
+can’t view the two at the same time.</p>
+<p>As an alternative, we can load the image in the Python console:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>img <span class="op">=</span> skimage.io.imread(<span class="st">'path/to/confocal-series_zstack.tif'</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>img.shape</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>(<span class="dv">25</span>, <span class="dv">2</span>, <span class="dv">400</span>, <span class="dv">400</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>image <span class="op">=</span> skimage.io.imread(<span class="st">'path/to/confocal-series_zstack.tif'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>image.shape</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># returns: (25, 2, 400, 400)</span></span></code></pre>
 </div>
-<p>The second number, i.e. <code>img.shape[1]</code> looks like the
+<p>The second number, i.e. <code>image.shape[1]</code> looks like the
 channel axis. We can then provide this when loading the image:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>viewer.add_image(img, name<span class="op">=</span><span class="st">'FluorescentCells'</span>, channel_axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>viewer.add_image(image, name<span class="op">=</span><span class="st">'FluorescentCells'</span>, channel_axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre>
 </div>
 <p>Napari will load the image as two coloured layers, with the Z axis
 represented via the slider at the bottom.</p>
@@ -2157,36 +2163,21 @@ represented via the slider at the bottom.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="wrapup-challenge-image-segmentation-in-napari">Wrapup challenge: image segmentation in Napari<a class="anchor" aria-label="anchor" href="#wrapup-challenge-image-segmentation-in-napari"></a>
-</h2>
-<hr class="half-width">
-<p>These two exercises will put together everything that has been
-covered in previous chapters, and apply the data processing performed in
-Python/Jupyter to Napari. Finally, we will see how the processing that
-we have built up in Napari can be exported back to Python code that we
-can then run on many images as a script to help automate our image
-processing.</p>
-<div id="exercise-17-image-segmentation-in-napari" class="callout challenge">
+<div id="exercise-16-image-segmentation-in-the-napari-console" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-17-image-segmentation-in-napari" class="callout-inner">
-<h3 class="callout-title">Exercise 17: Image segmentation in Napari</h3>
+<div id="exercise-16-image-segmentation-in-the-napari-console" class="callout-inner">
+<h3 class="callout-title">Exercise 16: Image segmentation in the Napari console</h3>
 <div class="callout-content">
-<p>Look at the ‘nuclei’ layer of ‘Cells (3D + 2Ch)’. Explore the options
-available in ‘Tools’ and try segmenting and labelling the nuclei. A few
-things to think of:</p>
-<ul>
-<li>Although we’re working in a different environment from Jupyter, the
-stages of processing will remain the same</li>
-<li>Remember that Napari works with layers, so the results of each tool
-used will depend on which layer it’s used on</li>
-<li>Napari names some functions differently. When it’s referring to
-thresholding, for example, it uses the term
-‘<strong>binarising</strong>’</li>
-<li>Napari has some tools that combine esveral steps of processing into
-one. Try using the tools to perform each individual step</li>
-</ul>
+<p>This exercise will put together everything that has been covered in
+previous chapters, and apply the same steps in the Napari console.</p>
+<p>Look at the ‘nuclei’ layer of ‘Cells (3D + 2Ch)’. In the Python
+console, try doing the same smoothing, binarisation, segmentation and
+labelling that you performed throughout exercises 6-12, except
+displaying each step as a new layer in the Napari viewer.</p>
+<p>Remember that instead of <code>matplotlib.pyplot.imshow()</code>,
+you’ll need to use <code>viewer.add_image()</code></p>
 </div>
 </div>
 </div>
@@ -2195,24 +2186,81 @@ one. Try using the tools to perform each individual step</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">import</span> skimage</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>image <span class="op">=</span> skimage.io.cells3d()</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>image.shape</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co"># returns: (60, 2, 256, 256)</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>frame <span class="op">=</span> image[<span class="dv">30</span>, <span class="dv">1</span>, :, :]</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>smoothed_image <span class="op">=</span> skimage.filters.gaussian(frame, sigma<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>viewer.add_image(smoothed_image, name<span class="op">=</span><span class="st">'smoothed'</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_otsu(smoothed_image)</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>binary_image <span class="op">=</span> smoothed_image <span class="op">&gt;</span> threshold</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>viewer.add_image(binary_image, name<span class="op">=</span><span class="st">'Otsu threshold'</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="im">import</span> scipy.ndimage</span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>fill_holes <span class="op">=</span> scipy.ndimage.binary_fill_holes(binary_image)</span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>viewer.add_image(fill_holes, name<span class="op">=</span><span class="st">'fill_holes'</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>distance_transform <span class="op">=</span> scipy.ndimage.distance_transform_edt(fill_holes)</span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>viewer.add_image(distance_transform, name<span class="op">=</span><span class="st">'distance_transform'</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a>coords <span class="op">=</span> skimage.feature.peak_local_max(skimage.filters.gaussian(distance_transform, sigma<span class="op">=</span><span class="dv">4</span>), labels<span class="op">=</span>fill_holes)</span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>mask <span class="op">=</span> numpy.zeros(distance_transform.shape, dtype<span class="op">=</span><span class="bu">bool</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a>mask[<span class="bu">tuple</span>(coords.T)] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a>markers <span class="op">=</span> skimage.morphology.label(mask)</span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>viewer.add_image(markers, name<span class="op">=</span><span class="st">'peaks'</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a>watershed_transform <span class="op">=</span> skimage.segmentation.watershed(<span class="op">-</span>distance_transform, markers)</span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a>viewer.add_image(watershed_transform, name<span class="op">=</span><span class="st">'watershed'</span>)</span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a>masked_watershed <span class="op">=</span> watershed_transform <span class="op">*</span> fill_holes</span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a>viewer.add_image(masked_watershed, name<span class="op">=</span><span class="st">'masked_watershed'</span>)</span></code></pre>
 </div>
 </div>
 </div>
 </div>
-<div id="exercise-18-exporting-code" class="callout challenge">
+</div>
+</section><section><h2 class="section-heading" id="image-segmentation-with-napari-tools">Image segmentation with Napari tools<a class="anchor" aria-label="anchor" href="#image-segmentation-with-napari-tools"></a>
+</h2>
+<hr class="half-width">
+<p>Aside from running analyses in the Python console, Napari has a
+variety of processing steps that can be browsed under ‘Tools’.</p>
+<p>For example, we can go to ‘Open Sample’ -&gt; ‘napari builtins’ and
+-&gt; ‘Binary Blobs’. Browse the tools available and run:</p>
+<ul>
+<li>Otsu threshold</li>
+<li>Split touching objects (nsbatwm). Try experimenting with different
+sigma values until you get some good cell separations.</li>
+<li>Connected component labelling (scikit-image, nsbatwm)</li>
+</ul>
+<p>Note: The Otsu threshold shouldn’t be required since the test image
+is already a binary, but for some reason the ‘Split touching objects’
+Napari tool isn’t able to recognise the original as a binary image.</p>
+<div id="exercise-17-exporting-code" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-18-exporting-code" class="callout-inner">
-<h3 class="callout-title">Exercise 18: Exporting code</h3>
+<div id="exercise-17-exporting-code" class="callout-inner">
+<h3 class="callout-title">Exercise 17: Exporting code</h3>
 <div class="callout-content">
-<p>Open the Napari Assistant and find the ‘Export Python code’ tool. Use
-this to generate a Python script that will perform the processing that
-you performed in the previous exercise. Is the script usable immediately
-without modification?</p>
+<p>This exercise will see how the processing that we have built up with
+Napari tools can be exported back to Python code that we can then check
+into version control and integrate into a workflow to help automate the
+processing of many images.</p>
+<p>Under ‘Plugins’, open the Napari Assistant and find the ‘Export
+Python code’ tool. Use this to generate a Python script that will
+perform the processing that you just performed above on the Binary Blobs
+image. Does the script look usable immediately without modification?</p>
 </div>
 </div>
 </div>
@@ -2221,16 +2269,42 @@ without modification?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>There are several options to export in different ways, including to a
 Jupyter notebook. The simplest way is probably to copy to clipboard -
-this can be pasted into a text editor or IDE.</p>
-<p>Looking at it, though, we can see that it’s not immediately usable.
-Exported scripts do not make any reference to what image file was
-loaded, and there is no code at the end for writing the resuults to a
-file. Therefore, the script will require some tweaking to parameterise
-it and get it to produce tangible output.</p>
+this can be pasted into a text editor or IDE:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imread</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="im">import</span> napari_segment_blobs_and_things_with_membranes <span class="im">as</span> nsbatwm  <span class="co"># version 0.3.6</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="im">import</span> napari</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="cf">if</span> <span class="st">'viewer'</span> <span class="kw">not</span> <span class="kw">in</span> <span class="bu">globals</span>():</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>    viewer <span class="op">=</span> napari.Viewer()</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>image0_bb <span class="op">=</span> viewer.layers[<span class="st">'binary_blobs'</span>].data</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co"># threshold otsu</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>image1_to <span class="op">=</span> nsbatwm.threshold_otsu(image0_bb)</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>viewer.add_labels(image1_to, name<span class="op">=</span><span class="st">'Result of threshold_otsu'</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co"># split touching objects</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>image2_sto <span class="op">=</span> nsbatwm.split_touching_objects(image1_to, <span class="fl">5.6</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>viewer.add_labels(image2_sto, name<span class="op">=</span><span class="st">'Result of split_touching_objects'</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co"># connected component labeling</span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a>image3_ccl <span class="op">=</span> nsbatwm.connected_component_labeling(image2_sto, <span class="va">False</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a>viewer.add_labels(image3_ccl, name<span class="op">=</span><span class="st">'Result of connected_component_labeling'</span>)</span></code></pre>
+</div>
+<p>Looking at it, we can see that it’s not immediately usable but it’s
+pretty close. Exported scripts do not make any reference to what image
+file was loaded, and there is no code at the end for writing the
+resuults to a file, so this is what you would need to add to get it to
+produce tangible output.</p>
 </div>
 </div>
 </div>
