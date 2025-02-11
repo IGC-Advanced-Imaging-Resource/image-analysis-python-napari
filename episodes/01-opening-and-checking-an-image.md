@@ -51,15 +51,18 @@ Python has loaded and stored the image as a Numpy `array` object of numbers, and
 to it, which is why we get a matrix of numbers printed to the screen.
 
 If we want to see what the image looks like, we need tell Python to display it
-as an image. We can do this with the `imshow` function from skimage, which can
-be imported and called in a similar way to `imread`:
+as an image. We can do this with the `imshow` function from matplotlib, which you
+may already be familiar with as a library for drawing plots and graphs, but it can
+also display images.
 
 ```python
-from skimage.io import imshow
-imshow(image)
+import matplotlib.pyplot as plt
+
+plt.set_cmap('gray')  # by default, single-channel images will now be displayed in greyscale
+plt.imshow(image)
 ```
 
-You should see the image displayed below the current cell:
+You should now see the image displayed below the current cell:
 
 ![](fig/1_1_imshow.jpg){alt='Displaying an image with imshow'}
 
@@ -79,7 +82,7 @@ are the X and Y axes. The third axis in most cases will represent a number of ch
 We can select a single channel by **indexing** the array:
 
 ```python
-imshow(image[:, :, 2])
+plt.imshow(image[:, :, 2])
 ```
 
 Here, we select the entire X and Y axes using `:` with no numbers around them, and
@@ -121,7 +124,7 @@ Next we can use `.T` to return a **transposed** version of the image. Running
 
 ```python
 channel = image[:, :, 1]
-imshow(channel.T)
+plt.imshow(channel.T)
 ```
 
 ![](fig/1_2_transpose.jpg){alt='Transposed image'}
@@ -174,25 +177,22 @@ Running `image.nbytes` shows that it takes up 786432 bytes, or ~786 kilobytes, o
 ## Displaying one channel at a time
 
 We've seen from exercise 1 that we can view single channels by indexing the array. We can also show all
-channels together using matplotlib. You may already be familiar with matplotlib as a library for drawing
-plots and graphs, but it can also display images.
-
-We can diaply a group of images together using a matplotlib figure:
+channels together using a matplotlib figure:
 
 ```python
-import matplotlib
-matplotlib.pyplot.figure(figsize=(12, 6))  # figure size, in inches
+import matplotlib.pyplot as plt
+plt.figure(figsize=(12, 6))  # figure size, in inches
 nchannels = 3
 
 for i in range(nchannels):
     # Use subplot() to create a multi-image figure with 1 row and 3 columns. We need to increment i by 1
     # because range() counts from 0 but subplot() assumes you're counting from 1.
-    matplotlib.pyplot.subplot(1, nchannels, i+1)
-    matplotlib.pyplot.imshow(image[:, :, i])
-    matplotlib.pyplot.title('Channel %s' % i)  # add a plot title
-    matplotlib.pyplot.axis(False)              # we just want to show the image, so turn off the axis labels
+    plt.subplot(1, nchannels, i+1)
+    plt.imshow(image[:, :, i])
+    plt.title('Channel %s' % i)  # add a plot title
+    plt.axis(False)              # we just want to show the image, so turn off the axis labels
 
-matplotlib.pyplot.show()
+plt.show()
 ```
 
 ![](fig/1_4_all_channels.jpg){alt='All image channels'}
@@ -204,7 +204,7 @@ Another useful metric in image analysis is an image's histogram. This can be plo
 the image and passing it to matplotlib:
 
 ```python
-matplotlib.pyplot.hist(image[:, :, 0].flatten(), bins=256)
+plt.hist(image[:, :, 0].flatten(), bins=256)
 ```
 
 First, we need to select a single channel - since different channels may represent different cell organelles
@@ -226,26 +226,26 @@ Starting with displaying a single histogram for one channel:
 ```python
 channel_idx = 0
 channel = image[:, :, channel_idx]
-matplotlib.pyplot.hist(channel.flatten(), bins=255)
-matplotlib.pyplot.title('Channel %s' % channel_idx)
-matplotlib.pyplot.show()
+plt.hist(channel.flatten(), bins=255)
+plt.title('Channel %s' % channel_idx)
+plt.show()
 ```
 
 We could call this three times, each with a different value for `channel_idx`, or we can use
 a **for loop**:
 
 ```python
-matplotlib.pyplot.figure(figsize=(12, 6))  # figure size, in inches
+plt.figure(figsize=(12, 6))  # figure size, in inches
 nchannels = image.shape[-1]
 
 for i in range(nchannels):
     channel = image[:, :, i]
 
-    matplotlib.pyplot.subplot(1, nchannels, i+1)
-    matplotlib.pyplot.hist(channel.flatten(), bins=255)
-    matplotlib.pyplot.title('Channel %s' % i)  # add a plot title
+    plt.subplot(1, nchannels, i+1)
+    plt.hist(channel.flatten(), bins=255)
+    plt.title('Channel %s' % i)  # add a plot title
 
-matplotlib.pyplot.show()
+plt.show()
 ```
 ![](fig/1_5_histograms.jpg){alt='All image channels'}
 
@@ -314,7 +314,7 @@ the X and Y axes, while the second number looks like a number of colour channels
 looks like either a time series or a Z axis. We can show a single frame with:
 
 ```python
-imshow(image[0, 0, :, :])
+plt.imshow(image[0, 0, :, :])
 ```
 
 ![](fig/1_6_nd2_image_frame.jpg){alt='ND2 image'}
@@ -337,14 +337,15 @@ The `imshow()` function can take extra arguments in addition to the image to dis
 of these is called `cmap`, which can apply alternate lookup tables (a.k.a. colour maps):
 
 ```python
-imshow(image[0, 0, :, :], cmap='gray')
+plt.imshow(image[0, 0, :, :], cmap='viridis')
 ```
 
 Skimage uses lookup tables from the plotting library matplotlib. A list of available tables
 can be obtained with:
 
 ```python
-print(sorted(matplotlib.colormaps))
+from matplotlib import colormaps
+print(sorted(colormaps))
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge
@@ -361,16 +362,16 @@ is one possible solution:
 ```python
 # you'll need to run this again if you overwrote your `image` variable
 image = imread('data/FluorescentCells_3channel.tif')
-matplotlib.pyplot.figure(figsize=(12, 6))
+plt.figure(figsize=(12, 6))
 
-matplotlib.pyplot.subplot(1, 3, 1)
-imshow(image[:, :, 0], cmap='Blues')
+plt.subplot(1, 3, 1)
+plt.imshow(image[:, :, 0], cmap='Blues')
 
-matplotlib.pyplot.subplot(1, 3, 2)
-imshow(image[:, :, 1], cmap='Oranges')
+plt.subplot(1, 3, 2)
+plt.imshow(image[:, :, 1], cmap='Oranges')
 
-matplotlib.pyplot.subplot(1, 3, 3)
-imshow(image[:, :, 2], cmap='YlOrBr')
+plt.subplot(1, 3, 3)
+plt.imshow(image[:, :, 2], cmap='YlOrBr')
 ```
 
 ![](fig/1_7_colormaps.jpg){alt='ND2 image'}

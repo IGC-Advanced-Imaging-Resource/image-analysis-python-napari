@@ -1,6 +1,6 @@
 ---
 title: 'Thresholding and Segmentation'
-teaching: 10
+teaching: 40
 exercises: 5
 ---
 
@@ -15,28 +15,33 @@ exercises: 5
 - Demonstrate how to deal with edge cases like features stuck together
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-These exercises will make use of the image you decided to use in exercise 10.
+These exercises will make use of the image you decided to use in exercise 9.
 
 ## Thresholding
 
-Thresholding consists of converting an image into binary form (i.e. **binarising**
-it), where each pixel value is converted to either 0 or 1 depending on whether it
-exceeds a given threshold.
+Thresholding consists of converting an image into a binary form where each pixel
+value is either 0 or 1 depending on whether it exceeds a given threshold.
 
-We can binarise an image with a given threshold by applying the `>` operator to it.
+We can **binarise** an image with a given threshold by applying the `>` operator to it.
 It's common practice to smooth the image first, e.g. with a Gaussian filter:
 
-    img = skimage.filters.gaussian(skimage.data.cell())
-    print(img.min(), img.max(), img.dtype)
+```python
+import matplotlib.pyplot as plt
+from skimage.data import cells3d
+from skimage.filters import gaussian
 
-    plt.subplot(1, 2, 1)
-    plt.imshow(img)
-    plt.title('Gaussian filter')
+image = gaussian(cells3d()[30, 1, :, :])
+print(image.min(), image.max(), image.dtype)
 
-    plt.subplot(1, 2, 2)
-    binary_img = img > 0.5
-    plt.imshow(binary_img)
-    plt.title('Threshold > 0.5')
+plt.subplot(1, 2, 1)
+plt.imshow(image, cmap='gray')
+plt.title('Gaussian filter')
+
+plt.subplot(1, 2, 2)
+binary_image = image > 0.12
+plt.imshow(binary_image)
+plt.title('Threshold > 0.12')
+```
 
 ![](fig/3_1_threshold.jpg){alt='Threshold'}
 
@@ -45,17 +50,19 @@ having to guess an appropriate threshold until we get a sensible one. Looking at
 the histogram helps, but still requires some manual interpretation and human
 subjectivity:
 
-    hist(img.flatten(), bins=100)
+```python
+plt.hist(image.flatten(), bins=256)
+```
 
 ![](fig/3_2_histogram.jpg){alt='Histogram'}
 
 Fortunately, there are several algorithms for automatically determining an appropriate
 threshold based on the image's histogram. **Global** thresholds work on the entire
-image, whereas **local** thresholds work on a window around each pixel - this course will
-deal only with global filters.
+image, whereas **local** thresholds work on a window around each pixel - for the moment,
+we will only discuss global filters.
 
 ::::::::::::::::::::::::::::::::::::: challenge
-## Exercise 11: Thresholds
+## Exercise 10: Thresholds
 
 Look at the [skimage filter docs](https://scikit-image.org/docs/stable/api/skimage.filters.html)
 and find each of the following threshold algorithms:
@@ -63,28 +70,32 @@ and find each of the following threshold algorithms:
 - Otsu threshold
 - Triangle threshold
 
-Try running each of these algorithms on your image from exercise 10, and apply the
-resulting threshold on it. How do the results differ?
+Try running each of these algorithms on your smoothed image from exercise 9,
+and use the resulting threshold to binarise the image. How do the results differ?
 
 :::::::::::::::::::::::: solution 
 
 We can display the two threshold algorithms in a figure:
 
 ```python
-plt.subplot(2, 2, 1)
-plt.imshow(skimage.filters.gaussian(img))
+from skimage.filters import threshold_otsu, threshold_triangle
+
+plt.figure(figsize=(10, 8))
+
+plt.subplot(1, 3, 1)
+plt.imshow(smoothed_image)
 plt.title('Gaussian filter')
 
 # Otsu threshold
-plt.subplot(2, 2, 3)
-threshold = skimage.filters.threshold_otsu(img)
-plt.imshow(img > threshold)
+plt.subplot(1, 3, 2)
+threshold = threshold_otsu(image)
+plt.imshow(image > threshold)
 plt.title('Otsu threshold')
 
 # Triangle threshold
-plt.subplot(2, 2, 4)
-threshold = skimage.filters.threshold_triangle(img)
-plt.imshow(img > threshold)
+plt.subplot(1, 3, 3)
+threshold = threshold_triangle(image)
+plt.imshow(image > threshold)
 plt.title('Triangle threshold')
 ```
 
@@ -101,50 +112,60 @@ a greater tendency for close foreground objects to become stuck together.
 ## Cleaning up
 
 Once we have a binary image, we may still need to clean it up further. There may
-still be extraneous pixels and other bits around the regions of interest, or there
-may be holes in a shape that you need to be solid.
+still be extraneous pixels and other bits and pieces left around the regions of
+interest, or there may be holes in a shape that you need to be solid.
 
 ::::::::::::::::::::::::::::::::::::: challenge
-## Exercise 12: Erosion, dilation, opening and closing
+## Exercise 11: Erosion, dilation, opening and closing
 
 Look at the [skimage morphology docs](https://scikit-image.org/docs/stable/api/skimage.morphology.html).
-Select one of your binary images from exercise 11 and apply each of the following algorithms to the image:
+Select one of your binary images from exercise 10 and apply each of the following algorithms to the image:
 
-  - Binary erosion
-  - Binary dilation
-  - Binary opening
-  - Binary closing
+- Binary erosion
+- Binary dilation
+- Binary opening
+- Binary closing
 
-Note: each of the algorithms above will require a kernel or footprint. For this,
-use a disc-shaped kernel of radius 4:
+Note: each of the algorithms above will require a kernel or footprint. For each of these,
+use a disc-shaped kernel of radius 2:
 
-    kernel = skimage.morphology.disk(4)
+```python
+from skimage.morphology import disk
+kernel = disk(2)
+```
 
 :::::::::::::::::::::::: solution
 ```python
+from skimage.morphology import binary_erosion, binary_dilation, binary_opening, binary_closing
+from skimage.morphology import disk
 
+kernel = disk(2)
 plt.figure(figsize=(8, 12))
-kernel = skimage.morphology.disk(4)
 
-# Original image
-plt.subplot(2, 3, 1)
-plt.imshow(binary_image)
+# your binary image from exercise 10
+plt.subplot(3, 2, 1)
+plt.imshow(binary_image, cmap='gray')
+plt.title('Binary image')
 
-# Erosion
-plt.subplot(2, 3, 3)
-plt.imshow(skimage.morphology.binary_erosion(binary_image, footprint=kernel))
+# erosion
+plt.subplot(3, 2, 2)
+plt.imshow(binary_erosion(binary_image, footprint=kernel), cmap='gray')
+plt.title('Erosion')
 
-# Dilation
-plt.subplot(2, 3, 4)
-plt.imshow(skimage.morphology.binary_dilation(binary_image, footprint=kernel))
+# dilation
+plt.subplot(3, 2, 3)
+plt.imshow(binary_dilation(binary_image, footprint=kernel), cmap='gray')
+plt.title('Dilation')
 
-# Opening
-plt.subplot(2, 3, 5)
-plt.imshow(skimage.morphology.binary_opening(binary_image, footprint=kernel))
+# opening
+plt.subplot(3, 2, 4)
+plt.imshow(binary_opening(binary_image, footprint=kernel), cmap='gray')
+plt.title('Opening')
 
-# Closing
-plt.subplot(2, 3, 6)
-plt.imshow(skimage.morphology.binary_closing(binary_image, footprint=kernel))
+# closing
+plt.subplot(3, 2, 5)
+plt.imshow(binary_closing(binary_image, footprint=kernel), cmap='gray')
+plt.title('Closing')
 ```
 
 ![](fig/3_4_transforms.jpg){alt='Image transformations'}
@@ -161,9 +182,14 @@ filling in any holes in your foreground features.
 :::::::::::::::::::::::::::::::::::::::::::::::
 
 If there are still holes in your binary image, there is also a function in
-ndimage that will fix this:
+scipy.ndimage that can fix this:
 
-    binary_img = scipy.ndimage.binary_fill_holes(binary_img)
+```python
+from scipy.ndimage import binary_fill_holes
+
+fill_holes = binary_fill_holes(binary_image)
+plt.imshow(fill_holes)
+```
 
 ![](fig/3_5_fill_holes.jpg){alt='Binary fill holes'}
 
@@ -174,9 +200,13 @@ In some situations, it may be necessary to distinguish between individual
 features, e.g. if counting cell nuclei. For this, it is necessary to
 isolate or **label** individual separated objects in the foreground:
 
-    labels = skimage.morphology.label(binary_img)
-    plt.imshow(labels)
-    plt.colorbar()
+```python
+from skimage.morphology import label
+
+labels = label(fill_holes)
+plt.imshow(labels, cmap='viridis')
+plt.colorbar()
+```
 
 This will result in an image similar to the binary image supplied, but
 instead of just 1s, each feature will have a unique number assigned to
@@ -199,7 +229,12 @@ This transformation requires a few preparation steps. First, we need a
 is its Euclidean distance to the background. skimage doesn't have a function
 for this, but scipy does:
 
-    dt = scipy.ndimage.distance_transform_edt(binary_img)
+```python
+from scipy.ndimage import distance_transform_edt
+
+dt = distance_transform_edt(fill_holes)
+plt.imshow(dt)
+```
 
 ![](fig/3_7_distance_transform.jpg){alt='Distance transform'}
 
@@ -207,15 +242,25 @@ Next, we need the coordinates of all **local maxima**, i.e. locations that are
 furthest away from the background. This requires a kernel/footprint, which in
 this example is a square kernel of 7x7:
 
-    coords = skimage.feature.peak_local_max(dt, labels=binary_img)
+```python
+from skimage.feature import peak_local_max
+
+coords = peak_local_max(dt, labels=fill_holes)
+```
 
 This gives us a list of coordinates, so we need to convert this back into an
 labelled image of maxima. This will be mostly blank with an individually
 labelled dot representing each one:
 
-    mask = numpy.zeros(dt.shape, dtype=bool)  # blank image the same size as the original
-    mask[tuple(coords.T)] = True              # create a foreground pixel at each set of coordinates
-    markers = skimage.morphology.label(mask)  # uniquely label them
+```python
+from numpy import zeros
+
+mask = zeros(dt.shape, dtype=bool)  # create a blank image the same size as the original
+mask[tuple(coords.T)] = True  # create a foreground pixel at each coordinate
+markers = label(mask)  # uniquely label them
+plt.imshow(markers, cmap='viridis')
+```
+
 
 ![](fig/3_8_maxima.png){alt='Local maxima'}
 
@@ -226,36 +271,64 @@ rather than one clean, distinct peak per feature. This is especially likely if y
 features are not circular. Applied to the final watershed step below, this will result
 in features being split when they shouldn't be. This can be resolved in several ways:
 
-1. Smoothing the distance transform:
+### Smoothing the distance transform first
 
-    dt = scipy.ndimage.distance_transform_edt(binary_img)
-    dt = skimage.filters.gaussian(dt, sigma=4)
+```python
+coords = peak_local_max(gaussian(dt, sigma=4), labels=fill_holes)
+```
 
-2. Applying a larger footprint to peak_local_max:
+### Applying a larger footprint to peak_local_max
 
-    coords = skimage.feature.peak_local_max(dt, footprint=numpy.ones((7,7)), labels=binary_img)
+There are a few different ways to do this - all we need to do is create a kernel of a cerain shape
+and size, and pass it to peak_local_max:
 
-3. Providing a `min_distance` argument to peak_local_max, which will prevent the function from identifying peaks
-too close together:
+```python
+# numpy
+from numpy import ones
+coords = peak_local_max(dt, footprint=ones((7,7)), labels=fill_holes)
 
-    coords = skimage.feature.peak_local_max(dt, min_distance=10, labels=binary_img)
+# skimage < 0.25.0
+coords = peak_local_max(dt, footprint=square(7), labels=fill_holes)
 
-Finally, the transform can be done. One final note is that because of the
-[way watershed transforms work](https://bioimagebook.github.io/chapters/2-processing/6-transforms/transforms.html#the-watershed-transform),
-we need to convert the distance map from peaks to troughs by inverting it with `-`:
+# skimage >= 0.25.0
+coords = peak_local_max(dt, footprint=footprint_rectangle((7, 7)), labels=fill_holes)
+```
 
-    labels = skimage.segmentation.watershed(-dt, markers, mask=binary_img)
+### Providing a `min_distance` argument to peak_local_max
 
-![](fig/3_9_watershed.jpg){alt='Watershed segmentation'}
+This will prevent the function from identifying peaks too close together:
+
+```python
+coords = peak_local_max(dt, min_distance=10, labels=fill_holes)
+```
 
 ### Masked watershed
 
+Now that we have identified some peaks, we can now put the distance transform together with
+the local peaks to do the transform:
+
+```python
+from skimage.segmentation import watershed
+
+watershed_transform = watershed(-dt, markers)
+plt.imshow(watershed_transform, cmap='viridis')
+```
+
+![](fig/3_9_watershed.jpg){alt='Watershed segmentation'}
+
+Note the `-` in front of the distance transform. This effectively converts it from a map of
+peaks to a map of troughs. We need to do this because of the
+[way watershed transforms work](https://bioimagebook.github.io/chapters/2-processing/6-transforms/transforms.html#the-watershed-transform).
+
 The result of the watershed transform above does not indicate the shape of the nuclei.
 Rather, the algorithm effectively decides which nucleus each pixel of the image most
-closely corresponds to. We can generate a more meaningful image by combining the
+closely corresponds to. We can generate a more meaningful image by multiplying the
 watershed and the binary image together to create a **masked watershed**:
 
-    masked_watershed = watershed_transform * binary_img
+```python
+masked_watershed = watershed_transform * binary_image
+plt.imshow(masked_watershed, cmap='viridis')
+```
 
 ![](fig/3_10_masked_watershed.png){alt='Masked watershed'}
 
@@ -263,14 +336,15 @@ It's also possible to do the last two steps in one by providing `mask=some_binar
 to skimage.segmentation.watershed.
 
 ::::::::::::::::::::::::::::::::::::: challenge
-## Exercise 13: Image segmentation
+## Exercise 12: Image segmentation
 
-- Load up your image from exercise 10 and run `skimage.morphology.label`
-  on the foreground features
-- How many features did skimage find? (hint: try flattening your labelled image)
+- Load up one of your cleaned up images from exercise 11 and run
+  `skimage.morphology.label` on the foreground features
+- How many features did skimage find? (hint: try flattening your labelled
+  image and printing the result to the screen)
 - Perform a watershed transform on your binary image as above. Try
   displaying the result of each stage of the transform.
-- How many features are identified now after watershed transformation?
+- How many features are identified now, after watershed transformation?
 - Does the watershed transformation work perfectly?
 
 :::::::::::::::::::::::: solution
@@ -281,19 +355,24 @@ it to a set to find all the unique label numbers present, and find the highest
 numbered label to get the number of features:
 
 ```python
-threshold = skimage.filters.threshold_triangle(img)
-binary_img = img > threshold
+from skimage.data import cells3d
+from skimage.filters import gaussian, threshold_otsu
+from skimage.morphology import label
 
+# whatever your chosen cleaned up image is
 plt.subplot(1, 2, 1)
-plt.imshow(binary_img)
+plt.imshow(binary_image)
+plt.title('Cleaned up image')
 
-labels = skimage.morphology.label(img)
+# labelled
+labels = label(binary_image)
 plt.subplot(1, 2, 2)
-plt.imshow(labels)
+plt.imshow(labels, cmap='viridis')
+plt.title('Labelled')
 
 flat = labels.flatten()
 print(set(flat))
-print(max(flat))
+print('Features found:', max(flat))
 ```
 
 However, we see from the intermediate images that multiple touching
@@ -303,24 +382,27 @@ Here is an example of using distance and watershed transforms to segment
 touching objects:
 
 ```python
+from skimage.feature import peak_local_max
+from skimage.segmentation import watershed
+from scipy.ndimage import distance_transform_edt
+
+dt = distance_transform_edt(binary_image)
 plt.subplot(2, 2, 1)
-plt.imshow(img)
-
-dt = scipy.ndimage.distance_transform_edt(binary_img)
-plt.subplot(2, 2, 2)
 plt.imshow(dt)
+plt.title('Distance transform')
 
-coords = skimage.feature.peak_local_max(dt, min_distance=10, labels=binary_img)
+coords = peak_local_max(dt, min_distance=10, labels=binary_image)
 mask = numpy.zeros(dt.shape, dtype=bool)
 mask[tuple(coords.T)] = True
-plt.subplot(2, 2, 3)
-plt.imshow(mask)
+plt.subplot(2, 2, 2)
+plt.imshow(mask, cmap='viridis')
+plt.title('Markers')
 
-markers = skimage.morphology.label(mask)
-labels = skimage.segmentation.watershed(-dt, markers, mask=binary_img)
-plt.subplot(2, 2, 4)
-plt.imshow(labels)
-print(set(labels.flatten()))
+markers = label(mask)
+labels = watershed(-dt, markers, mask=binary_image)
+plt.subplot(2, 2, 3)
+plt.imshow(labels, cmap='viridis')
+print('Features found:', max(labels.flatten()))
 ```
 
 This will segment more correctly, however the accuracy of the process still
