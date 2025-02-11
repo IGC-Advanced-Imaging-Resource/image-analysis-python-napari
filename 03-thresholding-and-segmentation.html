@@ -118,11 +118,11 @@
   Microscopy Image Analysis with Python and Napari
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 74%" class="percentage">
-    74%
+<aside class="col-md-12 lesson-progress"><div style="width: 58%" class="percentage">
+    58%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 74%" aria-valuenow="74" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 58%" aria-valuenow="58" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -320,7 +320,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Thresholding and Segmentation</h1>
-        <p>Last updated on 2024-04-29 |
+        <p>Last updated on 2025-02-11 |
 
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/03-thresholding-and-segmentation.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -358,57 +358,61 @@ together</li>
 </div>
 </div>
 <p>These exercises will make use of the image you decided to use in
-exercise 10.</p>
+exercise 9.</p>
 <section><h2 class="section-heading" id="thresholding">Thresholding<a class="anchor" aria-label="anchor" href="#thresholding"></a></h2>
-<hr class="half-width"><p>Thresholding consists of converting an image into binary form
-(i.e. <strong>binarising</strong> it), where each pixel value is
-converted to either 0 or 1 depending on whether it exceeds a given
-threshold.</p>
-<p>We can binarise an image with a given threshold by applying the
-<code>&gt;</code> operator to it. It’s common practice to smooth the
-image first, e.g. with a Gaussian filter:</p>
+<hr class="half-width"><p>Thresholding consists of converting an image into a binary form where
+each pixel value is either 0 or 1 depending on whether it exceeds a
+given threshold.</p>
+<p>We can <strong>binarise</strong> an image with a given threshold by
+applying the <code>&gt;</code> operator to it. It’s common practice to
+smooth the image first, e.g. with a Gaussian filter:</p>
 <div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">img</span> = skimage.filters.gaussian<span class="er">(</span><span class="fu">skimage.data.cell()</span><span class="kw">)</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">print</span><span class="er">(</span><span class="fu">img.min()</span><span class="ex">,</span> img.max<span class="er">(</span><span class="kw">)</span><span class="ex">,</span> img.dtype<span class="kw">)</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="ex">plt.subplot</span><span class="er">(</span><span class="ex">1,</span> 2, 1<span class="kw">)</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="ex">plt.imshow</span><span class="er">(</span><span class="ex">img</span><span class="kw">)</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="ex">plt.title</span><span class="er">(</span><span class="st">'Gaussian filter'</span><span class="kw">)</span></span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="im">from</span> skimage.data <span class="im">import</span> cells3d</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="im">from</span> skimage.filters <span class="im">import</span> gaussian</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>image <span class="op">=</span> gaussian(cells3d()[<span class="dv">30</span>, <span class="dv">1</span>, :, :])</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="bu">print</span>(image.<span class="bu">min</span>(), image.<span class="bu">max</span>(), image.dtype)</span>
 <span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="ex">plt.subplot</span><span class="er">(</span><span class="ex">1,</span> 2, 2<span class="kw">)</span></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="ex">binary_img</span> = img <span class="op">&gt;</span> 0.5</span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="ex">plt.imshow</span><span class="er">(</span><span class="ex">binary_img</span><span class="kw">)</span></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="ex">plt.title</span><span class="er">(</span><span class="st">'Threshold &gt; 0.5'</span><span class="kw">)</span></span></code></pre>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>plt.imshow(image, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>plt.title(<span class="st">'Gaussian filter'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>binary_image <span class="op">=</span> image <span class="op">&gt;</span> <span class="fl">0.12</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>plt.imshow(binary_image)</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>plt.title(<span class="st">'Threshold &gt; 0.12'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/3_1_threshold.jpg" alt="Threshold" class="figure mx-auto d-block"></figure><p>Applying a set number to an image as a threshold is simple, but it’s
 not ideal having to guess an appropriate threshold until we get a
 sensible one. Looking at the histogram helps, but still requires some
 manual interpretation and human subjectivity:</p>
 <div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">hist</span><span class="er">(</span><span class="fu">img.flatten()</span><span class="ex">,</span> bins=100<span class="kw">)</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>plt.hist(image.flatten(), bins<span class="op">=</span><span class="dv">256</span>)</span></code></pre>
 </div>
 <figure><img src="fig/3_2_histogram.jpg" alt="Histogram" class="figure mx-auto d-block"></figure><p>Fortunately, there are several algorithms for automatically
 determining an appropriate threshold based on the image’s histogram.
 <strong>Global</strong> thresholds work on the entire image, whereas
 <strong>local</strong> thresholds work on a window around each pixel -
-this course will deal only with global filters.</p>
-<div id="exercise-11-thresholds" class="callout challenge">
+for the moment, we will only discuss global filters.</p>
+<div id="exercise-10-thresholds" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-11-thresholds" class="callout-inner">
-<h3 class="callout-title">Exercise 11: Thresholds</h3>
+<div id="exercise-10-thresholds" class="callout-inner">
+<h3 class="callout-title">Exercise 10: Thresholds</h3>
 <div class="callout-content">
 <p>Look at the <a href="https://scikit-image.org/docs/stable/api/skimage.filters.html" class="external-link">skimage
 filter docs</a> and find each of the following threshold algorithms:</p>
 <ul><li>Otsu threshold</li>
 <li>Triangle threshold</li>
-</ul><p>Try running each of these algorithms on your image from exercise 10,
-and apply the resulting threshold on it. How do the results differ?</p>
+</ul><p>Try running each of these algorithms on your smoothed image from
+exercise 9, and use the resulting threshold to binarise the image. How
+do the results differ?</p>
 </div>
 </div>
 </div>
@@ -417,27 +421,31 @@ and apply the resulting threshold on it. How do the results differ?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>We can display the two threshold algorithms in a figure:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>plt.imshow(skimage.filters.gaussian(img))</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>plt.title(<span class="st">'Gaussian filter'</span>)</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">from</span> skimage.filters <span class="im">import</span> threshold_otsu, threshold_triangle</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co"># Otsu threshold</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_otsu(img)</span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>plt.imshow(img <span class="op">&gt;</span> threshold)</span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>plt.title(<span class="st">'Otsu threshold'</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co"># Triangle threshold</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_triangle(img)</span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>plt.imshow(img <span class="op">&gt;</span> threshold)</span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>plt.title(<span class="st">'Triangle threshold'</span>)</span></code></pre>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>plt.imshow(smoothed_image)</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>plt.title(<span class="st">'Gaussian filter'</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co"># Otsu threshold</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>threshold <span class="op">=</span> threshold_otsu(image)</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>plt.imshow(image <span class="op">&gt;</span> threshold)</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>plt.title(<span class="st">'Otsu threshold'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co"># Triangle threshold</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>threshold <span class="op">=</span> threshold_triangle(image)</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>plt.imshow(image <span class="op">&gt;</span> threshold)</span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>plt.title(<span class="st">'Triangle threshold'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/3_3_otsu_triangle.jpg" alt="Otsu and Triangle thresholds" class="figure mx-auto d-block"></figure><p>Which threshold performs better can depend on the image you have.
 Otsu thresholding is less sensitive so foreground objects are more
@@ -450,29 +458,30 @@ become stuck together.</p>
 </div>
 </section><section><h2 class="section-heading" id="cleaning-up">Cleaning up<a class="anchor" aria-label="anchor" href="#cleaning-up"></a></h2>
 <hr class="half-width"><p>Once we have a binary image, we may still need to clean it up
-further. There may still be extraneous pixels and other bits around the
-regions of interest, or there may be holes in a shape that you need to
-be solid.</p>
-<div id="exercise-12-erosion-dilation-opening-and-closing" class="callout challenge">
+further. There may still be extraneous pixels and other bits and pieces
+left around the regions of interest, or there may be holes in a shape
+that you need to be solid.</p>
+<div id="exercise-11-erosion-dilation-opening-and-closing" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-12-erosion-dilation-opening-and-closing" class="callout-inner">
-<h3 class="callout-title">Exercise 12: Erosion, dilation, opening and closing</h3>
+<div id="exercise-11-erosion-dilation-opening-and-closing" class="callout-inner">
+<h3 class="callout-title">Exercise 11: Erosion, dilation, opening and closing</h3>
 <div class="callout-content">
 <p>Look at the <a href="https://scikit-image.org/docs/stable/api/skimage.morphology.html" class="external-link">skimage
-morphology docs</a>. Select one of your binary images from exercise 11
+morphology docs</a>. Select one of your binary images from exercise 10
 and apply each of the following algorithms to the image:</p>
 <ul><li>Binary erosion</li>
 <li>Binary dilation</li>
 <li>Binary opening</li>
 <li>Binary closing</li>
 </ul><p>Note: each of the algorithms above will require a kernel or
-footprint. For this, use a disc-shaped kernel of radius 4:</p>
+footprint. For each of these, use a disc-shaped kernel of radius 2:</p>
 <div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">kernel</span> = skimage.morphology.disk<span class="er">(</span><span class="ex">4</span><span class="kw">)</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">from</span> skimage.morphology <span class="im">import</span> disk</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>kernel <span class="op">=</span> disk(<span class="dv">2</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -482,34 +491,41 @@ footprint. For this, use a disc-shaped kernel of radius 4:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">12</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>kernel <span class="op">=</span> skimage.morphology.disk(<span class="dv">4</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co"># Original image</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>plt.imshow(binary_image)</span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co"># Erosion</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>plt.imshow(skimage.morphology.binary_erosion(binary_image, footprint<span class="op">=</span>kernel))</span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co"># Dilation</span></span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>plt.imshow(skimage.morphology.binary_dilation(binary_image, footprint<span class="op">=</span>kernel))</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">from</span> skimage.morphology <span class="im">import</span> binary_erosion, binary_dilation, binary_opening, binary_closing</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="im">from</span> skimage.morphology <span class="im">import</span> disk</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>kernel <span class="op">=</span> disk(<span class="dv">2</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">12</span>))</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co"># your binary image from exercise 10</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>plt.imshow(binary_image, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>plt.title(<span class="st">'Binary image'</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co"># erosion</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>plt.imshow(binary_erosion(binary_image, footprint<span class="op">=</span>kernel), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>plt.title(<span class="st">'Erosion'</span>)</span>
 <span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co"># Opening</span></span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>plt.imshow(skimage.morphology.binary_opening(binary_image, footprint<span class="op">=</span>kernel))</span>
-<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co"># Closing</span></span>
-<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">6</span>)</span>
-<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a>plt.imshow(skimage.morphology.binary_closing(binary_image, footprint<span class="op">=</span>kernel))</span></code></pre>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co"># dilation</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>plt.imshow(binary_dilation(binary_image, footprint<span class="op">=</span>kernel), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a>plt.title(<span class="st">'Dilation'</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co"># opening</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a>plt.imshow(binary_opening(binary_image, footprint<span class="op">=</span>kernel), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a>plt.title(<span class="st">'Opening'</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a><span class="co"># closing</span></span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a>plt.imshow(binary_closing(binary_image, footprint<span class="op">=</span>kernel), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a>plt.title(<span class="st">'Closing'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/3_4_transforms.jpg" alt="Image transformations" class="figure mx-auto d-block"></figure><p>Eroding has the effect of shrinking all foreground features. Dilating
 has the opposite effect, potentially resulting in foreground features
@@ -523,11 +539,14 @@ have the effect of filling in any holes in your foreground features.</p>
 </div>
 </div>
 <p>If there are still holes in your binary image, there is also a
-function in ndimage that will fix this:</p>
+function in scipy.ndimage that can fix this:</p>
 <div class="codewrapper sourceCode" id="cb6">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">binary_img</span> = scipy.ndimage.binary_fill_holes<span class="er">(</span><span class="ex">binary_img</span><span class="kw">)</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="im">from</span> scipy.ndimage <span class="im">import</span> binary_fill_holes</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>fill_holes <span class="op">=</span> binary_fill_holes(binary_image)</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>plt.imshow(fill_holes)</span></code></pre>
 </div>
 <figure><img src="fig/3_5_fill_holes.jpg" alt="Binary fill holes" class="figure mx-auto d-block"></figure></section><section><h2 class="section-heading" id="labelling">Labelling<a class="anchor" aria-label="anchor" href="#labelling"></a></h2>
 <hr class="half-width"><p>In some situations, it may be necessary to distinguish between
@@ -535,11 +554,13 @@ individual features, e.g. if counting cell nuclei. For this, it is
 necessary to isolate or <strong>label</strong> individual separated
 objects in the foreground:</p>
 <div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">labels</span> = skimage.morphology.label<span class="er">(</span><span class="ex">binary_img</span><span class="kw">)</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">plt.imshow</span><span class="er">(</span><span class="ex">labels</span><span class="kw">)</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">plt.colorbar()</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">from</span> skimage.morphology <span class="im">import</span> label</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>labels <span class="op">=</span> label(fill_holes)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>plt.imshow(labels, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>plt.colorbar()</span></code></pre>
 </div>
 <p>This will result in an image similar to the binary image supplied,
 but instead of just 1s, each feature will have a unique number assigned
@@ -556,27 +577,35 @@ a <strong>distance transform</strong> of the binary image, where each
 foreground pixel’s value is its Euclidean distance to the background.
 skimage doesn’t have a function for this, but scipy does:</p>
 <div class="codewrapper sourceCode" id="cb8">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">dt</span> = scipy.ndimage.distance_transform_edt<span class="er">(</span><span class="ex">binary_img</span><span class="kw">)</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">from</span> scipy.ndimage <span class="im">import</span> distance_transform_edt</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>dt <span class="op">=</span> distance_transform_edt(fill_holes)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>plt.imshow(dt)</span></code></pre>
 </div>
 <figure><img src="fig/3_7_distance_transform.jpg" alt="Distance transform" class="figure mx-auto d-block"></figure><p>Next, we need the coordinates of all <strong>local maxima</strong>,
 i.e. locations that are furthest away from the background. This requires
 a kernel/footprint, which in this example is a square kernel of 7x7:</p>
 <div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">coords</span> = skimage.feature.peak_local_max<span class="er">(</span><span class="ex">dt,</span> labels=binary_img<span class="kw">)</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="im">from</span> skimage.feature <span class="im">import</span> peak_local_max</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>coords <span class="op">=</span> peak_local_max(dt, labels<span class="op">=</span>fill_holes)</span></code></pre>
 </div>
 <p>This gives us a list of coordinates, so we need to convert this back
 into an labelled image of maxima. This will be mostly blank with an
 individually labelled dot representing each one:</p>
 <div class="codewrapper sourceCode" id="cb10">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">mask</span> = numpy.zeros<span class="er">(</span><span class="ex">dt.shape,</span> dtype=bool<span class="kw">)</span>  <span class="co"># blank image the same size as the original</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="va">mask</span><span class="op">[</span>tuple(coords.T)<span class="op">]</span> <span class="ex">=</span> True              <span class="co"># create a foreground pixel at each set of coordinates</span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="ex">markers</span> = skimage.morphology.label<span class="er">(</span><span class="ex">mask</span><span class="kw">)</span>  <span class="co"># uniquely label them</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> zeros</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>mask <span class="op">=</span> zeros(dt.shape, dtype<span class="op">=</span><span class="bu">bool</span>)  <span class="co"># create a blank image the same size as the original</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>mask[<span class="bu">tuple</span>(coords.T)] <span class="op">=</span> <span class="va">True</span>  <span class="co"># create a foreground pixel at each coordinate</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>markers <span class="op">=</span> label(mask)  <span class="co"># uniquely label them</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>plt.imshow(markers, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/3_8_maxima.png" alt="Local maxima" class="figure mx-auto d-block"></figure><p>Note the <code>.T</code> to transpose the maxima coordinates.</p>
 <p>At this point depending on your image, you may get clusters of peaks
@@ -584,61 +613,88 @@ close together rather than one clean, distinct peak per feature. This is
 especially likely if your features are not circular. Applied to the
 final watershed step below, this will result in features being split
 when they shouldn’t be. This can be resolved in several ways:</p>
-<ol style="list-style-type: decimal"><li>
-<p>Smoothing the distance transform:</p>
-<p>dt = scipy.ndimage.distance_transform_edt(binary_img) dt =
-skimage.filters.gaussian(dt, sigma=4)</p>
-</li>
-<li>
-<p>Applying a larger footprint to peak_local_max:</p>
-<p>coords = skimage.feature.peak_local_max(dt,
-footprint=numpy.ones((7,7)), labels=binary_img)</p>
-</li>
-<li>
-<p>Providing a <code>min_distance</code> argument to peak_local_max,
-which will prevent the function from identifying peaks too close
-together:</p>
-<p>coords = skimage.feature.peak_local_max(dt, min_distance=10,
-labels=binary_img)</p>
-</li>
-</ol><p>Finally, the transform can be done. One final note is that because of
-the <a href="https://bioimagebook.github.io/chapters/2-processing/6-transforms/transforms.html#the-watershed-transform" class="external-link">way
-watershed transforms work</a>, we need to convert the distance map from
-peaks to troughs by inverting it with <code>-</code>:</p>
+<div class="section level3">
+<h3 id="smoothing-the-distance-transform-first">Smoothing the distance transform first<a class="anchor" aria-label="anchor" href="#smoothing-the-distance-transform-first"></a></h3>
 <div class="codewrapper sourceCode" id="cb11">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">labels</span> = skimage.segmentation.watershed<span class="er">(</span><span class="ex">-dt,</span> markers, mask=binary_img<span class="kw">)</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>coords <span class="op">=</span> peak_local_max(gaussian(dt, sigma<span class="op">=</span><span class="dv">4</span>), labels<span class="op">=</span>fill_holes)</span></code></pre>
 </div>
-<figure><img src="fig/3_9_watershed.jpg" alt="Watershed segmentation" class="figure mx-auto d-block"></figure><div class="section level3">
+</div>
+<div class="section level3">
+<h3 id="applying-a-larger-footprint-to-peak_local_max">Applying a larger footprint to peak_local_max<a class="anchor" aria-label="anchor" href="#applying-a-larger-footprint-to-peak_local_max"></a></h3>
+<p>There are a few different ways to do this - all we need to do is
+create a kernel of a cerain shape and size, and pass it to
+peak_local_max:</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># numpy</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> ones</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>coords <span class="op">=</span> peak_local_max(dt, footprint<span class="op">=</span>ones((<span class="dv">7</span>,<span class="dv">7</span>)), labels<span class="op">=</span>fill_holes)</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co"># skimage &lt; 0.25.0</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>coords <span class="op">=</span> peak_local_max(dt, footprint<span class="op">=</span>square(<span class="dv">7</span>), labels<span class="op">=</span>fill_holes)</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co"># skimage &gt;= 0.25.0</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>coords <span class="op">=</span> peak_local_max(dt, footprint<span class="op">=</span>footprint_rectangle((<span class="dv">7</span>, <span class="dv">7</span>)), labels<span class="op">=</span>fill_holes)</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="providing-a-min_distance-argument-to-peak_local_max">Providing a <code>min_distance</code> argument to
+peak_local_max<a class="anchor" aria-label="anchor" href="#providing-a-min_distance-argument-to-peak_local_max"></a></h3>
+<p>This will prevent the function from identifying peaks too close
+together:</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>coords <span class="op">=</span> peak_local_max(dt, min_distance<span class="op">=</span><span class="dv">10</span>, labels<span class="op">=</span>fill_holes)</span></code></pre>
+</div>
+</div>
+<div class="section level3">
 <h3 id="masked-watershed">Masked watershed<a class="anchor" aria-label="anchor" href="#masked-watershed"></a></h3>
+<p>Now that we have identified some peaks, we can now put the distance
+transform together with the local peaks to do the transform:</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="im">from</span> skimage.segmentation <span class="im">import</span> watershed</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>watershed_transform <span class="op">=</span> watershed(<span class="op">-</span>dt, markers)</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>plt.imshow(watershed_transform, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span></code></pre>
+</div>
+<figure><img src="fig/3_9_watershed.jpg" alt="Watershed segmentation" class="figure mx-auto d-block"></figure><p>Note the <code>-</code> in front of the distance transform. This
+effectively converts it from a map of peaks to a map of troughs. We need
+to do this because of the <a href="https://bioimagebook.github.io/chapters/2-processing/6-transforms/transforms.html#the-watershed-transform" class="external-link">way
+watershed transforms work</a>.</p>
 <p>The result of the watershed transform above does not indicate the
 shape of the nuclei. Rather, the algorithm effectively decides which
 nucleus each pixel of the image most closely corresponds to. We can
-generate a more meaningful image by combining the watershed and the
+generate a more meaningful image by multiplying the watershed and the
 binary image together to create a <strong>masked watershed</strong>:</p>
-<div class="codewrapper sourceCode" id="cb12">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">masked_watershed</span> = watershed_transform <span class="pp">*</span> binary_img</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>masked_watershed <span class="op">=</span> watershed_transform <span class="op">*</span> binary_image</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>plt.imshow(masked_watershed, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/3_10_masked_watershed.png" alt="Masked watershed" class="figure mx-auto d-block"></figure><p>It’s also possible to do the last two steps in one by providing
 <code>mask=some_binary_image</code> to
 skimage.segmentation.watershed.</p>
-<div id="exercise-13-image-segmentation" class="callout challenge">
+<div id="exercise-12-image-segmentation" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-13-image-segmentation" class="callout-inner">
-<h3 class="callout-title">Exercise 13: Image segmentation</h3>
+<div id="exercise-12-image-segmentation" class="callout-inner">
+<h3 class="callout-title">Exercise 12: Image segmentation</h3>
 <div class="callout-content">
-<ul><li>Load up your image from exercise 10 and run
+<ul><li>Load up one of your cleaned up images from exercise 11 and run
 <code>skimage.morphology.label</code> on the foreground features</li>
 <li>How many features did skimage find? (hint: try flattening your
-labelled image)</li>
+labelled image and printing the result to the screen)</li>
 <li>Perform a watershed transform on your binary image as above. Try
 displaying the result of each stage of the transform.</li>
-<li>How many features are identified now after watershed
+<li>How many features are identified now, after watershed
 transformation?</li>
 <li>Does the watershed transformation work perfectly?</li>
 </ul></div>
@@ -649,55 +705,63 @@ transformation?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Labelling applies a unique number to each feature. This means that if
 we apply thresholding and labelling to the image, we can flatten the
 result and cast it to a set to find all the unique label numbers
 present, and find the highest numbered label to get the number of
 features:</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>threshold <span class="op">=</span> skimage.filters.threshold_triangle(img)</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>binary_img <span class="op">=</span> img <span class="op">&gt;</span> threshold</span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>plt.imshow(binary_img)</span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>labels <span class="op">=</span> skimage.morphology.label(img)</span>
-<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>plt.imshow(labels)</span>
-<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>flat <span class="op">=</span> labels.flatten()</span>
-<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">set</span>(flat))</span>
-<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">max</span>(flat))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="im">from</span> skimage.data <span class="im">import</span> cells3d</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="im">from</span> skimage.filters <span class="im">import</span> gaussian, threshold_otsu</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="im">from</span> skimage.morphology <span class="im">import</span> label</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="co"># whatever your chosen cleaned up image is</span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>plt.imshow(binary_image)</span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>plt.title(<span class="st">'Cleaned up image'</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="co"># labelled</span></span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a>labels <span class="op">=</span> label(binary_image)</span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a>plt.imshow(labels, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a>plt.title(<span class="st">'Labelled'</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a>flat <span class="op">=</span> labels.flatten()</span>
+<span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">set</span>(flat))</span>
+<span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Features found:'</span>, <span class="bu">max</span>(flat))</span></code></pre>
 </div>
 <p>However, we see from the intermediate images that multiple touching
 nuclei are treated as a single feature.</p>
 <p>Here is an example of using distance and watershed transforms to
 segment touching objects:</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>plt.imshow(img)</span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>dt <span class="op">=</span> scipy.ndimage.distance_transform_edt(binary_img)</span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>plt.imshow(dt)</span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>coords <span class="op">=</span> skimage.feature.peak_local_max(dt, min_distance<span class="op">=</span><span class="dv">10</span>, labels<span class="op">=</span>binary_img)</span>
-<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>mask <span class="op">=</span> numpy.zeros(dt.shape, dtype<span class="op">=</span><span class="bu">bool</span>)</span>
-<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>mask[<span class="bu">tuple</span>(coords.T)] <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>plt.imshow(mask)</span>
-<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a>markers <span class="op">=</span> skimage.morphology.label(mask)</span>
-<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a>labels <span class="op">=</span> skimage.segmentation.watershed(<span class="op">-</span>dt, markers, mask<span class="op">=</span>binary_img)</span>
-<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a>plt.imshow(labels)</span>
-<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">set</span>(labels.flatten()))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="im">from</span> skimage.feature <span class="im">import</span> peak_local_max</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="im">from</span> skimage.segmentation <span class="im">import</span> watershed</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="im">from</span> scipy.ndimage <span class="im">import</span> distance_transform_edt</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>dt <span class="op">=</span> distance_transform_edt(binary_image)</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>plt.imshow(dt)</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>plt.title(<span class="st">'Distance transform'</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>coords <span class="op">=</span> peak_local_max(dt, min_distance<span class="op">=</span><span class="dv">10</span>, labels<span class="op">=</span>binary_image)</span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>mask <span class="op">=</span> numpy.zeros(dt.shape, dtype<span class="op">=</span><span class="bu">bool</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>mask[<span class="bu">tuple</span>(coords.T)] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>plt.imshow(mask, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>plt.title(<span class="st">'Markers'</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a>markers <span class="op">=</span> label(mask)</span>
+<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a>labels <span class="op">=</span> watershed(<span class="op">-</span>dt, markers, mask<span class="op">=</span>binary_image)</span>
+<span id="cb17-19"><a href="#cb17-19" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" tabindex="-1"></a>plt.imshow(labels, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb17-21"><a href="#cb17-21" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Features found:'</span>, <span class="bu">max</span>(labels.flatten()))</span></code></pre>
 </div>
 <p>This will segment more correctly, however the accuracy of the process
 still depends on the inputs supplied. Irregular objects with holes in
@@ -787,7 +851,7 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/03-thresholding-and-segmentation.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/03-thresholding-and-segmentation.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2024-04-29",
+  "dateModified": "2025-02-11",
   "datePublished": "2025-02-11"
 }
 

@@ -323,7 +323,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Opening and Checking an Image</h1>
-        <p>Last updated on 2025-02-07 |
+        <p>Last updated on 2025-02-11 |
 
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/01-opening-and-checking-an-image.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -395,15 +395,18 @@ representation or textual form of the data passed to it, which is why we
 get a matrix of numbers printed to the screen.</p>
 <p>If we want to see what the image looks like, we need tell Python to
 display it as an image. We can do this with the <code>imshow</code>
-function from skimage, which can be imported and called in a similar way
-to <code>imread</code>:</p>
+function from matplotlib, which you may already be familiar with as a
+library for drawing plots and graphs, but it can also display
+images.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imshow</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>imshow(image)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>plt.set_cmap(<span class="st">'gray'</span>)  <span class="co"># by default, single-channel images will now be displayed in greyscale</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>plt.imshow(image)</span></code></pre>
 </div>
-<p>You should see the image displayed below the current cell:</p>
+<p>You should now see the image displayed below the current cell:</p>
 <figure><img src="fig/1_1_imshow.jpg" alt="Displaying an image with imshow" class="figure mx-auto d-block"></figure><p>Since images are multi-dimensional arrays of numbers, we can apply
 statistical functions to them and extract some basic metrics. Numpy
 arrays have methods for several of these already, including the image’s
@@ -424,7 +427,7 @@ array:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>imshow(image[:, :, <span class="dv">2</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>plt.imshow(image[:, :, <span class="dv">2</span>])</span></code></pre>
 </div>
 <p>Here, we select the entire X and Y axes using <code>:</code> with no
 numbers around them, and the last channel (remember that Python counts
@@ -483,7 +486,7 @@ do this, we need to select a subset of the X and/or Y axes.</li>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>channel <span class="op">=</span> image[:, :, <span class="dv">1</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>imshow(channel.T)</span></code></pre>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>plt.imshow(channel.T)</span></code></pre>
 </div>
 <figure><img src="fig/1_2_transpose.jpg" alt="Transposed image" class="figure mx-auto d-block"></figure><p>Remember that Numpy arrays can be sliced and indexed the same way as
 lists, strings and tuples. Up to this point we’ve been using
@@ -545,27 +548,24 @@ bytes, or ~786 kilobytes, or ~0.7 megabytes.</p>
 </div>
 </section><section><h2 class="section-heading" id="displaying-one-channel-at-a-time">Displaying one channel at a time<a class="anchor" aria-label="anchor" href="#displaying-one-channel-at-a-time"></a></h2>
 <hr class="half-width"><p>We’ve seen from exercise 1 that we can view single channels by
-indexing the array. We can also show all channels together using
-matplotlib. You may already be familiar with matplotlib as a library for
-drawing plots and graphs, but it can also display images.</p>
-<p>We can diaply a group of images together using a matplotlib
-figure:</p>
+indexing the array. We can also show all channels together using a
+matplotlib figure:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))  <span class="co"># figure size, in inches</span></span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))  <span class="co"># figure size, in inches</span></span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>nchannels <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a></span>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nchannels):</span>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>    <span class="co"># Use subplot() to create a multi-image figure with 1 row and 3 columns. We need to increment i by 1</span></span>
 <span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>    <span class="co"># because range() counts from 0 but subplot() assumes you're counting from 1.</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>    matplotlib.pyplot.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>    matplotlib.pyplot.imshow(image[:, :, i])</span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>    matplotlib.pyplot.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> i)  <span class="co"># add a plot title</span></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>    matplotlib.pyplot.axis(<span class="va">False</span>)              <span class="co"># we just want to show the image, so turn off the axis labels</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>    plt.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>    plt.imshow(image[:, :, i])</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>    plt.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> i)  <span class="co"># add a plot title</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>    plt.axis(<span class="va">False</span>)              <span class="co"># we just want to show the image, so turn off the axis labels</span></span>
 <span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
 <figure><img src="fig/1_4_all_channels.jpg" alt="All image channels" class="figure mx-auto d-block"></figure></section><section><h2 class="section-heading" id="histograms">Histograms<a class="anchor" aria-label="anchor" href="#histograms"></a></h2>
 <hr class="half-width"><p>Another useful metric in image analysis is an image’s histogram. This
@@ -573,7 +573,7 @@ can be plotted by flattening the image and passing it to matplotlib:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>matplotlib.pyplot.hist(image[:, :, <span class="dv">0</span>].flatten(), bins<span class="op">=</span><span class="dv">256</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>plt.hist(image[:, :, <span class="dv">0</span>].flatten(), bins<span class="op">=</span><span class="dv">256</span>)</span></code></pre>
 </div>
 <p>First, we need to select a single channel - since different channels
 may represent different cell organelles or points in time, we need to
@@ -609,26 +609,26 @@ FluorescentCells_3channel.tif.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>channel_idx <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>channel <span class="op">=</span> image[:, :, channel_idx]</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>matplotlib.pyplot.hist(channel.flatten(), bins<span class="op">=</span><span class="dv">255</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>matplotlib.pyplot.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> channel_idx)</span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>plt.hist(channel.flatten(), bins<span class="op">=</span><span class="dv">255</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>plt.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> channel_idx)</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
 <p>We could call this three times, each with a different value for
 <code>channel_idx</code>, or we can use a <strong>for loop</strong>:</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))  <span class="co"># figure size, in inches</span></span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))  <span class="co"># figure size, in inches</span></span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>nchannels <span class="op">=</span> image.shape[<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nchannels):</span>
 <span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>    channel <span class="op">=</span> image[:, :, i]</span>
 <span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>    matplotlib.pyplot.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>    matplotlib.pyplot.hist(channel.flatten(), bins<span class="op">=</span><span class="dv">255</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>    matplotlib.pyplot.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> i)  <span class="co"># add a plot title</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>    plt.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>    plt.hist(channel.flatten(), bins<span class="op">=</span><span class="dv">255</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>    plt.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> i)  <span class="co"># add a plot title</span></span>
 <span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a></span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>matplotlib.pyplot.show()</span></code></pre>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
 <figure><img src="fig/1_5_histograms.jpg" alt="All image channels" class="figure mx-auto d-block"></figure></div>
 </div>
@@ -723,7 +723,7 @@ We can show a single frame with:</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>imshow(image[<span class="dv">0</span>, <span class="dv">0</span>, :, :])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>plt.imshow(image[<span class="dv">0</span>, <span class="dv">0</span>, :, :])</span></code></pre>
 </div>
 <figure><img src="fig/1_6_nd2_image_frame.jpg" alt="ND2 image" class="figure mx-auto d-block"></figure></div>
 </div>
@@ -747,14 +747,15 @@ colour maps):</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>imshow(image[<span class="dv">0</span>, <span class="dv">0</span>, :, :], cmap<span class="op">=</span><span class="st">'gray'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>plt.imshow(image[<span class="dv">0</span>, <span class="dv">0</span>, :, :], cmap<span class="op">=</span><span class="st">'viridis'</span>)</span></code></pre>
 </div>
 <p>Skimage uses lookup tables from the plotting library matplotlib. A
 list of available tables can be obtained with:</p>
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(matplotlib.colormaps))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> colormaps</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(colormaps))</span></code></pre>
 </div>
 <div id="exercise-5-lookup-tables" class="callout challenge">
 <div class="callout-square">
@@ -785,16 +786,16 @@ from!), but here is one possible solution:</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># you'll need to run this again if you overwrote your `image` variable</span></span>
 <span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'data/FluorescentCells_3channel.tif'</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>matplotlib.pyplot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
 <span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
-<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>imshow(image[:, :, <span class="dv">0</span>], cmap<span class="op">=</span><span class="st">'Blues'</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>plt.imshow(image[:, :, <span class="dv">0</span>], cmap<span class="op">=</span><span class="st">'Blues'</span>)</span>
 <span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
-<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a>imshow(image[:, :, <span class="dv">1</span>], cmap<span class="op">=</span><span class="st">'Oranges'</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a>plt.imshow(image[:, :, <span class="dv">1</span>], cmap<span class="op">=</span><span class="st">'Oranges'</span>)</span>
 <span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a>matplotlib.pyplot.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a>imshow(image[:, :, <span class="dv">2</span>], cmap<span class="op">=</span><span class="st">'YlOrBr'</span>)</span></code></pre>
+<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a>plt.imshow(image[:, :, <span class="dv">2</span>], cmap<span class="op">=</span><span class="st">'YlOrBr'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/1_7_colormaps.jpg" alt="ND2 image" class="figure mx-auto d-block"></figure></div>
 </div>
@@ -989,7 +990,7 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/01-opening-and-checking-an-image.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/01-opening-and-checking-an-image.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2025-02-07",
+  "dateModified": "2025-02-11",
   "datePublished": "2025-02-11"
 }
 
