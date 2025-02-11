@@ -45,14 +45,19 @@ kernel = square(3)  # create a 3x3 square kernel
 There are other shapes of kernel that can be used, and are documented
 [here](https://scikit-image.org/docs/stable/api/skimage.morphology.html).
 
-(Note that as of skimage 0.25.0, the `square` function has been deprecated in
-favour of a new function, [footprint_rectangle](https://scikit-image.org/docs/stable/api/skimage.morphology.html#skimage.morphology.footprint_rectangle).)
+Note that as of skimage 0.25.0, the `square` function has been deprecated in
+favour of a new function, [footprint_rectangle](https://scikit-image.org/docs/stable/api/skimage.morphology.html#skimage.morphology.footprint_rectangle):
+
+```python
+from skimage.morphology import footprint_rectangle
+kernel = square((3, 3))  # also a 3x3 square kernel
+```
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 ## Exercise 6: Applying filters
 
-Look at the documentation pages for the mean and Gaussian filters above. Load the second channel
-of the 30th frame of the test image [skimage.data.cells3d()](https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.cells3d):
+Look at the documentation pages for the mean and Gaussian filters above. Load a frame from the second channel
+of the test image [skimage.data.cells3d](https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.cells3d):
 
 ```python
 from skimage.data import cells3d
@@ -75,30 +80,30 @@ How do the different methods compare?
 from skimage.data import cells3d
 from skimage.filters import gaussian
 from skimage.filters.rank import mean
-from skimage.morphology import square
+from skimage.morphology.footprints import square
 
 image = cells3d()[30, 1, :, :]
-matplotlib.pyplot.figure(figsize=(10, 12))
+plt.figure(figsize=(10, 12))
 
-matplotlib.pyplot.subplot(3, 2, 1)
-imshow(image)
-matplotlib.pyplot.title('Original')
+plt.subplot(3, 2, 1)
+plt.imshow(image)
+plt.title('Original')
 
-matplotlib.pyplot.subplot(3, 2, 2)
-imshow(mean(image, footprint=square(3)))
-matplotlib.pyplot.title('3x3 mean filter')
+plt.subplot(3, 2, 2)
+plt.imshow(mean(image, footprint=square(3)))
+plt.title('3x3 mean filter')
 
-matplotlib.pyplot.subplot(3, 2, 3)
-imshow(mean(image, footprint=square(9)))
-matplotlib.pyplot.title('9x9 mean filter')
+plt.subplot(3, 2, 3)
+plt.imshow(mean(image, footprint=square(9)))
+plt.title('9x9 mean filter')
 
-matplotlib.pyplot.subplot(3, 2, 4)
-imshow(gaussian(image, sigma=1))
-matplotlib.pyplot.title('Gaussian blur, σ=1')
+plt.subplot(3, 2, 4)
+plt.imshow(gaussian(image, sigma=1))
+plt.title('Gaussian blur, σ=1')
 
-matplotlib.pyplot.subplot(3, 2, 5)
-imshow(gaussian(image, sigma=5))
-matplotlib.pyplot.title('Gaussian blur, σ=5')
+plt.subplot(3, 2, 5)
+plt.imshow(gaussian(image, sigma=5))
+plt.title('Gaussian blur, σ=5')
 ```
 
 ![](fig/2_1_filters.jpg){alt='Filters'}
@@ -131,46 +136,34 @@ and display:
 - image with a rolling ball of radius 50 applied
 - the image with the radius=50 rolling ball subtracted from it
 
-How long does it take to compute?
-
 :::::::::::::::::::::::: solution 
 
 Compute time can be found using Python's datetime library:
 
 ```python
-import datetime
 from skimage.data import coins
 from skimage.restoration import rolling_ball
 
 image = coins()
-matplotlib.pyplot.figure(figsize=(10, 12))
+plt.figure(figsize=(10, 8))
 
-t0 = datetime.datetime.now()
-matplotlib.pyplot.subplot(2, 2, 1)
-imshow(image)
-matplotlib.pyplot.title('Original')
+plt.subplot(2, 2, 1)
+plt.imshow(image, cmap='gray')
+plt.title('Original')
 
-t1 = datetime.datetime.now()
-matplotlib.pyplot.subplot(2, 2, 2)
+plt.subplot(2, 2, 2)
 rolling_ball_100 = rolling_ball(image, radius=100)
-imshow(rolling_ball_100)
-matplotlib.pyplot.title('Rolling ball, r=100')
+plt.imshow(rolling_ball_100, cmap='gray')
+plt.title('Rolling ball, r=100')
 
-t2 = datetime.datetime.now()
-matplotlib.pyplot.subplot(2, 2, 3)
+plt.subplot(2, 2, 3)
 rolling_ball_50 = rolling_ball(image, radius=50)
-imshow(rolling_ball_50)
-matplotlib.pyplot.title('Rolling ball, r=50')
+plt.imshow(rolling_ball_50, cmap='gray')
+plt.title('Rolling ball, r=50')
 
-t3 = datetime.datetime.now()
-matplotlib.pyplot.subplot(2, 2, 4)
-imshow(image - rolling_ball_50)
-matplotlib.pyplot.title('Original - rolling ball r50')
-
-print('Original image:', t1 - t0)
-print('Rolling ball 100:', t2 - t1)
-print('Rolling ball 50:', t3 - t2)
-print('Total:', t3 - t0)
+plt.subplot(2, 2, 4)
+plt.imshow(image - rolling_ball_50)
+plt.title('Original - rolling ball r50')
 ```
 
 ![](fig/2_2_rolling_ball.jpg){alt='Rolling ball'}
@@ -195,7 +188,7 @@ filter. This eliminates the need to manually select two sigma values as with Dif
 ::::::::::::::::::::::::::::::::::::: challenge
 ## Exercise 8: Dogs and logs
 
-Load the second channel of the 30th frame of [skimage.data.cells3d()](https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.cells3d)
+Load a frame from the second channel of [skimage.data.cells3d()](https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.cells3d)
 again:
 
 ```python
@@ -216,22 +209,22 @@ Display a figure of:
 
 ```python
 from skimage.data import cells3d
-from skimage.filters import difference_of_gaussians, laplace
+from skimage.filters import gaussian, difference_of_gaussians, laplace
 
 image = cells3d()[30, 1, :, :]
-matplotlib.pyplot.figure(figsize=(10, 12))
+plt.figure(figsize=(10, 12))
 
-matplotlib.pyplot.subplot(2, 2, 1)
+plt.subplot(2, 2, 1)
 imshow(image)
-matplotlib.pyplot.title('Original')
+plt.title('Original')
 
-matplotlib.pyplot.subplot(2, 2, 2)
+plt.subplot(2, 2, 2)
 imshow(difference_of_gaussians(image, 1, 2), cmap='gray')
-matplotlib.pyplot.title('Difference of Gaussians')
+plt.title('Difference of Gaussians')
 
-matplotlib.pyplot.subplot(2, 2, 3)
+plt.subplot(2, 2, 3)
 imshow(laplace(gaussian(image, sigma=2)), cmap='gray')
-matplotlib.pyplot.title('Laplacian of Gaussian')
+plt.title('Laplacian of Gaussian')
 ```
 
 ![](fig/2_3_dogs_and_logs.jpg){alt='Dogs and logs'}
