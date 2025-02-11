@@ -1,7 +1,7 @@
 ---
 title: 'Introduction to Napari'
-teaching: 10
-exercises: 2
+teaching: 60
+exercises: 4
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -15,17 +15,17 @@ exercises: 2
 
 ## Starting Napari
 
-With Napari installed, run:
+With Napari installed and its Conda environment active, run:
 
     napari
 
 This will start up Napari in a new window. This may take about a minute, especially
-if being done for the first time.
+the first time.
 
 
 ## Looking around
 
-In the 'File' menu, go to 'Open Sample -> 'napari builtins -> Cells (3D+2Ch). Looking
+In the 'File' menu, go to 'Open Sample -> napari builtins -> Cells (3D+2Ch)'. Looking
 at the sidebar, Napari has opened two **layers** - 'membrane' and 'nuclei'. At the top
 of the sidebar there are options for displaying layers in different colours and opacity,
 and the eye symbol on the layer can be checked or unchecked to show/hide it:
@@ -40,7 +40,7 @@ In the case of z-stack or time series images such as this one, there is also a s
 at the bottom for scrolling through the layers.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
-## Exercise 15: Opening an image
+## Exercise 14: Napari tools
 
 With 'Cells (3D + 2Ch)' open, go to 'Tools -> Filtering / Noise Removal' and
 look at the options available. What are these options? What happens if you
@@ -60,14 +60,13 @@ for Gaussian filters:
 
 ![](fig/5_3_gaussian_filter.jpg){alt='Gaussian filter'}
 
-
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ## Loading real-world images
 
-The example images work nicely with Napari, but sometimes it may be necessary to
+The example images work nicely with Napari, but sometimes it may be more difficult to
 coax Napari into loading an image correctly. In 'File', select 'Open File(s)...'
 and load up FluorescentCells_3channel.tif. Doing this, we find the results aren't
 quite what we expect - the three channels have been loaded as if they're a z-stack.
@@ -87,53 +86,57 @@ at the image's shape:
 
 ```python
 from skimage.io import imread
-img = imread('path/to/FluorescentCells_3channel.tif')
-img.shape
-(512, 512, 3)
+iage = imread('path/to/FluorescentCells_3channel.tif')
+image.shape
+# returns: (512, 512, 3)
 ```
 
 From this, we can see that the colour channels are the third axis. Using this,
 We can now load each channel as a new layer:
 
 ```python
-viewer.add_image(img[:, :, 0], name='FluorescentCells_ch0', colormap='cyan')
-viewer.add_image(img[:, :, 1], name='FluorescentCells_ch1', colormap='yellow', blending='additive')
-viewer.add_image(img[:, :, 2], name='FluorescentCells_ch2', colormap='magenta', blending='additive')
+viewer.add_image(image[:, :, 0], name='FluorescentCells_ch0', colormap='red')
+viewer.add_image(image[:, :, 1], name='FluorescentCells_ch1', colormap='green', blending='additive')
+viewer.add_image(image[:, :, 2], name='FluorescentCells_ch2', colormap='blue', blending='additive')
 ```
 
 The `blending='additive'` option prevents layers on top from obscuring layers below it
-so that we can view multiple layers at once. We also need to colour the layers so we
+so that we can view multiple layers at once. We also use `colormap` to colour the layers so we
 can distinguish them from each other.
 
 `viewer.add_image` is also able to load all these layers in one if we tell it which axis
 represents the colour channels:
 
 ```python
-viewer.add_image(img, name='FluorescentCells', channel_axis=2)
+viewer.add_image(image, name='FluorescentCells', channel_axis=2)
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge 
-## Exercise 16: Real world images
+## Exercise 15: Real world images
 
-- Load the image 'confocal-series_zstack.tif', look at its shape and identify which
-  axis looks like the channels.
-- Use `viewer.add_image` with the `channel_axis` argument to load the image.
-  How has the fourth axis been represented?
+- Go to 'File' -> 'Open File(s)...' and load the image 'confocal-series_zstack.tif'. How
+  does it look? Can you view each channel simultaneously?
+- Now try loading the same image in the console as above, looking at the image's shape and
+  passing the channel axis to `viewer_add_image`.
+  axis looks like the channels. How has the fourth axis been represented?
 
-:::::::::::::::::::::::: solution 
-From loading the image in the Python console:
+:::::::::::::::::::::::: solution
+Loading the image from the menu, we can see some results but it's all in one layer and the
+channel axis is represented as a slider, meaning we can't view the two at the same time.
+
+As an alternative, we can load the image in the Python console:
 
 ```python
-img = skimage.io.imread('path/to/confocal-series_zstack.tif')
-img.shape
-(25, 2, 400, 400)
+image = skimage.io.imread('path/to/confocal-series_zstack.tif')
+image.shape
+# returns: (25, 2, 400, 400)
 ```
 
-The second number, i.e. `img.shape[1]` looks like the channel axis. We can then
+The second number, i.e. `image.shape[1]` looks like the channel axis. We can then
 provide this when loading the image:
 
 ```python
-viewer.add_image(img, name='FluorescentCells', channel_axis=1)
+viewer.add_image(image, name='FluorescentCells', channel_axis=1)
 ```
 
 Napari will load the image as two coloured layers, with the Z axis represented via the slider
@@ -141,53 +144,120 @@ at the bottom.
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
-## Wrapup challenge: image segmentation in Napari
+::::::::::::::::::::::::::::::::::::: challenge
 
-These two exercises will put together everything that has been covered in previous
-chapters, and apply the data processing performed in Python/Jupyter to
-Napari. Finally, we will see how the processing that we have built up in Napari
-can be exported back to Python code that we can then run on many images as a script
-to help automate our image processing.
+## Exercise 16: Image segmentation in the Napari console
+
+This exercise will put together everything that has been covered in previous
+chapters, and apply the same steps in the Napari console.
+
+Look at the 'nuclei' layer of 'Cells (3D + 2Ch)'. In the Python console, try doing the
+same smoothing, binarisation, segmentation and labelling that you performed throughout
+exercises 6-12, except displaying each step as a new layer in the Napari viewer.
+
+Remember that instead of `matplotlib.pyplot.imshow()`, you'll need to use `viewer.add_image()`
+
+:::::::::::::::::::::::: solution
+```python
+import skimage
+
+image = skimage.io.cells3d()
+image.shape
+# returns: (60, 2, 256, 256)
+
+frame = image[30, 1, :, :]
+smoothed_image = skimage.filters.gaussian(frame, sigma=1)
+viewer.add_image(smoothed_image, name='smoothed')
+
+threshold = skimage.filters.threshold_otsu(smoothed_image)
+binary_image = smoothed_image > threshold
+viewer.add_image(binary_image, name='Otsu threshold')
+
+import scipy.ndimage
+fill_holes = scipy.ndimage.binary_fill_holes(binary_image)
+viewer.add_image(fill_holes, name='fill_holes')
+
+distance_transform = scipy.ndimage.distance_transform_edt(fill_holes)
+viewer.add_image(distance_transform, name='distance_transform')
+
+coords = skimage.feature.peak_local_max(skimage.filters.gaussian(distance_transform, sigma=4), labels=fill_holes)
+
+import numpy
+mask = numpy.zeros(distance_transform.shape, dtype=bool)
+mask[tuple(coords.T)] = True
+markers = skimage.morphology.label(mask)
+viewer.add_image(markers, name='peaks')
+
+watershed_transform = skimage.segmentation.watershed(-distance_transform, markers)
+viewer.add_image(watershed_transform, name='watershed')
+
+masked_watershed = watershed_transform * fill_holes
+viewer.add_image(masked_watershed, name='masked_watershed')
+```
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Image segmentation with Napari tools
+
+Aside from running analyses in the Python console, Napari has a variety of processing steps that can
+be browsed under 'Tools'.
+
+For example, we can go to 'Open Sample' -> 'napari builtins' and  -> 'Binary Blobs'. Browse the tools available and run:
+
+- Otsu threshold
+- Split touching objects (nsbatwm). Try experimenting with different sigma values until you get some good cell separations.
+- Connected component labelling (scikit-image, nsbatwm)
+
+Note: The Otsu threshold shouldn't be required since the test image is already a binary, but for some reason the 'Split
+touching objects' Napari tool isn't able to recognise the original as a binary image.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Exercise 17: Image segmentation in Napari
+## Exercise 17: Exporting code
 
-Look at the 'nuclei' layer of 'Cells (3D + 2Ch)'. Explore
-the options available in 'Tools' and try segmenting and
-labelling the nuclei. A few things to think of:
+This exercise will see how the processing that we have built up with Napari tools
+can be exported back to Python code that we can then check into version control
+and integrate into a workflow to help automate the processing of many images.
 
-- Although we're working in a different environment from
-  Jupyter, the stages of processing will remain the same
-- Remember that Napari works with layers, so the results
-  of each tool used will depend on which layer it's used on
-- Napari names some functions differently. When it's referring
-  to thresholding, for example, it uses the term '**binarising**'
-- Napari has some tools that combine esveral steps of processing
-  into one. Try using the tools to perform each individual
-  step
-
-:::::::::::::::::::::::: solution
-
-:::::::::::::::::::::::::::::::::
-
-## Exercise 18: Exporting code
-
-Open the Napari Assistant and find the 'Export Python code'
+Under 'Plugins', open the Napari Assistant and find the 'Export Python code'
 tool. Use this to generate a Python script that will perform
-the processing that you performed in the previous exercise. Is
-the script usable immediately without modification?
+the processing that you just performed above on the Binary Blobs
+image. Does the script look usable immediately without modification?
 
 :::::::::::::::::::::::: solution
 There are several options to export in different ways, including to
 a Jupyter notebook. The simplest way is probably to copy to clipboard -
-this can be pasted into a text editor or IDE.
+this can be pasted into a text editor or IDE:
 
-Looking at it, though, we can see that it's not immediately usable.
+```python
+from skimage.io import imread
+import napari_segment_blobs_and_things_with_membranes as nsbatwm  # version 0.3.6
+import napari
+if 'viewer' not in globals():
+    viewer = napari.Viewer()
+
+image0_bb = viewer.layers['binary_blobs'].data
+
+# threshold otsu
+
+image1_to = nsbatwm.threshold_otsu(image0_bb)
+viewer.add_labels(image1_to, name='Result of threshold_otsu')
+
+# split touching objects
+
+image2_sto = nsbatwm.split_touching_objects(image1_to, 5.6)
+viewer.add_labels(image2_sto, name='Result of split_touching_objects')
+
+# connected component labeling
+
+image3_ccl = nsbatwm.connected_component_labeling(image2_sto, False)
+viewer.add_labels(image3_ccl, name='Result of connected_component_labeling')
+```
+
+Looking at it, we can see that it's not immediately usable but it's pretty close.
 Exported scripts do not make any reference to what image file was loaded,
-and there is no code at the end for writing the resuults to a file.
-Therefore, the script will require some tweaking to parameterise it
-and get it to produce tangible output.
+and there is no code at the end for writing the resuults to a file, so this is what
+you would need to add to get it to produce tangible output.
 
 :::::::::::::::::::::::::::::::::
 
