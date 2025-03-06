@@ -9,7 +9,7 @@ These two environments have different interfaces for user interaction, but both 
 processing and analysis. Both are discussed here in order to highlight the relative strengths of each one, and
 to present the analysis techniques in this course as generic and independent of one particular platform.
 
-The first section on Python consists of working in a Jupyter notebook setting, but can equally be done in the
+The first section on Python consists of working in a [Jupyter](https://jupyter.org/) notebook setting, but can equally be done in the
 terminal. This way of working also lends itself quite well to adapting your analysis process into a workflow that
 can be applied to a batch of many images.
 
