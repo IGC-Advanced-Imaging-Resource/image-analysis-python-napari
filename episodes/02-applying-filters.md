@@ -215,15 +215,15 @@ image = cells3d()[30, 1, :, :]
 plt.figure(figsize=(10, 12))
 
 plt.subplot(2, 2, 1)
-imshow(image)
+plt.imshow(image)
 plt.title('Original')
 
 plt.subplot(2, 2, 2)
-imshow(difference_of_gaussians(image, 1, 2), cmap='gray')
+plt.imshow(difference_of_gaussians(image, 1, 2), cmap='gray')
 plt.title('Difference of Gaussians')
 
 plt.subplot(2, 2, 3)
-imshow(laplace(gaussian(image, sigma=2)), cmap='gray')
+plt.imshow(laplace(gaussian(image, sigma=2)), cmap='gray')
 plt.title('Laplacian of Gaussian')
 ```
 
