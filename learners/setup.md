@@ -84,9 +84,12 @@ browser tab.
 ### Jupyter installation
 
 If you don't have access to a JupyterHub instance but still want to use Jupyter, you can
-install it locally:
+install it locally either with Conda:
 
        $ conda install -c conda-forge jupyterlab  # with Conda
+
+Or with pip:
+
        $ pip install jupyterlab                   # with Pip
 
 Once installed, start Jupyter with:
@@ -95,10 +98,20 @@ Once installed, start Jupyter with:
 
 This will start the server process and open JupyterLab in a new browser window. Follow the same
 GUI or graphical folder setup as for JupyterHub above.
+
+You may need to install some extra packages, such as skimage. To do this, exit Jupyter and in the same
+terminal window, run:
+
+       $ pip install scikit-image
+
+Or in Conda:
+
+       $ conda install scikit-image
+
 :::::::::::::::::::::::::
 
 :::::::::::::::: solution
-### Local setup
+### Local setup with venv and pip
 
 If you wish to use Python on its own, then that is also possible.
 You will also need the packages skimage, imageio, numpy and matplotlib.
@@ -167,8 +180,8 @@ $ config config --set solver libmamba  # if the confgured solver is 'classic'
 :::::::::::::::: solution
 ### Installation on Windows with Conda
 
-This assumes that you already have Anaconda installed on your system. You will need to use the
-'Anaconda' prompt option to open a terminal session with Conda loaded:
+This assumes that you already have Anaconda installed on your system. There should be an 'Anaconda
+Prompt' option in the start menu. Select this to open a terminal session with Conda loaded, and run:
 
        > conda create --name devbio-napari napari=0.4.19 python=3.9 devbio-napari pyqt -c conda-forge -c pytorch
 
