@@ -534,22 +534,40 @@ This will open a Jupyter notebook in a new browser tab.</p>
 <div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>If you don’t have access to a JupyterHub instance but still want to
-use Jupyter, you can install it locally:</p>
+use Jupyter, you can install it locally either with Conda:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>   <span class="ex">$</span> conda install <span class="at">-c</span> conda-forge jupyterlab  <span class="co"># with Conda</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>   <span class="ex">$</span> pip install jupyterlab                   <span class="co"># with Pip</span></span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>   <span class="ex">$</span> conda install <span class="at">-c</span> conda-forge jupyterlab  <span class="co"># with Conda</span></span></code></pre>
 </div>
-<p>Once installed, start Jupyter with:</p>
+<p>Or with pip:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>   <span class="ex">$</span> jupyter-lab</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>   <span class="ex">$</span> pip install jupyterlab                   <span class="co"># with Pip</span></span></code></pre>
+</div>
+<p>Once installed, start Jupyter with:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>   <span class="ex">$</span> jupyter-lab</span></code></pre>
 </div>
 <p>This will start the server process and open JupyterLab in a new
 browser window. Follow the same GUI or graphical folder setup as for
 JupyterHub above.</p>
+<p>You may need to install some extra packages, such as skimage. To do
+this, exit Jupyter and in the same terminal window, run:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>   <span class="ex">$</span> pip install scikit-image</span></code></pre>
+</div>
+<p>Or in Conda:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>   <span class="ex">$</span> conda install scikit-image</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -558,7 +576,7 @@ JupyterHub above.</p>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5">
-  Local setup
+  Local setup with venv and pip
   </h4>
 </button>
 <div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
@@ -569,18 +587,18 @@ will also need the packages skimage, imageio, numpy and matplotlib.</p>
 idea to install packages into a <a href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment" class="external-link">virtual
 environment</a> such as those created by Conda or Python’s
 <code>venv</code> module:</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>   <span class="ex">$</span> python <span class="at">-m</span> venv ./python_environment</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>   <span class="ex">$</span> source ./python_environment/bin/activate</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   <span class="ex">$</span> pip install skimage imageio numpy matplotlib</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>   <span class="ex">$</span> python <span class="at">-m</span> venv ./python_environment</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>   <span class="ex">$</span> source ./python_environment/bin/activate</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>   <span class="ex">$</span> pip install skimage imageio numpy matplotlib</span></code></pre>
 </div>
 <p>Then to start up Python:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>   <span class="ex">$</span> python</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>   <span class="ex">$</span> python</span></code></pre>
 </div>
 </div>
 </div>
@@ -650,20 +668,20 @@ $ config config --set solver libmamba  # if the confgured solver is 'classic'</c
 <div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
 <div class="accordion-body">
 <p>This assumes that you already have Anaconda installed on your system.
-You will need to use the ‘Anaconda’ prompt option to open a terminal
-session with Conda loaded:</p>
-<div class="codewrapper sourceCode" id="cb9">
+There should be an ‘Anaconda Prompt’ option in the start menu. Select
+this to open a terminal session with Conda loaded, and run:</p>
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>   <span class="op">&gt;</span> conda <span class="ex">create</span> <span class="at">--name</span> devbio-napari napari=0.4.19 python=3.9 devbio-napari pyqt <span class="at">-c</span> conda-forge <span class="at">-c</span> pytorch</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>   <span class="op">&gt;</span> conda <span class="ex">create</span> <span class="at">--name</span> devbio-napari napari=0.4.19 python=3.9 devbio-napari pyqt <span class="at">-c</span> conda-forge <span class="at">-c</span> pytorch</span></code></pre>
 </div>
 <p>You can then activate the environment and run Napari from the
 terminal window:</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>   <span class="op">&gt;</span> conda <span class="ex">activate</span> devbio-napari</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>   <span class="op">&gt;</span> naparia</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>   <span class="op">&gt;</span> conda <span class="ex">activate</span> devbio-napari</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>   <span class="op">&gt;</span> naparia</span></code></pre>
 </div>
 </div>
 </div>

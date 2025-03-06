@@ -320,7 +320,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Napari</h1>
-        <p>Last updated on 2025-02-11 |
+        <p>Last updated on 2025-03-06 |
 
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/05-napari.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -434,7 +434,7 @@ shape:</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imread</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>iage <span class="op">=</span> imread(<span class="st">'path/to/FluorescentCells_3channel.tif'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'path/to/FluorescentCells_3channel.tif'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>image.shape</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># returns: (512, 512, 3)</span></span></code></pre>
 </div>
@@ -489,7 +489,7 @@ can’t view the two at the same time.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>image <span class="op">=</span> skimage.io.imread(<span class="st">'path/to/confocal-series_zstack.tif'</span>)</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'path/to/confocal-series_zstack.tif'</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>image.shape</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># returns: (25, 2, 400, 400)</span></span></code></pre>
 </div>
@@ -536,7 +536,7 @@ you’ll need to use <code>viewer.add_image()</code></p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">import</span> skimage</span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>image <span class="op">=</span> skimage.io.cells3d()</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>image <span class="op">=</span> skimage.data.cells3d()</span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>image.shape</span>
 <span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co"># returns: (60, 2, 256, 256)</span></span>
 <span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
@@ -583,8 +583,11 @@ variety of processing steps that can be browsed under ‘Tools’.</p>
 sigma values until you get some good cell separations.</li>
 <li>Connected component labelling (scikit-image, nsbatwm)</li>
 </ul><p>Note: The Otsu threshold shouldn’t be required since the test image
-is already a binary, but for some reason the ‘Split touching objects’
-Napari tool isn’t able to recognise the original as a binary image.</p>
+is already a binary, but the ‘Split touching objects’ Napari tool isn’t
+able to recognise the original as a binary image. This is because Napari
+expects the values to be 0/1, whereas the test image uses the values
+True/False. Thresholding the image again converts it to the right
+type.</p>
 <div id="exercise-17-exporting-code" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -728,7 +731,7 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/05-napari.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/05-napari.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2025-02-11",
+  "dateModified": "2025-03-06",
   "datePublished": "2025-03-06"
 }
 
