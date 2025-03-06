@@ -320,7 +320,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Thresholding and Segmentation</h1>
-        <p>Last updated on 2025-02-11 |
+        <p>Last updated on 2025-03-06 |
 
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/03-thresholding-and-segmentation.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -373,7 +373,7 @@ smooth the image first, e.g. with a Gaussian filter:</p>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="im">from</span> skimage.data <span class="im">import</span> cells3d</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="im">from</span> skimage.filters <span class="im">import</span> gaussian</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>image <span class="op">=</span> gaussian(cells3d()[<span class="dv">30</span>, <span class="dv">1</span>, :, :])</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>smoothed_image <span class="op">=</span> gaussian(cells3d()[<span class="dv">30</span>, <span class="dv">1</span>, :, :])</span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="bu">print</span>(image.<span class="bu">min</span>(), image.<span class="bu">max</span>(), image.dtype)</span>
 <span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
@@ -421,7 +421,7 @@ do the results differ?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>We can display the two threshold algorithms in a figure:</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -491,7 +491,7 @@ footprint. For each of these, use a disc-shaped kernel of radius 2:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -705,7 +705,7 @@ transformation?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Labelling applies a unique number to each feature. This means that if
 we apply thresholding and labelling to the image, we can flatten the
@@ -851,8 +851,8 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/03-thresholding-and-segmentation.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/03-thresholding-and-segmentation.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2025-02-11",
-  "datePublished": "2025-03-04"
+  "dateModified": "2025-03-06",
+  "datePublished": "2025-03-06"
 }
 
   </script><script>
