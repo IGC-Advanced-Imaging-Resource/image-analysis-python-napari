@@ -30,7 +30,7 @@ import matplotlib.pyplot as plt
 from skimage.data import cells3d
 from skimage.filters import gaussian
 
-image = gaussian(cells3d()[30, 1, :, :])
+smoothed_image = gaussian(cells3d()[30, 1, :, :])
 print(image.min(), image.max(), image.dtype)
 
 plt.subplot(1, 2, 1)
