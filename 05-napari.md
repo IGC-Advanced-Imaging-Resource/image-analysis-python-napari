@@ -86,7 +86,7 @@ at the image's shape:
 
 ```python
 from skimage.io import imread
-iage = imread('path/to/FluorescentCells_3channel.tif')
+image = imread('path/to/FluorescentCells_3channel.tif')
 image.shape
 # returns: (512, 512, 3)
 ```
@@ -127,7 +127,7 @@ channel axis is represented as a slider, meaning we can't view the two at the sa
 As an alternative, we can load the image in the Python console:
 
 ```python
-image = skimage.io.imread('path/to/confocal-series_zstack.tif')
+image = imread('path/to/confocal-series_zstack.tif')
 image.shape
 # returns: (25, 2, 400, 400)
 ```
@@ -161,7 +161,7 @@ Remember that instead of `matplotlib.pyplot.imshow()`, you'll need to use `viewe
 ```python
 import skimage
 
-image = skimage.io.cells3d()
+image = skimage.data.cells3d()
 image.shape
 # returns: (60, 2, 256, 256)
 
@@ -208,8 +208,9 @@ For example, we can go to 'Open Sample' -> 'napari builtins' and  -> 'Binary Blo
 - Split touching objects (nsbatwm). Try experimenting with different sigma values until you get some good cell separations.
 - Connected component labelling (scikit-image, nsbatwm)
 
-Note: The Otsu threshold shouldn't be required since the test image is already a binary, but for some reason the 'Split
-touching objects' Napari tool isn't able to recognise the original as a binary image.
+Note: The Otsu threshold shouldn't be required since the test image is already a binary, but the 'Split
+touching objects' Napari tool isn't able to recognise the original as a binary image. This is because Napari expects the values
+to be 0/1, whereas the test image uses the values True/False. Thresholding the image again converts it to the right type.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
