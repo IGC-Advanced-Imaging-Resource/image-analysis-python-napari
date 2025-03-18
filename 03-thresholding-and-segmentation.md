@@ -1,7 +1,7 @@
 ---
 title: 'Thresholding and Segmentation'
 teaching: 40
-exercises: 5
+exercises: 25
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
