@@ -1,7 +1,7 @@
 ---
 title: 'Introduction to Napari'
 teaching: 60
-exercises: 4
+exercises: 30
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 

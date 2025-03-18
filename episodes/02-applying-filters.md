@@ -1,8 +1,7 @@
 ---
-
 title: 'Applying Filters'
 teaching: 40
-exercises: 3
+exercises: 20
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions

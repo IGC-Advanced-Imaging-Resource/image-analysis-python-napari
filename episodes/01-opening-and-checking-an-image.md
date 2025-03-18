@@ -1,7 +1,7 @@
 ---
 title: 'Opening and Checking an Image'
 teaching: 60
-exercises: 5
+exercises: 20
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
