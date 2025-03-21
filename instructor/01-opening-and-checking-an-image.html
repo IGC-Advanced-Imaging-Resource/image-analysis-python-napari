@@ -323,7 +323,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Opening and Checking an Image</h1>
-        <p>Last updated on 2025-03-18 |
+        <p>Last updated on 2025-03-21 |
 
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/01-opening-and-checking-an-image.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -475,7 +475,7 @@ do this, we need to select a subset of the X and/or Y axes.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Other channels can be loaded with <code>image[:, :, x]</code>, where
 <code>image</code> is the variable the image is saved to and
@@ -539,7 +539,7 @@ FluorescentCells_3channel.tif?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Running <code>image.nbytes</code> shows that it takes up 786432
 bytes, or ~786 kilobytes, or ~0.7 megabytes.</p>
@@ -564,7 +564,7 @@ matplotlib figure:</p>
 <span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>    <span class="co"># because range() counts from 0 but subplot() assumes you're counting from 1.</span></span>
 <span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>    plt.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)</span>
 <span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>    plt.imshow(image[:, :, i])</span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>    plt.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> i)  <span class="co"># add a plot title</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>    plt.title(<span class="st">'Channel '</span> <span class="op">+</span> <span class="bu">str</span>(i))  <span class="co"># add a plot title</span></span>
 <span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>    plt.axis(<span class="va">False</span>)              <span class="co"># we just want to show the image, so turn off the axis labels</span></span>
 <span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a></span>
 <span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>plt.show()</span></code></pre>
@@ -603,7 +603,7 @@ FluorescentCells_3channel.tif.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Starting with displaying a single histogram for one channel:</p>
 <div class="codewrapper sourceCode" id="cb10">
@@ -612,7 +612,7 @@ FluorescentCells_3channel.tif.</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>channel_idx <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>channel <span class="op">=</span> image[:, :, channel_idx]</span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>plt.hist(channel.flatten(), bins<span class="op">=</span><span class="dv">255</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>plt.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> channel_idx)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>plt.title(<span class="st">'Channel '</span> <span class="op">+</span> <span class="bu">str</span>(channel_idx))</span>
 <span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
 <p>We could call this three times, each with a different value for
@@ -628,7 +628,7 @@ FluorescentCells_3channel.tif.</p>
 <span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a></span>
 <span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>    plt.subplot(<span class="dv">1</span>, nchannels, i<span class="op">+</span><span class="dv">1</span>)</span>
 <span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>    plt.hist(channel.flatten(), bins<span class="op">=</span><span class="dv">255</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>    plt.title(<span class="st">'Channel </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> i)  <span class="co"># add a plot title</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>    plt.title(<span class="st">'Channel '</span> <span class="op">+</span> <span class="bu">str</span>(i))  <span class="co"># add a plot title</span></span>
 <span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a></span>
 <span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
@@ -702,7 +702,7 @@ image.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>If not already present, the nd2 package can be installed in the
 Terminal with <code>pip install nd2</code>. According to its linked
@@ -779,7 +779,7 @@ one.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>There will be many ways to do this (and many colour maps to choose
 from!), but here is one possible solution:</p>
@@ -822,7 +822,7 @@ tables. What results do you get? Why might this be the case?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>The resulting image will not look as expected, and in Jupyter the
 image will appear unchanged. In this case, since the lookup table is
@@ -992,8 +992,8 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/01-opening-and-checking-an-image.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/01-opening-and-checking-an-image.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2025-03-18",
-  "datePublished": "2025-03-18"
+  "dateModified": "2025-03-21",
+  "datePublished": "2025-03-21"
 }
 
   </script><script>

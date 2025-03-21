@@ -306,7 +306,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Reference</h1>
-        <p>Last updated on 2024-01-16 |
+        <p>Last updated on 2025-03-21 |
 
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/learners/reference.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -319,12 +319,237 @@
         </div>
 
         
-<section><h2 class="section-heading" id="glossary">Glossary<a class="anchor" aria-label="anchor" href="#glossary"></a></h2>
-<hr class="half-width"><p>This is a placeholder file. Please add content here.</p>
+<section><h2 class="section-heading" id="python-syntax-primer">Python syntax primer<a class="anchor" aria-label="anchor" href="#python-syntax-primer"></a></h2>
+<hr class="half-width"><p>As this is a course on image analysis, some prior knowledge of Python
+syntax is assumed. This reference provides a summary of the language
+constructs used in the examples and exercises of this course.</p>
+<div class="section level3">
+<h3 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a></h3>
+<p>This is how you can store data to retrieve later:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># assigning the integer 1 to the variable `a`, and the decimal 0.4 to</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co"># the variable `b`</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">0.4</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># we can perform arithmetic on numbers</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>c <span class="op">=</span> a <span class="op">+</span> <span class="dv">4</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># even reassign a variable based on its previous value</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>b <span class="op">=</span> b <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="co"># strings/text can be specified with single quotes or double quotes</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>some_string <span class="op">=</span> <span class="st">'a b c d e'</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co"># we can still use the `+` operator on strings, except instead this</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co"># will concatenate them together</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>some_other_string <span class="op">=</span> some_string <span class="op">+</span> <span class="st">'f g h i'</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co"># Python also has the boolean values True and False</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>one_is_greater_than_zero <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>one_is_an_even_number <span class="op">=</span> <span class="va">False</span></span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h3>
+<p>These may be built into base Python, the standard library, extra
+installed packages, or ones that you’ve made yourself. A function is
+always run with brackets.</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># show something on the console</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="bu">print</span>(x)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># you don't have to create a variable first - you can just print a value directly</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'abc'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># multiple arguments are separated with commas</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co"># some functions are written to take named arguments - check the function's documentation</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co"># to see what arguments you can give it</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, sep<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co"># we still need brackets to run the function, even if they're empty</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>credits()</span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co"># the number 1 and the string '1' are not the same - Python has function for converting</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co"># or 'casting' values to certain data types</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>string_1 <span class="op">=</span> <span class="bu">str</span>(<span class="dv">1</span>)     <span class="co"># str -&gt; cast to string</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>integer_4 <span class="op">=</span> <span class="bu">int</span>(<span class="fl">4.1</span>)  <span class="co"># int -&gt; cast to integer</span></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>float_3_point_0 <span class="op">=</span> <span class="bu">float</span>(<span class="dv">3</span>)  <span class="co"># float -&gt; cast to decimal</span></span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="importing-packages">Importing packages<a class="anchor" aria-label="anchor" href="#importing-packages"></a></h3>
+<p>Python comes with a lot of extra functionality that it not loaded by
+default. Some of these may be pre-installed (i.e. they are part of the
+Python <a href="https://docs.python.org/3/library/index.html" class="external-link">standard
+library</a>), or they may need to be installed with
+<code>pip</code>.</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># load the entire package - access its functions with dot notation</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="im">import</span> skimage</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>image <span class="op">=</span> skimage.io.imread(<span class="st">'some_image.tif'</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co"># some components inside packages are not functions, but regular</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co"># strings, numbers, etc. - we still access them with dot notation but</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># do not need `()` brackets to use them</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="bu">print</span>(sys.executable)</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co"># import just the bits we need</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imread</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'some_image.tif'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co"># rename the package as you're importing it</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>plt.imshow(image)</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="lists">Lists<a class="anchor" aria-label="anchor" href="#lists"></a></h3>
+<p>Python can use these to store many pieces of information
+together:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># use square brackets to define a list, and separate the items with commas</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>some_list <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co"># access individual items with square brackets - note that Python counts from 0</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="bu">print</span>(some_list[<span class="dv">0</span>])</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="bu">print</span>(some_list[<span class="dv">3</span>])</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co"># access a subset (slice) of a list with square brackets and colons - this will</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co"># start at position 1 and go up to, but not including, position 3</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="bu">print</span>(some_list[<span class="dv">1</span>:<span class="dv">3</span>])</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co"># negative numbers will count from the end of the list rather than the start</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="bu">print</span>(some_list[<span class="dv">2</span>:<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co"># leaving out the first number is equivalent to starting at position 0 (i.e. the</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co"># start), and leaving out the second number is equivalent to ending at position -1</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co"># (i.e. the end)</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="bu">print</span>(some_list[:<span class="dv">3</span>])</span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="bu">print</span>(some_list[<span class="dv">1</span>:])</span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co"># leaving out both numbers will just slice the whole list</span></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="bu">print</span>(some_list[:])</span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co"># slicing and indexing also works with strings</span></span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a>some_string <span class="op">=</span> <span class="st">'abcdefgh'</span></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="bu">print</span>(some_string[<span class="dv">2</span>:<span class="dv">5</span>])</span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co"># images are designed to be indexed in multiple dimensions at once - do this</span></span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co"># by specifying multiple indexes/slices, separated by commas. Here we load an</span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co"># image and access all of dimension 1, positions 100-200 of dimension 2, and</span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co"># just position 2 of dimension 3</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="im">from</span> skimage.io <span class="im">import</span> imread</span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a>image <span class="op">=</span> imread(<span class="st">'some_image.tif'</span>)</span>
+<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a><span class="bu">print</span>(image[:, <span class="dv">100</span>:<span class="dv">200</span>, <span class="dv">2</span>])</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="dictionaries">Dictionaries<a class="anchor" aria-label="anchor" href="#dictionaries"></a></h3>
+<p>These store many named pieces of information together as key-value
+pairs:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># use curly brackets to define a dictionary. Separate the key from the value</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co"># with a colon, and separate key-value pairs from each other with commas</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>chromosome_counts <span class="op">=</span> {<span class="st">'human'</span>: <span class="dv">46</span>, <span class="st">'wheat'</span>: <span class="dv">42</span>, <span class="st">'fruit fly'</span>: <span class="dv">8</span>, <span class="st">'zebrafish'</span>: <span class="dv">25</span>}</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co"># access individual values with square brackets</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="bu">print</span>(chromosome_counts[<span class="st">'fruit fly'</span>])</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="loops">Loops<a class="anchor" aria-label="anchor" href="#loops"></a></h3>
+<p>This is how we can perform some actions on many pieces of
+information, one at a time:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># first we need something to loop over</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>colours <span class="op">=</span> [<span class="st">'orange'</span>, <span class="st">'red'</span>, <span class="st">'blue'</span>, <span class="st">'green'</span>, <span class="st">'yellow'</span>, <span class="st">'purple'</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># go through each item the `colours` list, one at a time. The item</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co"># that we're currently processing will be called `colour`</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="cf">for</span> colour <span class="kw">in</span> colours:</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    <span class="co"># the code inside the loop is indented with spaces or tabs - it doesn't</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    <span class="co"># matter which one or how many, as long as you're consistent</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'doing something with: '</span> <span class="op">+</span> colour)</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co"># we're no longer indented, so we're now outside the loop</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'done'</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co"># this will do the same thing as the loop above, but with much more</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co"># typing and repetition</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'doing something with: '</span> <span class="op">+</span> <span class="st">'orange'</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'doing something with: '</span> <span class="op">+</span> <span class="st">'red'</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'doing something with: '</span> <span class="op">+</span> <span class="st">'blue'</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'doing something with: '</span> <span class="op">+</span> <span class="st">'green'</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'doing something with: '</span> <span class="op">+</span> <span class="st">'yellow'</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'doing something with: '</span> <span class="op">+</span> <span class="st">'purple'</span>)</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="conditional-statements">Conditional statements<a class="anchor" aria-label="anchor" href="#conditional-statements"></a></h3>
+<p>Python can execute blocks of code only when certain conditions are
+met:</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># use the keyword `if`, followed by a boolean expression. Common mathematical</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co"># operators can be used in Python, including ==, !=, &gt;, &lt;, &gt;=, &lt;=</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="cf">if</span> <span class="dv">1</span> <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>    <span class="co"># 1 is less than 2, so this indented code will run</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'1 is less than 2'</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="cf">if</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>    <span class="co"># 1 + 2 is not 5, so this will not run</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'1 + 2 is 5'</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co"># we can use `else` to provide some code to fall back on if the condition</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co"># is not met</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="cf">if</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'1 + 2 is 5'</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'1 + 2 is not 5'</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co"># use `elif` to specify multiple possible courses of action - only the first one to</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co"># be satisfied will be executed</span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="co"># let's check how large each number in a list is</span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a>values <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">150</span>, <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="cf">for</span> val <span class="kw">in</span> values:</span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>    <span class="cf">if</span> val <span class="op">&gt;</span> <span class="dv">100</span>:</span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a>        <span class="bu">print</span>(<span class="bu">str</span>(val) <span class="op">+</span> <span class="st">' is greater than 100'</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>    <span class="cf">elif</span> val <span class="op">&gt;</span> <span class="dv">4</span>:</span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a>        <span class="bu">print</span>(<span class="bu">str</span>(val) <span class="op">+</span> <span class="st">'is greater than 4'</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a>    <span class="cf">elif</span> val <span class="op">&gt;=</span> <span class="dv">0</span>:</span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a>        <span class="bu">print</span>(<span class="bu">str</span>(val) <span class="op">+</span> <span class="st">' is greater than or equal to 0'</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a>        <span class="bu">print</span>(<span class="bu">str</span>(val) <span class="op">+</span> <span class="st">' is less than 0'</span>)</span></code></pre>
+</div>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/index.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
@@ -383,8 +608,8 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/reference.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/reference.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2024-01-16",
-  "datePublished": "2025-03-18"
+  "dateModified": "2025-03-21",
+  "datePublished": "2025-03-21"
 }
 
   </script><script>

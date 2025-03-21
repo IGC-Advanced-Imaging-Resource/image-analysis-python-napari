@@ -310,7 +310,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Measurements</h1>
-        <p>Last updated on 2025-03-18 |
+        <p>Last updated on 2025-03-21 |
 
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/04-measurements.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -413,7 +413,7 @@ that, select all pixels that are not <code>None</code> and use
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>    plt.subplot(<span class="dv">2</span>, <span class="dv">3</span>, i <span class="op">+</span> <span class="dv">1</span>)  <span class="co"># subplot counts from 1 rather than 0</span></span>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>    plt.imshow(nucleus)</span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    pixels <span class="op">=</span> [p <span class="cf">for</span> p <span class="kw">in</span> nucleus.flatten() <span class="cf">if</span> p]  <span class="co"># remove the background pixels</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Feature </span><span class="sc">%i</span><span class="st">:'</span> <span class="op">%</span> i, numpy.mean(pixels))</span></code></pre>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Feature '</span> <span class="op">+</span> <span class="bu">str</span>(i) <span class="op">+</span> <span class="st">':'</span>, numpy.mean(pixels))</span></code></pre>
 </div>
 <figure><img src="fig/4_1_mean_intensities.png" alt="Mean intensities" class="figure mx-auto d-block"></figure><p>A few notes:</p>
 <ul><li>Note how the first feature labelled as <code>0</code> corresponds to
@@ -508,8 +508,8 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/04-measurements.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/04-measurements.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2025-03-18",
-  "datePublished": "2025-03-18"
+  "dateModified": "2025-03-21",
+  "datePublished": "2025-03-21"
 }
 
   </script><script>

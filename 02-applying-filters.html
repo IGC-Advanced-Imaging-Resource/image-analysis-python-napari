@@ -319,7 +319,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Applying Filters</h1>
-        <p>Last updated on 2025-03-18 |
+        <p>Last updated on 2025-03-21 |
 
         <a href="https://github.com/IGC-Advanced-Imaging-Resource/image-analysis-python-napari/blob/main/LICENSE/edit/main/episodes/02-applying-filters.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -381,7 +381,8 @@ result.</p>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>kernel <span class="op">=</span> square(<span class="dv">3</span>)  <span class="co"># create a 3x3 square kernel</span></span></code></pre>
 </div>
 <p>There are other shapes of kernel that can be used, and are documented
-<a href="https://scikit-image.org/docs/stable/api/skimage.morphology.html" class="external-link">here</a>.</p>
+in the <a href="https://scikit-image.org/docs/stable/api/skimage.morphology.html" class="external-link">morphology
+section</a> of the skimage docs.</p>
 <p>Note that as of skimage 0.25.0, the <code>square</code> function has
 been deprecated in favour of a new function, <a href="https://scikit-image.org/docs/stable/api/skimage.morphology.html#skimage.morphology.footprint_rectangle" class="external-link">footprint_rectangle</a>:</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -469,8 +470,9 @@ are not entirely distinct from each other, or if the background is not a
 uniform shade. In cases like this, a rolling ball algorithm can be
 applied. The rolling ball estimates the background intensity of an image
 by using the pixel values to translate the image into a height map, and
-then rolling a ball of a given radius across it. Additional information
-on how it works can be found <a href="https://www.researchgate.net/figure/Schematic-diagram-of-background-subtraction-by-the-rolling-ball-method-the-histogram_fig3_319985119" class="external-link">here</a>.</p>
+then rolling a ball of a given radius across it. The rolling ball
+algorithm has been published and a <a href="https://www.researchgate.net/figure/Schematic-diagram-of-background-subtraction-by-the-rolling-ball-method-the-histogram_fig3_319985119" class="external-link">figure</a>
+from the publication describes how it works.</p>
 <div id="exercise-7-rolling-ball-background-intensity" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -683,8 +685,8 @@ any links that you are not going to use.
   "url": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/02-applying-filters.html",
   "identifier": "https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/02-applying-filters.html",
   "dateCreated": "2023-09-19",
-  "dateModified": "2025-03-18",
-  "datePublished": "2025-03-18"
+  "dateModified": "2025-03-21",
+  "datePublished": "2025-03-21"
 }
 
   </script><script>
