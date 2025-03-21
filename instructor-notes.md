@@ -2,7 +2,7 @@
 title: Instructor Notes
 ---
 
-# Building the course
+## Building the course
 
 Set up R:
 

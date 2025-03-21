@@ -68,7 +68,7 @@ for i in labels[:6]:  # just showing the first 6
     plt.subplot(2, 3, i + 1)  # subplot counts from 1 rather than 0
     plt.imshow(nucleus)
     pixels = [p for p in nucleus.flatten() if p]  # remove the background pixels
-    print('Feature %i:' % i, numpy.mean(pixels))
+    print('Feature ' + str(i) + ':', numpy.mean(pixels))
 ```
 
 ![](fig/4_1_mean_intensities.png){alt='Mean intensities'}

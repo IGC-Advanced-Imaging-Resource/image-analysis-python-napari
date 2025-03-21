@@ -41,8 +41,9 @@ from skimage.morphology import square
 kernel = square(3)  # create a 3x3 square kernel
 ```
 
-There are other shapes of kernel that can be used, and are documented
-[here](https://scikit-image.org/docs/stable/api/skimage.morphology.html).
+There are other shapes of kernel that can be used, and are documented in the
+[morphology section](https://scikit-image.org/docs/stable/api/skimage.morphology.html)
+of the skimage docs.
 
 Note that as of skimage 0.25.0, the `square` function has been deprecated in
 favour of a new function, [footprint_rectangle](https://scikit-image.org/docs/stable/api/skimage.morphology.html#skimage.morphology.footprint_rectangle):
@@ -120,8 +121,9 @@ images, this may be difficult especially if the two are not entirely distinct fr
 other, or if the background is not a uniform shade. In cases like this, a rolling ball
 algorithm can be applied. The rolling ball estimates the background intensity of an
 image by using the pixel values to translate the image into a height map, and then
-rolling a ball of a given radius across it. Additional information on how it works
-can be found [here](https://www.researchgate.net/figure/Schematic-diagram-of-background-subtraction-by-the-rolling-ball-method-the-histogram_fig3_319985119).
+rolling a ball of a given radius across it. The rolling ball algorithm has been
+published and a [figure](https://www.researchgate.net/figure/Schematic-diagram-of-background-subtraction-by-the-rolling-ball-method-the-histogram_fig3_319985119)
+from the publication describes how it works.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 ## Exercise 7: Rolling ball background intensity
