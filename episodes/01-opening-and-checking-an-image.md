@@ -189,7 +189,7 @@ for i in range(nchannels):
     # because range() counts from 0 but subplot() assumes you're counting from 1.
     plt.subplot(1, nchannels, i+1)
     plt.imshow(image[:, :, i])
-    plt.title('Channel %s' % i)  # add a plot title
+    plt.title('Channel ' + str(i))  # add a plot title
     plt.axis(False)              # we just want to show the image, so turn off the axis labels
 
 plt.show()
@@ -227,7 +227,7 @@ Starting with displaying a single histogram for one channel:
 channel_idx = 0
 channel = image[:, :, channel_idx]
 plt.hist(channel.flatten(), bins=255)
-plt.title('Channel %s' % channel_idx)
+plt.title('Channel ' + str(channel_idx))
 plt.show()
 ```
 
@@ -243,7 +243,7 @@ for i in range(nchannels):
 
     plt.subplot(1, nchannels, i+1)
     plt.hist(channel.flatten(), bins=255)
-    plt.title('Channel %s' % i)  # add a plot title
+    plt.title('Channel ' + str(i))  # add a plot title
 
 plt.show()
 ```
