@@ -31,14 +31,14 @@ from skimage.data import cells3d
 from skimage.filters import gaussian
 
 smoothed_image = gaussian(cells3d()[30, 1, :, :])
-print(image.min(), image.max(), image.dtype)
+print(smoothed_image.min(), smoothed_image.max(), smoothed_image.dtype)
 
 plt.subplot(1, 2, 1)
-plt.imshow(image, cmap='gray')
+plt.imshow(smoothed_image, cmap='gray')
 plt.title('Gaussian filter')
 
 plt.subplot(1, 2, 2)
-binary_image = image > 0.12
+binary_image = smoothed_image > 0.12
 plt.imshow(binary_image)
 plt.title('Threshold > 0.12')
 ```
