@@ -352,17 +352,14 @@
         
 <section id="01-opening-and-checking-an-image"><h2 class="section-heading"><a href="01-opening-and-checking-an-image.html">Opening and Checking an Image</a></h2>
 <hr class="half-width">
-<ul>
-<li>Common image formats can usually all be loaded in the same way with
-skimage</li>
-<li>Specialised proprietary formats may require specialised
-libraries</li>
-<li>Basic metrics of an image include histogram, shape and max/min pixel
-values</li>
-<li>These metrics can help tell us how the miage should be analysed</li>
-<li>Lookup tables can change how a single-channel image is rendered</li>
-<li>An RGB image contains 3 channels for red, green and blue</li>
-</ul></section><section id="02-applying-filters"><h2 class="section-heading"><a href="02-applying-filters.html">Applying Filters</a></h2>
+<p>Standard image formats (TIFF, PNG) can be loaded as NumPy arrays
+using skimage. Proprietary microscope formats are best handled by BIOIO
+to preserve dimensions and metadata. Basic metrics like histograms,
+shape, and pixel ranges help determine the best analysis strategy.
+Lookup tables (LUTs) change how data is rendered visually but do not
+change the underlying pixel values. Lazy loading (via Dask in BIOIO)
+allows you to explore massive datasets without overwhelming your
+computer’s memory.</p></section><section id="02-applying-filters"><h2 class="section-heading"><a href="02-applying-filters.html">Applying Filters</a></h2>
 <hr class="half-width">
 <ul>
 <li>There are many ways of smoothing an image</li>

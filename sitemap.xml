@@ -25,6 +25,12 @@
     <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/images.html</loc>
+  </url>
+  <url>
     <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/index.html</loc>
   </url>
   <url>
@@ -52,13 +58,31 @@
     <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/images.html</loc>
+  </url>
+  <url>
     <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/index.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/key-points.html</loc>
   </url>
   <url>
     <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/profiles.html</loc>
   </url>
   <url>
     <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/key-points.html</loc>
   </url>
   <url>
     <loc>https://IGC-Advanced-Imaging-Resource.github.io/image-analysis-python-napari/profiles.html</loc>
