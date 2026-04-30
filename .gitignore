@@ -53,3 +53,4 @@ po/*~
 renv/sandbox # OPTIONAL
 
 .DS_Store
+*.Rproj
