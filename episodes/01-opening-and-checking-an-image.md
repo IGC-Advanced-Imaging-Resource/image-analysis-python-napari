@@ -255,66 +255,46 @@ plt.show()
 
 ## Proprietary formats
 
-Images can come in many formats, but for many of the common ones such as TIFF,
-PNG and BMP, skimage is smart enough to know how to read each one.
+Modern microscopes save files in vendor-specific formats (like .czi, .nd2, or .lif). While skimage can handle standard TIF(F)s, these complex files contain vital metadata, for example, pixel spacing information, that we need for accurate analysis.
 
-Some image formats are associated with specific instruments or equipment and
-require specialised packages to open. Depending on your system, these may
-already be available via `import` the same as any other Python package. If
-not, then these should be installed into whatever Python instance you are
-using.
+
+### The Universal Adapter: BIOIO
+
+Instead of installing a different library for every microscope brand, we recommend BIOIO. It acts as a consistent interface for almost any biological image format, allowing you to use the same commands regardless of the file source.
 
 If using JupyterHub or JupyterLab, go to 'New' -> 'Terminal'. This will open
 a shell session in a new browser tab, where you can run `pip install` commands.
 
-### Carl Zeiss .czi
+::: callout
+### Advanced: Scaling up with Dask
+Once you are a bit more established as a Python user, the integration of BIOIO with Dask becomes a major advantage. It allows for "Lazy Loading," where the computer only reads the specific pixels you ask for. This is essential for analyzing massive datasets that are larger than your computer's RAM.
+:::
 
-Images in .czi format can be opened with the `czifile` library. In the Terminal
-you opened above:
+:::: challenge
+## Exercise 4: Reading with BIOIO
 
-    $ pip install czifile
+Load the bioio package and use it to read the test file 'data/Ersi_organoid_WT2.nd2'. 
 
-### Nikon .nd2
+1. Use print(img.dims) to check the dimensions. What does each letter represent?
+2. Use get_image_data to extract a single 2D frame for the first channel (C=0) at the middle Z-slice (Z=13).
 
-    $ pip install nd2
-
-### Imaris .ims
-
-    $ pip install imaris-ims-file-reader
-
-### Leica .lif
-
-    $ pip install readlif
-
-
-::::::::::::::::::::::::::::::::::::: challenge
-## Exercise 4: Proprietary formats
-
-Load the [nd2](https://www.talleylambert.com/nd2/#installation) package and use it to read
-the test file 'Ersi_organoid_WT2.nd2'. Install it if you need to.
-
-What axes are present in the image? Which look most likely to be the X and
-Y axes? Use `imshow` to display a single frame from the image.
-
-:::::::::::::::::::::::: solution
-If not already present, the nd2 package can be installed in the Terminal with
-`pip install nd2`. According to its linked documentation, it has
-an `imread` function that works in a similar way to the one in skimage, and returns a numpy
-multidimensional array that we can work with the same way we have before:
-
+::: solution
 ```python
-import nd2
-image = nd2.imread('data/Ersi_organoid_WT2.nd2')
-image.shape
-# returns: (27, 3, 512, 512)
-```
+from bioio import BioImage
 
-`img.shape` shows that there are four axes, `(27, 3, 512, 512)`. The latter two numbers look like
-the X and Y axes, while the second number looks like a number of colour channels. The first number
-looks like either a time series or a Z axis. We can show a single frame with:
+# Load the image object
+img = BioImage('data/Ersi_organoid_WT2.nd2')
 
-```python
-plt.imshow(image[0, 0, :, :])
+# Check dimensions explicitly
+print(img.dims)
+# Returns: Dimensions [T: 1, C: 3, Z: 27, Y: 512, X: 512]
+
+# Grab a specific slice (Channel 0, Z-slice 13)
+pixel_data = img.get_image_data("YX", C=0, Z=13)
+
+import matplotlib.pyplot as plt
+plt.imshow(pixel_data)
+
 ```
 
 ![](fig/1_6_nd2_image_frame.jpg){alt='ND2 image'}
@@ -322,22 +302,15 @@ plt.imshow(image[0, 0, :, :])
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-As discussed above in exercise 4, it may be difficult to distinguish a time series from a Z axis.
-You may also notice that here the X/Y axes are the latter two numbers, but in other examples
-above, the X/Y axes were the first two. This demonstrates the diversity and general lack of
-consistency in image formatting, and how it's usually a good idea to find out as much as you can
-about the image from documentation and metadata before processing it.
-
 ## Altering the lookup table
 
-Now that we've been able to open an image, we can start to explore it and display
-it in different ways.
+Now that we have extracted a specific 2D slice of data using BIOIO, we can explore different ways to display it. 
 
-The `imshow()` function can take extra arguments in addition to the image to display. One
-of these is called `cmap`, which can apply alternate lookup tables (a.k.a. colour maps):
+The imshow() function can take an argument called cmap, which applies a "Lookup Table" (LUT). This maps the numerical intensity values in your image to specific colors on your screen.
 
 ```python
-plt.imshow(image[0, 0, :, :], cmap='viridis')
+# Using the pixel_data we extracted from the BIOIO object earlier
+plt.imshow(pixel_data, cmap='viridis')
 ```
 
 Skimage uses lookup tables from the plotting library matplotlib. A list of available tables
@@ -427,45 +400,17 @@ position 0 (the start).
 
 ### Pixel size
 
-Pixels are an approximation of an object - knowing that something is 50 pixels long and
-50 pixels wide doesn't tell us anything about its actual size. To make any real-world
-measurements on the image, we need the image's **pixel size**.
-
-To get this, it is necessary to read the image's **metadata**. For this we need a different
-library, imageio. There are a couple of different places we can look:
-
+To make real-world measurements, we need the image's pixel size. While older methods required digging through complex metadata dictionaries, BIOIO makes this simple:
 ```python
-import imageio
-meta = imageio.v3.immeta('data/FluorescentCells_3channel.tif')
-props = imageio.v3.improps('data/FluorescentCells_3channel.tif')
-print('meta:', meta)
-print('props:', props)
+# Access the physical pixel sizes directly from the bioio object
+print(img.physical_pixel_sizes)
+# Returns physical sizes (e.g., X=0.1, Y=0.1, Z=0.5) usually in micrometres.
 ```
 
-`immeta()` gives us a dict summarising the image, and `improps` gives an object with the
-property 'spacing'. However, there is no guarantee that wither of these will contain any
-information on pixel size, and the BioimageBook notes that
-[these numbers can be misleading](https://bioimagebook.github.io/chapters/1-concepts/5-pixel_size/python.html#imageio)
-and require interpretation and cross-checking.
-
-Even if `immeta()` does return a key called 'unit', the value may be returned as escaped Unicode:
-
-    'unit': '\\u00B5m'
-
-This can be un-escaped with:
-
-    >>> m['unit'].encode().decode('unicode-escape')
-    μm
-
-Here, this would indicate that the image is to be mesaured in micrometres. Combining this
-with other information that may be available, e.g. `improps().spacing`, will help you figure
-out the pixel size.
-
 ::::::::::::::::::::::::::::::::::::: keypoints
-- Common image formats can usually all be loaded in the same way with skimage
-- Specialised proprietary formats may require specialised libraries
-- Basic metrics of an image include histogram, shape and max/min pixel values
-- These metrics can help tell us how the miage should be analysed
-- Lookup tables can change how a single-channel image is rendered
-- An RGB image contains 3 channels for red, green and blue
+Standard image formats (TIFF, PNG) can be loaded as NumPy arrays using skimage.
+Proprietary microscope formats are best handled by BIOIO to preserve dimensions and metadata.
+Basic metrics like histograms, shape, and pixel ranges help determine the best analysis strategy.
+Lookup tables (LUTs) change how data is rendered visually but do not change the underlying pixel values.
+Lazy loading (via Dask in BIOIO) allows you to explore massive datasets without overwhelming your computer's memory.
 ::::::::::::::::::::::::::::::::::::::::::::::::
