@@ -87,4 +87,3 @@ A few notes:
 - Binary multiplication and `numpy.where` are powerful ways of combining images and masks
 - The numbers assigned during labelling can be used to select and process one feature at a time
 ::::::::::::::::::::::::::::::::::::::::::::::::
- 
