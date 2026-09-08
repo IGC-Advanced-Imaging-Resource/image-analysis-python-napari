@@ -4,6 +4,7 @@
 "config.yaml" "2e9c55152f71cd8e9346405826f7d08c" "site/built/config.yaml" "2026-04-30"
 "index.md" "6a20729f7057258a9801afd2233695b9" "site/built/index.md" "2026-04-30"
 "links.md" "8184cf4149eafbf03ce8da8ff0778c14" "site/built/links.md" "2026-04-30"
+"data/summary.md" "b8a9c60473b8a3c2106bff18e3d63525" "site/built/summary.md" "2026-09-08"
 "episodes/01-opening-and-checking-an-image.md" "da8f4b4bf218d1345a2fd5287eb58697" "site/built/01-opening-and-checking-an-image.md" "2026-04-30"
 "episodes/02-applying-filters.md" "fef7b62a9be6493b577541097edf3f42" "site/built/02-applying-filters.md" "2026-04-30"
 "episodes/03-thresholding-and-segmentation.md" "9bbd14dc123f48a73405070a4560e9ab" "site/built/03-thresholding-and-segmentation.md" "2026-04-30"
