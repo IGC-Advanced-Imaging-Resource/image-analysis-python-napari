@@ -174,30 +174,6 @@ Running `image.nbytes` shows that it takes up 786432 bytes, or ~786 kilobytes, o
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-## Displaying one channel at a time
-
-We've seen from exercise 1 that we can view single channels by indexing the array. We can also show all
-channels together using a matplotlib figure:
-
-```python
-import matplotlib.pyplot as plt
-plt.figure(figsize=(12, 6))  # figure size, in inches
-nchannels = 3
-
-for i in range(nchannels):
-    # Use subplot() to create a multi-image figure with 1 row and 3 columns. We need to increment i by 1
-    # because range() counts from 0 but subplot() assumes you're counting from 1.
-    plt.subplot(1, nchannels, i+1)
-    plt.imshow(image[:, :, i])
-    plt.title('Channel ' + str(i))  # add a plot title
-    plt.axis(False)              # we just want to show the image, so turn off the axis labels
-
-plt.show()
-```
-
-![](fig/1_4_all_channels.jpg){alt='All image channels'}
-
-
 ## Histograms
 
 Another useful metric in image analysis is an image's histogram. This can be plotted by flattening
@@ -215,40 +191,64 @@ we can use `bins` to control how many bins the data is split into.
 ::::::::::::::::::::::::::::::::::::: challenge
 ## Exercise 3: Histograms
 
-Combine the usage of `matplotlib.pyplot.hist()` and `matplotlib.pyplot.figure()`
-introduced above above and plot a histogram of each of the three channels in
-FluorescentCells_3channel.tif.
+Matplotlib has functionality for displaying multiple images or plots side by side in a figure:
+
+```python
+# figure size in inches
+width = 12
+height = 6
+
+# grid-like arrangement of images
+rows = 1
+columns = 2
+
+# tell matplotlib how big we want tht efigure to be
+plt.figure(figsize=(width, height))
+
+# first image
+plt.subplot(rows, columns, 1)
+plt.imshow(image_1)
+plt.title('Image 1')
+
+# second image
+plt.subplot(rows, columns, 2)
+plt.imshow(image_2)
+plt.title('Image 2')
+```
+
+Using the above as a reference, plot histograms of the three channels in FluorescentCells_3channel.tif.
+
+Hints:
+  - Instead of calling imshow() to display an existing image, you'll need to create a histogram with hist()
+  - Python likes to count from 0, e.g. when selecting channels, but note that the index given to subplot() counts
+    from 1 - you'll need to account for this
 
 :::::::::::::::::::::::: solution
 
-Starting with displaying a single histogram for one channel:
-
 ```python
-channel_idx = 0
-channel = image[:, :, channel_idx]
-plt.hist(channel.flatten(), bins=255)
-plt.title('Channel ' + str(channel_idx))
-plt.show()
-```
+width = 12
+height = 6
+rows = 1
+columns = 3
+plt.figure(figsize=(width, height))
 
-We could call this three times, each with a different value for `channel_idx`, or we can use
-a **for loop**:
+plt.subplot(rows, columns, 1)
+plt.hist(image[:, :, 0], bins=255)
+plt.title('Channel 0')
 
-```python
-plt.figure(figsize=(12, 6))  # figure size, in inches
-nchannels = image.shape[-1]
+plt.subplot(rows, columns, 2)
+plt.hist(image[:, :, 1], bins=255)
+plt.title('Channel 1')
 
-for i in range(nchannels):
-    channel = image[:, :, i]
+plt.subplot(rows, columns, 3)
+plt.hist(image[:, :, 2], bins=255)
+plt.title('Channel 2')
 
-    plt.subplot(1, nchannels, i+1)
-    plt.hist(channel.flatten(), bins=255)
-    plt.title('Channel ' + str(i))  # add a plot title
-
-plt.show()
 ```
 ![](fig/1_5_histograms.jpg){alt='All image channels'}
 
+This example calls subplot() hist() and title() three times each, but of course it would be possible to do this
+in a `for` loop.
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -366,7 +366,8 @@ an RGB image.
 
 ### Rearranging channels
 
-You may find yourself in a situation where the arrangement of dimensions in your image
+In the nd2 example above, the x and y axes are at the end rather than the start. You may find
+yourself in a situation where the arrangement of dimensions in your image
 is incorrect for the processing you wish to perform on it - maybe a function requires
 that an image be oriented in a particular way. This is where it's useful to be able
 to rearrange the dimensions of an image. To do this, we can use Numpy's `moveaxis`

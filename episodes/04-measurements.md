@@ -83,6 +83,44 @@ A few notes:
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
+
+## Pixel size
+
+Pixels are an approximation of an object - knowing that something is 50 pixels long and
+50 pixels wide doesn't tell us anything about its actual size. To make any real-world
+measurements on the image, we need the image's **pixel size**.
+
+To get this, it is necessary to read the image's **metadata**. For this we need a different
+library, imageio. There are a couple of different places we can look:
+
+```python
+import imageio
+meta = imageio.v3.immeta('data/FluorescentCells_3channel.tif')
+props = imageio.v3.improps('data/FluorescentCells_3channel.tif')
+print('meta:', meta)
+print('props:', props)
+```
+
+`immeta()` gives us a dict summarising the image, and `improps` gives an object with the
+property 'spacing'. However, there is no guarantee that wither of these will contain any
+information on pixel size, and the BioimageBook notes that
+[these numbers can be misleading](https://bioimagebook.github.io/chapters/1-concepts/5-pixel_size/python.html#imageio)
+and require interpretation and cross-checking.
+
+Even if `immeta()` does return a key called 'unit', the value may be returned as escaped Unicode:
+
+    'unit': '\\u00B5m'
+
+This can be un-escaped with:
+
+    >>> m['unit'].encode().decode('unicode-escape')
+    μm
+
+Here, this would indicate that the image is to be mesaured in micrometres. Combining this
+with other information that may be available, e.g. `improps().spacing`, will help you figure
+out the pixel size.
+
+
 ::::::::::::::::::::::::::::::::::::: keypoints 
 - Binary multiplication and `numpy.where` are powerful ways of combining images and masks
 - The numbers assigned during labelling can be used to select and process one feature at a time
